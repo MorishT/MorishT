@@ -21,7 +21,6 @@ social: true  # includes social icons at the bottom of the page
 
 A machine learning (mainly NLP) researcher at the Hitachi central laboratory.  
 
-I'm developing NLP technologies to help people make better decisions.
-This also often requires multimodal (text + image/speech) technologies, which I am interested in.  
+I'm developing NLP technologies (and sometimes multimodal technologies that also incorporate speech/image) to help people make better decisions.  
 
 I'm also interested in generic machine learning technologies such as reinforcement learning and ensemble learning.
