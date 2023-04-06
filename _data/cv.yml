@@ -93,7 +93,7 @@
   - The Association for Natural Language Processing (NLP JAPAN)
 
 - title: Academic Service
-  type: double_nested_list
+  type: list
   contents:
     - title: Review experience
       items: 
