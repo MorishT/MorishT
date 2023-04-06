@@ -93,11 +93,13 @@
   - The Association for Natural Language Processing (NLP JAPAN)
 
 - title: Academic Service
-  type: list
+  type: double_nested_list
   contents:
     - title: Review experience
-      items: 
-        - NeurIPS (will be in 2023)
+      subcontents:
+        - title: Conference
+          items:
+          - NeurIPS (2023)
 
 # - title: Other Interests
 #   type: list
