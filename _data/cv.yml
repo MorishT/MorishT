@@ -95,11 +95,31 @@
 - title: Academic Service
   type: double_nested_list
   contents:
+    - title: Session chair
+      items: 
+        - IEEE ICASSP 2022 (at Singapore)
     - title: Review experience
       subcontents:
+        - title: Journal
+          items:
+          - IEEE/ACM Transactions on Audio, Speech, and Language Processing (2021-2023)
+          - IEEE Transactions on Multimedia (2020-2021)
+          - IEEE Transactions on Neural Networks and Learning Systems (2021)
+          - IEEE Transactions on Pattern Recognition and Machine Intelligence (2020)
+          - IEEE Transactions on Affective Computing (2023)
+          - Computer Speech & Language (2021-2022)
+          - Speech Communication (2022-2023)
+          - Neural Networks (2022)
         - title: Conference
           items:
-          - NeurIPS (2023)
+          - ICASSP (2019-2023)
+          - EUSIPCO (2021-2023)
+          - SLT (2022)
+          - DCASE (2020-2021)
+          - MLSP (2021)
+          - APSIPA ASC (2021)
+          - RO-MAN (2022)
+          - ICML (2020)
 
 # - title: Other Interests
 #   type: list
