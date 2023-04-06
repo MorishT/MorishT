@@ -54,33 +54,33 @@
 - title: Honors and Awards
   type: time_table
   contents:
-    - title: 1st prize in <a href="https://competitions.codalab.org/competitions/20970">SemEval Task7: Assessing the Funniness of Edited News Headlines</a>
+    - title: 1st prize in <a href="https://competitions.codalab.org/competitions/20970">SemEval Task7\: Assessing the Funniness of Edited News Headlines</a>
       year: 2020
       items:
         - <a href="https://aclanthology.org/2020.semeval-1.98/">official paper</a>
         - <a href="https://www.aclweb.org/anthology/2020.semeval-1.101/">our mehtod</a>
         - <a href="https://www.aclweb.org/anthology/2020.semeval-1.101/">presented at the oral session of COLING 2020 workshop</a>
-    - title: 1st prize in <a href="http://mrp.nlpl.eu/2020/index.php">CoNLL 2020 Shared Task: Cross-Framework Meaning Representation Parsing</a>
+    - title: 1st prize in <a href="http://mrp.nlpl.eu/2020/index.php">CoNLL 2020 Shared Task\: Cross-Framework Meaning Representation Parsing</a>
       year: 2020
       items:
         - <a href="https://aclanthology.org/2020.conll-shared.1/">official paper</a>
         - <a href="https://aclanthology.org/2020.conll-shared.4/">our mehtod</a>
-    - title: 1st prize in subtask1 of <a href="https://propaganda.qcri.org/semeval2020-task11/">SemEval Task11: Detection of Propaganda Techniques in News Articles</a>
+    - title: 1st prize in subtask1 of <a href="https://propaganda.qcri.org/semeval2020-task11/">SemEval Task11\: Detection of Propaganda Techniques in News Articles</a>
       year: 2020
       items:
         - <a href="https://aclanthology.org/2020.semeval-1.186/">official paper</a>
         - <a href="https://www.aclweb.org/anthology/2020.semeval-1.228/">our mehtod</a>
-    - title: 1st prize in Slovenian of <a href="https://competitions.codalab.org/competitions/20970">SemEval Task3: Predicting the (Graded) Effect of Context in Word Similarity</a>
+    - title: 1st prize in Slovenian of <a href="https://competitions.codalab.org/competitions/20970">SemEval Task3\: Predicting the (Graded) Effect of Context in Word Similarity</a>
       year: 2020
       items:
         - <a href="https://aclanthology.org/2020.semeval-1.3/">official paper</a>
         - <a href="https://www.aclweb.org/anthology/2020.semeval-1.36/">our mehtod</a>
-    - title: 2nd prize in subtask3 of <a href="https://competitions.codalab.org/competitions/20629">SemEval Task8: Memotion Analysis</a>
+    - title: 2nd prize in subtask3 of <a href="https://competitions.codalab.org/competitions/20629">SemEval Task8\: Memotion Analysis</a>
       year: 2020
       items:
         - <a href="https://aclanthology.org/2020.semeval-1.99/">official paper</a>
         - <a href="https://www.aclweb.org/anthology/2020.semeval-1.149/">our mehtod</a>
-    - title: 2nd prize in <a href="https://ritual.uh.edu/semeval2020-task10-emphasis-selection/">SemEval Task10: Emphasis Selection</a>
+    - title: 2nd prize in <a href="https://ritual.uh.edu/semeval2020-task10-emphasis-selection/">SemEval Task10\: Emphasis Selection</a>
       year: 2020
       items:
         - <a href="https://aclanthology.org/2020.semeval-1.184/">official paper</a>
