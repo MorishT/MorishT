@@ -8,7 +8,7 @@ middle_name:
 last_name: Morishita
 email: 
 description: > # the ">" symbol means to ignore newlines until "footer_text:"
-  Terufumi Morishita's personal webpage.
+  Terufumi Terufumi's personal webpage.
 footer_text: >
   Powered by <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio">al-folio</a> theme.
 keywords: Terufumi Morishita, natural language processing, NLP, machine learning, ensemble learning  # add your own keywords or leave empty
@@ -260,8 +260,8 @@ display_tags: ['formatting', 'images', 'links', 'math', 'code'] # this tags will
 
 scholar:
 
-  last_name: [Terufumi, 皓文]
-  first_name: [Morishita, 森下]
+  last_name: [Terufumi, 森下皓文]
+  first_name: [Morishita, 森下皓文]]
 
   style: apa
   locale: en
