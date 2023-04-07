@@ -17,10 +17,10 @@ nav_order: 1
   {% bibliography -f writings -q @*[year={{y}}]* %}
 {% endfor %}
 
-<h1>interviews</h1>
+<h1>others</h1>
 {%- for y in page.years_others %}
   <h2 class="year">{{y}}</h2>
-  {% bibliography -f interviews -q @*[year={{y}}]* %}
+  {% bibliography -f others -q @*[year={{y}}]* %}
 {% endfor %}
 
 </div>
