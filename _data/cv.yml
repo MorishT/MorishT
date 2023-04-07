@@ -1,98 +1,101 @@
-- title: General Information
-  type: map
-  contents:
-    - name: Full Name
-      value: Albert Einstein
-    - name: Date of Birth
-      value: 14th March 1879
-    - name: Languages
-      value: English, German
+# - title: General Information
+#   type: map
+#   contents:
+#     - name: Full Name
+#       value: Albert Einstein
+#     - name: Date of Birth
+#       value: 14th March 1879
+#     - name: Languages
+#       value: English, German
 
 - title: Education
   type: time_table
   contents:
-    - title: PhD
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1905
+    - title: M.S. in Physics, the University of Tokyo
+      institution: The University of Tokyo, Tokyo, Japan
+      year: 2012.4 - 2014.3
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
-          contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Federal teaching diploma
-      institution: Eidgenössische Technische Hochschule, Zurich, Switzerland
-      year: 1900
+        - "Research theme: particle- and astro- physics"
+        - "Supervisor: Prof. Hitoshi Murayama"
+        - "Thesis title: Constraints on Wino Dark Matter from the Milky Way Galaxy"
+    - title: B.S. in Physics, the University of Tokyo
+      institution: The University of Tokyo, Tokyo, Japan
+      year: 2008.4 - 2012.3
       description:
-        - Description 1.
-        - Description 2.
+        - "Research theme: particle- and astro- physics"
+        - "Supervisor: Prof. Masashi Yokoyama"
 
-- title: Experience
+- title: Work Experience
   type: time_table
   contents:
-    - title: Professor of Theoretical Physics
-      institution: Institute for Advanced Study, Princeton University
-      year: 1933 - 1955
+    - title: Researcher
+      institution: Hitachi, Ltd. Research and Development Group
+      year: 2016.9 - Present
       description:
-        - Description 1.
-        - Description 2.
-        - title: Description 3.
+        - title: Research topic
           contents:
-            - Sub-description 1.
-            - Sub-description 2.
-    - title: Visiting Professor
-      institution: California Institute of Technology, Pasadena, California, US
-      year: 1933
+            - (Mainly) natural language processing processing for decision support
+            - Multimodal processing (text + speech or image) for meeting assistance
+            - General machine learning, especially reinforcement learning and ensemble learning
+    - title: Researcher
+      institution: Toshiba, Ltd. Research and Development Center
+      year: 2014.4 - 2016.8
       description:
-        - Description 1.
-        - Description 2.
+        - title: Research topic
+          contents:
+           - Automatic speech recognition (mainly language models)
 
-    - title: Director
-      institution: Kaiser Wilhelm Institute for Physics, Berlin, Germany.
-      year: 1917-1933
-
-    - title: Professor of Theoretical Physics
-      institution: Karl-Ferdinand University, Prague, Czechoslovakia
-      year: 1911 - 1917
-      description:
-
-    - title: Associate Professor of Theoretical Physics
-      institution: University of Zurich, Zurich, Switzerland
-      year: 1909 - 1911
-
-- title: Open Source Projects
-  type: time_table
-  contents:
-    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-      year: 2015-now
-      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
+#- title: Open Source Projects
+#  type: time_table
+#  contents:
+#    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
+#      year: 2015-now
+#      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
 
 - title: Honors and Awards
   type: time_table
   contents:
-    - year: 1921
-      items: 
-        - Nobel Prize in Physics 
-        - Matteucci Medal
-    - year: 2029
-      items: 
-        - Max Planck Medal
-
-- title: Academic Interests
-  type: nested_list
-  contents:
-    - title: Topic 1.
-      items: 
-        - Description 1.
-        - Description 2.
-    - title: Topic 2.
+    - title: 1st prize in <a href="https://competitions.codalab.org/competitions/20970">SemEval Task7 Assessing the Funniness of Edited News Headlines</a>
+      year: 2020
       items:
-        - Description 1.
-        - Description 2.
+        - <a href="https://aclanthology.org/2020.semeval-1.98/">official paper</a>
+        - <a href="https://www.aclweb.org/anthology/2020.semeval-1.101/">our mehtod</a>
+        - <a href="https://underline.io/lecture/6394-hitachi-at-semeval-2020-task-7-stacking-at-scalewith-heterogeneous-language-models-for-humor-recognition">presented at the oral session of COLING 2020 workshop</a>
+    - title: 1st prize in <a href="http://mrp.nlpl.eu/2020/index.php">CoNLL 2020 Shared Task Cross-Framework Meaning Representation Parsing</a>
+      year: 2020
+      items:
+        - <a href="https://aclanthology.org/2020.conll-shared.1/">official paper</a>
+        - <a href="https://aclanthology.org/2020.conll-shared.4/">our mehtod</a>
+    - title: 1st prize in subtask1 of <a href="https://propaganda.qcri.org/semeval2020-task11/">SemEval Task11 Detection of Propaganda Techniques in News Articles</a>
+      year: 2020
+      items:
+        - <a href="https://aclanthology.org/2020.semeval-1.186/">official paper</a>
+        - <a href="https://www.aclweb.org/anthology/2020.semeval-1.228/">our mehtod</a>
+    - title: 1st prize in Slovenian of <a href="https://competitions.codalab.org/competitions/20905">SemEval Task3 Predicting the (Graded) Effect of Context in Word Similarity</a>
+      year: 2020
+      items:
+        - <a href="https://aclanthology.org/2020.semeval-1.3/">official paper</a>
+        - <a href="https://www.aclweb.org/anthology/2020.semeval-1.36/">our mehtod</a>
+    - title: 2nd prize in subtask3 of <a href="https://competitions.codalab.org/competitions/20629">SemEval Task8 Memotion Analysis</a>
+      year: 2020
+      items:
+        - <a href="https://aclanthology.org/2020.semeval-1.99/">official paper</a>
+        - <a href="https://www.aclweb.org/anthology/2020.semeval-1.149/">our mehtod</a>
+    - title: 2nd prize in <a href="https://ritual.uh.edu/semeval2020-task10-emphasis-selection/">SemEval Task10 Emphasis Selection</a>
+      year: 2020
+      items:
+        - <a href="https://aclanthology.org/2020.semeval-1.184/">official paper</a>
+        - <a href="https://www.aclweb.org/anthology/2020.semeval-1.216/">our mehtod</a>
 
-- title: Other Interests
+- title: Membership
   type: list
   contents:
-    - <u>Hobbies:</u> Hobby 1, Hobby 2, etc.
+  - The Japanese Society for Artificial Intelligence (JSAI)
+  - The Association for Natural Language Processing (NLP JAPAN)
+
+
+- title: Review experience
+  type: list
+  contents:
+  - NeurIPS (2023)
 
