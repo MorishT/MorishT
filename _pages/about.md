@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: terufumi.morishita.wp [at] hitachi.com
+subtitle: 
 
 
 profile:
