@@ -27,6 +27,6 @@ I'm also interested in **generic machine learning technologies** such as reinfor
 
 In my past life at the University of Tokyo, I studied particle- and astro- physics at the [Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) under the supervision of Prof. [Hitoshi Murayama](https://www.ipmu.jp/ja/hitoshi-murayama).  
 
-I like formal academic fields such as mathematics, physics, symbolic logic, and microeconomics.  
+I like formal (axiomatic) academic fields such as mathematics, physics, symbolic logic, and microeconomics.  
 
 **Feel free to talk to me on my SNS accounts! ([twitter](https://twitter.com/MorishTr), [linkedin](https://www.linkedin.com/in/terufumi-morishita-09076712a/))**
