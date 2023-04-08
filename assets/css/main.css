@@ -547,8 +547,8 @@ footer.sticky-bottom {
 .publications ol.bibliography li .abbr abbr {
   display: inline-block;
   background-color: var(--global-theme-color);
-  padding-left: 0.1rem;
-  padding-right: 0.1rem;
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
 }
 .publications ol.bibliography li .abbr abbr a {
   color: white;
