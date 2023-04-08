@@ -34,9 +34,9 @@
       description:
         - title: Research topic
           contents:
-            - (Mainly) natural language processing processing for decision support
+            - (Mainly) natural language processing for decision support
             - Multimodal processing (text + speech or image) for meeting assistance
-            - General machine learning, especially reinforcement learning and ensemble learning
+            - General machine learning, especially ensemble learning and reinforcement learning
     - title: Researcher
       institution: Toshiba, Ltd. Research and Development Center
       year: 2014.4 - 2016.8

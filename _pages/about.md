@@ -7,7 +7,8 @@ subtitle: terufumi.morishita.wp [at] hitachi.com
 
 profile:
   align: right
-  image: prof_pic.jpg
+  # image: prof_pic.jpg
+  image: DSC01698.JPG
   image_circular: false # crops the image to make it circular
 #  address: >
 #    <p>555 your office number</p>
@@ -23,4 +24,4 @@ A machine learning (mainly NLP) researcher at the Hitachi central laboratory.
 
 I'm developing NLP technologies (and sometimes multimodal technologies that also incorporate speech/image) to help people make better decisions.  
 
-I'm also interested in generic machine learning technologies such as reinforcement learning and ensemble learning.
+I'm also interested in generic machine learning technologies such as ensemble learning and reinforcement learning.
