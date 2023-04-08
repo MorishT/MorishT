@@ -648,7 +648,8 @@ footer.sticky-bottom {
           display: inline-block;
           color: $black-color;
           height: 100%;
-          padding-left: 0.5rem;
+          // padding-left: 0.5rem;
+          padding-left: 0.1rem;
           vertical-align: middle;
 
           &:hover {
