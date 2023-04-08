@@ -20,7 +20,7 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-A machine learning researcher at the Hitachi central laboratory.  
+**A machine learning researcher** at the Hitachi central laboratory.  
 
 I'm mainly developing **NLP** technologies (and sometimes **multimodal technologies** that also incorporate speech/image) to help people make better decisions.
 I'm also interested in generic machine learning technologies such as **reinforcement learning** and ensemble learning.  
