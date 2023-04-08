@@ -599,7 +599,7 @@ footer.sticky-bottom {
   display: inline-block;
   color: #000000;
   height: 100%;
-  padding-left: 0.5rem;
+  padding-left: 0.1rem;
   vertical-align: middle;
 }
 .publications ol.bibliography li .badges span:hover {
