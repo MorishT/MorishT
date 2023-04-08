@@ -22,7 +22,7 @@ social: true  # includes social icons at the bottom of the page
 
 **A machine learning researcher** at the Hitachi central laboratory.  
 
-I'm mainly developing **NLP** technologies (and sometimes **multimodal technologies** that also incorporate speech/image) to help people make better decisions.
+I'm developing mainly **NLP** technologies (and sometimes **multimodal technologies** that also incorporate speech/image) to help people make better decisions.
 I'm also interested in **generic machine learning** technologies such as reinforcement learning and ensemble learning.  
 
 In my past life at the University of Tokyo, I studied particle- and astro- physics at the [Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) under the supervision of Prof. [Hitoshi Murayama](https://www.ipmu.jp/ja/hitoshi-murayama).  
