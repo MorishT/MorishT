@@ -26,5 +26,6 @@ I'm developing NLP technologies (and sometimes multimodal technologies that also
 
 I'm also interested in generic machine learning technologies such as reinforcement learning and ensemble learning.  
 
-In my past life at the University of Tokyo, I studied particle- and astro- physics at the [Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) under the supervision of Prof. [Hitoshi Murayama](https://www.ipmu.jp/ja/hitoshi-murayama).
+In my past life at the University of Tokyo, I studied particle- and astro- physics at the [Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) under the supervision of Prof. [Hitoshi Murayama](https://www.ipmu.jp/ja/hitoshi-murayama).  
 
+**Feel free to talk to me on my SNS accounts!** ([twitter](https://twitter.com/MorishTr), [linkedin](https://www.linkedin.com/in/terufumi-morishita-09076712a/))
