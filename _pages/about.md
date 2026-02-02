@@ -20,13 +20,15 @@ selected_papers: true # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
 
-**A machine learning researcher** at the Hitachi central laboratory.  
+**A researcher on AI fields** at the Hitachi central laboratory.  
 
-I'm developing mainly **NLP** technologies to help people make better decisions.
-I'm also interested in **generic machine learning technologies** such as reinforcement learning and ensemble learning.  
+I'm developing mainly **NLP technologies**, such as reasoning LLMs, to help people make better decisions.
+I also work on **LLM-agent-based simulation to investigate economic phenomena**, such as economic growth and international trade.
+I'm also interested in **generic machine learning technologies**, such ensemble learning.  
 
-In my past life at the University of Tokyo, I studied particle- and astro- physics at the [Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) under the supervision of Prof. [Hitoshi Murayama](https://www.ipmu.jp/ja/hitoshi-murayama).  
 
-I like formal (axiomatic) academic fields such as physics, mathematics, symbolic logic, and microeconomics (decision theory).  
+In my past life at the University of Tokyo, I studied particle- and astro- physics at the [Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) under the supervision of Prof [Hitoshi Murayama](https://www.ipmu.jp/ja/hitoshi-murayama).  
+
+I like formal academic fields such as physics, mathematics, economics, and symbolic logic.
 
 **Feel free to talk to [me on X](https://twitter.com/MorishTr)**

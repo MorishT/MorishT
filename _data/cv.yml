@@ -34,16 +34,16 @@
       description:
         - title: Research topic
           contents:
-            - (Mainly) natural language processing for decision support
-            - Multimodal processing (text + speech or image) for meeting assistance
-            - General machine learning, especially ensemble learning and reinforcement learning
+            - Natural language processing
+            - Theory on general machine learning, such as ensemble learning
+            - LLM-agent based simulation based on macroeconomic theories
     - title: Researcher
       institution: Toshiba, Ltd. Research and Development Center
       year: 2014.4 - 2016.8
       description:
         - title: Research topic
           contents:
-           - Automatic speech recognition (mainly language models)
+           - Automatic speech recognition
 
 #- title: Open Source Projects
 #  type: time_table
