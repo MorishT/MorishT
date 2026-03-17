@@ -94,9 +94,18 @@
   - The Association for Natural Language Processing (NLP JAPAN)
 
 
+- title: Professional Activities
+  type: time_table
+  contents:
+    - title: テーマセッション4 企画
+      institution: <a href="https://anlp.jp/nlp2026/index.html#ts4">言語処理学会第32回年次大会（NLP2026）「大規模言語モデル時代の数式NLP：表現・推論・検証の実務基盤」</a>
+      year: 2026
+      description:
+        - 企画者としてテーマセッションの立案・運営に従事
+
+
 - title: Review experience
   type: list
   contents:
   - EMNLP (2024, AreaChair)
   - NeurIPS (2023)
-
