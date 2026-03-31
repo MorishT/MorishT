@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" data-site-lang="ja">
 
   <!-- Head -->
   <head>
@@ -17,12 +17,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>cv | Terufumi Morishita (森下 皓文)</title>
+    <title>経歴 | Terufumi Morishita (森下 皓文)</title>
     <meta name="author" content="Terufumi  Morishita">
-    <meta name="description" content="Terufumi's personal webpage.
+    <meta name="description" content="皓文の個人サイト。
 ">
     <meta name="keywords" content="Terufumi Morishita, natural language processing, NLP, machine learning, ensemble learning">
 
+
+    <script>
+      (function() {
+        var storageKey = 'preferred-language';
+        var defaultLang = 'ja';
+        var lang = defaultLang;
+
+        try {
+          var savedLang = window.localStorage.getItem(storageKey);
+          if (savedLang === 'ja' || savedLang === 'en') {
+            lang = savedLang;
+          }
+        } catch (error) {}
+
+        document.documentElement.lang = lang;
+        document.documentElement.dataset.siteLang = lang;
+      })();
+    </script>
 
     <!-- Bootstrap & MDB -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
@@ -47,7 +65,7 @@
   </head>
 
   <!-- Body -->
-  <body class="fixed-top-nav sticky-bottom-footer">
+  <body class="fixed-top-nav sticky-bottom-footer" data-is-home="false" data-page-title-ja="経歴" data-page-title-en="cv" data-site-title="Terufumi Morishita (森下 皓文)">
 
     <!-- Header -->
     <header>
@@ -69,16 +87,27 @@
 
               <!-- About -->
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/">about</a>
+                <a class="nav-link" href="/MorishT/">
+                  <span class="lang-ja">プロフィール</span>
+                  <span class="lang-en">about</span></a>
               </li>
               
 
               <!-- Other pages -->
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/publications/">publications</a>
+                <a class="nav-link" href="/MorishT/publications/">
+                  <span class="lang-ja">研究業績</span>
+                  <span class="lang-en">publications</span></a>
               </li>
               <li class="nav-item active">
-                <a class="nav-link" href="/MorishT/cv/">cv<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/MorishT/cv/">
+                  <span class="lang-ja">経歴</span>
+                  <span class="lang-en">cv</span><span class="sr-only">(current)</span></a>
+              </li>
+<li class="nav-item lang-switcher" aria-label="Language switcher">
+                <button class="lang-switcher__button" type="button" data-lang-switch="ja" aria-pressed="true">JP</button>
+                <span class="lang-switcher__divider">/</span>
+                <button class="lang-switcher__button" type="button" data-lang-switch="en" aria-pressed="false">EN</button>
               </li>
             </ul>
           </div>
@@ -100,19 +129,519 @@
         <div class="post">
 
           <header class="post-header">
-            <h1 class="post-title">cv <a href="/MorishT/assets/pdf/example_pdf.pdf" target="_blank" rel="noopener noreferrer" class="float-right"><i class="fas fa-file-pdf"></i></a>
+            <h1 class="post-title">
+<span class="lang-ja">経歴</span><span class="lang-en">cv</span> <a href="/MorishT/assets/pdf/example_pdf.pdf" target="_blank" rel="noopener noreferrer" class="float-right"><i class="fas fa-file-pdf"></i></a>
 </h1>
-            <p class="post-description"></p>
+            <p class="post-description">
+              <span class="lang-ja"></span>
+              <span class="lang-en"></span>
+            </p>
           </header>
 
           <article>
             <div class="cv">
-              
-                <div class="card mt-3 p-3">
-                  <h3 class="card-title font-weight-medium">Education</h3>
-                  <div>
-                  
-                   <ul class="card-text font-weight-light list-group list-group-flush">
+              <div class="lang-ja">
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">学歴</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2012.4 - 2014.3
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">東京大学大学院 理学系研究科 物理学専攻 修士課程</h6>
+            
+            
+            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem;">東京大学（東京都）</h6>
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item">研究テーマ: 素粒子・宇宙物理学</span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item">指導教員: 村山斉 教授</span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item">修士論文: Constraints on Wino Dark Matter from the Milky Way Galaxy</span>
+                    
+                  </li>
+                
+              </ul>
+            
+            
+          </div>
+        </div>
+      </li>
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2008.4 - 2012.3
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">東京大学 理学部 物理学科</h6>
+            
+            
+            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem;">東京大学（東京都）</h6>
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item">研究テーマ: 素粒子・宇宙物理学</span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item">指導教員: 横山雅史 教授</span>
+                    
+                  </li>
+                
+              </ul>
+            
+            
+          </div>
+        </div>
+      </li>
+    
+    </ul>
+                    
+                    </div>
+                  </div>
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">職歴</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2016.9 - 現在
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">研究員</h6>
+            
+            
+            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem;">日立製作所 研究開発グループ</h6>
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item-title">研究テーマ</span>
+                      <ul class="subitems">
+                      
+                        <li><span class="subitem">自然言語処理</span></li>
+                      
+                        <li><span class="subitem">アンサンブル学習などの汎用機械学習理論</span></li>
+                      
+                        <li><span class="subitem">マクロ経済理論に基づく LLM エージェントシミュレーション</span></li>
+                      
+                      </ul>
+                    
+                  </li>
+                
+              </ul>
+            
+            
+          </div>
+        </div>
+      </li>
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2014.4 - 2016.8
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">研究員</h6>
+            
+            
+            <h6 class="ml-1 ml-md-4" style="font-size: 0.95rem;">東芝 研究開発センター</h6>
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item-title">研究テーマ</span>
+                      <ul class="subitems">
+                      
+                        <li><span class="subitem">音声認識</span></li>
+                      
+                      </ul>
+                    
+                  </li>
+                
+              </ul>
+            
+            
+          </div>
+        </div>
+      </li>
+    
+    </ul>
+                    
+                    </div>
+                  </div>
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">受賞</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2020
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">
+<a href="https://competitions.codalab.org/competitions/20970" rel="external nofollow noopener" target="_blank">SemEval Task7 Assessing the Funniness of Edited News Headlines</a> 1位</h6>
+            
+            
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://aclanthology.org/2020.semeval-1.98/" rel="external nofollow noopener" target="_blank">公式論文</a></span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.101/" rel="external nofollow noopener" target="_blank">手法論文</a></span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://underline.io/lecture/6394-hitachi-at-semeval-2020-task-7-stacking-at-scalewith-heterogeneous-language-models-for-humor-recognition" rel="external nofollow noopener" target="_blank">COLING 2020 ワークショップ oral session で口頭発表</a></span>
+                    
+                  </li>
+                
+              </ul>
+            
+          </div>
+        </div>
+      </li>
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2020
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">
+<a href="http://mrp.nlpl.eu/2020/index.php" rel="external nofollow noopener" target="_blank">CoNLL 2020 Shared Task Cross-Framework Meaning Representation Parsing</a> 1位</h6>
+            
+            
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://aclanthology.org/2020.conll-shared.1/" rel="external nofollow noopener" target="_blank">公式論文</a></span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://aclanthology.org/2020.conll-shared.4/" rel="external nofollow noopener" target="_blank">手法論文</a></span>
+                    
+                  </li>
+                
+              </ul>
+            
+          </div>
+        </div>
+      </li>
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2020
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">
+<a href="https://propaganda.qcri.org/semeval2020-task11/" rel="external nofollow noopener" target="_blank">SemEval Task11 Detection of Propaganda Techniques in News Articles</a> subtask1 1位</h6>
+            
+            
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://aclanthology.org/2020.semeval-1.186/" rel="external nofollow noopener" target="_blank">公式論文</a></span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.228/" rel="external nofollow noopener" target="_blank">手法論文</a></span>
+                    
+                  </li>
+                
+              </ul>
+            
+          </div>
+        </div>
+      </li>
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2020
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">
+<a href="https://competitions.codalab.org/competitions/20905" rel="external nofollow noopener" target="_blank">SemEval Task3 Predicting the (Graded) Effect of Context in Word Similarity</a> Slovenian 1位</h6>
+            
+            
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://aclanthology.org/2020.semeval-1.3/" rel="external nofollow noopener" target="_blank">公式論文</a></span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.36/" rel="external nofollow noopener" target="_blank">手法論文</a></span>
+                    
+                  </li>
+                
+              </ul>
+            
+          </div>
+        </div>
+      </li>
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2020
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">
+<a href="https://competitions.codalab.org/competitions/20629" rel="external nofollow noopener" target="_blank">SemEval Task8 Memotion Analysis</a> subtask3 2位</h6>
+            
+            
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://aclanthology.org/2020.semeval-1.99/" rel="external nofollow noopener" target="_blank">公式論文</a></span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.149/" rel="external nofollow noopener" target="_blank">手法論文</a></span>
+                    
+                  </li>
+                
+              </ul>
+            
+          </div>
+        </div>
+      </li>
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2020
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4">
+<a href="https://ritual.uh.edu/semeval2020-task10-emphasis-selection/" rel="external nofollow noopener" target="_blank">SemEval Task10 Emphasis Selection</a> 2位</h6>
+            
+            
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://aclanthology.org/2020.semeval-1.184/" rel="external nofollow noopener" target="_blank">公式論文</a></span>
+                    
+                  </li>
+                
+                  <li>
+                    
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.216/" rel="external nofollow noopener" target="_blank">手法論文</a></span>
+                    
+                  </li>
+                
+              </ul>
+            
+          </div>
+        </div>
+      </li>
+    
+    </ul>
+                    
+                    </div>
+                  </div>
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">学会</h3>
+                    <div>
+                    
+                      <ul class="card-text font-weight-light list-group list-group-flush">
+    
+      <li class="list-group-item">人工知能学会</li>
+    
+      <li class="list-group-item">言語処理学会</li>
+    
+</ul>
+                    
+                    </div>
+                  </div>
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">学会・コミュニティ活動</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
+    
+      <li class="list-group-item">
+        <div class="row">
+          
+            <div class="col-xs-2 cl-sm-2 col-md-2 text-center" style="width: 75px;">
+              <span class="badge font-weight-bold danger-color-dark text-uppercase align-middle" style="min-width: 75px;">
+                2026
+              </span>
+            </div>
+          
+          <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
+            
+            <h6 class="title font-weight-bold ml-1 ml-md-4"><a href="https://anlp.jp/nlp2026/index.html#ts4" rel="external nofollow noopener" target="_blank">言語処理学会 2026 テーマセッション「大規模言語モデル時代の数式 NLP: 表現・推論・検証の実務基盤」</a></h6>
+            
+            
+            
+              <ul class="items">
+                
+                  <li>
+                    
+                      <span class="item">テーマセッションの立案・運営を担当</span>
+                    
+                  </li>
+                
+              </ul>
+            
+            
+          </div>
+        </div>
+      </li>
+    
+    </ul>
+                    
+                    </div>
+                  </div>
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">査読歴</h3>
+                    <div>
+                    
+                      <ul class="card-text font-weight-light list-group list-group-flush">
+    
+      <li class="list-group-item">EMNLP (2024, Area Chair)</li>
+    
+      <li class="list-group-item">NeurIPS (2023)</li>
+    
+</ul>
+                    
+                    </div>
+                  </div>
+                
+              </div>
+              <div class="lang-en">
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">Education</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
     
       <li class="list-group-item">
         <div class="row">
@@ -197,15 +726,15 @@
       </li>
     
     </ul>
-                  
+                    
+                    </div>
                   </div>
-                </div>
-              
-                <div class="card mt-3 p-3">
-                  <h3 class="card-title font-weight-medium">Work Experience</h3>
-                  <div>
-                  
-                   <ul class="card-text font-weight-light list-group list-group-flush">
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">Work Experience</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
     
       <li class="list-group-item">
         <div class="row">
@@ -286,15 +815,15 @@
       </li>
     
     </ul>
-                  
+                    
+                    </div>
                   </div>
-                </div>
-              
-                <div class="card mt-3 p-3">
-                  <h3 class="card-title font-weight-medium">Honors and Awards</h3>
-                  <div>
-                  
-                   <ul class="card-text font-weight-light list-group list-group-flush">
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">Honors and Awards</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
     
       <li class="list-group-item">
         <div class="row">
@@ -323,13 +852,13 @@
                 
                   <li>
                     
-                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.101/" rel="external nofollow noopener" target="_blank">our mehtod</a></span>
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.101/" rel="external nofollow noopener" target="_blank">our method</a></span>
                     
                   </li>
                 
                   <li>
                     
-                      <span class="item"><a href="https://underline.io/lecture/6394-hitachi-at-semeval-2020-task-7-stacking-at-scalewith-heterogeneous-language-models-for-humor-recognition" rel="external nofollow noopener" target="_blank">presented at the oral session of COLING 2020 workshop</a></span>
+                      <span class="item"><a href="https://underline.io/lecture/6394-hitachi-at-semeval-2020-task-7-stacking-at-scalewith-heterogeneous-language-models-for-humor-recognition" rel="external nofollow noopener" target="_blank">presented at the COLING 2020 workshop oral session</a></span>
                     
                   </li>
                 
@@ -366,7 +895,7 @@
                 
                   <li>
                     
-                      <span class="item"><a href="https://aclanthology.org/2020.conll-shared.4/" rel="external nofollow noopener" target="_blank">our mehtod</a></span>
+                      <span class="item"><a href="https://aclanthology.org/2020.conll-shared.4/" rel="external nofollow noopener" target="_blank">our method</a></span>
                     
                   </li>
                 
@@ -403,7 +932,7 @@
                 
                   <li>
                     
-                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.228/" rel="external nofollow noopener" target="_blank">our mehtod</a></span>
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.228/" rel="external nofollow noopener" target="_blank">our method</a></span>
                     
                   </li>
                 
@@ -440,7 +969,7 @@
                 
                   <li>
                     
-                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.36/" rel="external nofollow noopener" target="_blank">our mehtod</a></span>
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.36/" rel="external nofollow noopener" target="_blank">our method</a></span>
                     
                   </li>
                 
@@ -477,7 +1006,7 @@
                 
                   <li>
                     
-                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.149/" rel="external nofollow noopener" target="_blank">our mehtod</a></span>
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.149/" rel="external nofollow noopener" target="_blank">our method</a></span>
                     
                   </li>
                 
@@ -514,7 +1043,7 @@
                 
                   <li>
                     
-                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.216/" rel="external nofollow noopener" target="_blank">our mehtod</a></span>
+                      <span class="item"><a href="https://www.aclweb.org/anthology/2020.semeval-1.216/" rel="external nofollow noopener" target="_blank">our method</a></span>
                     
                   </li>
                 
@@ -525,30 +1054,30 @@
       </li>
     
     </ul>
-                  
+                    
+                    </div>
                   </div>
-                </div>
-              
-                <div class="card mt-3 p-3">
-                  <h3 class="card-title font-weight-medium">Membership</h3>
-                  <div>
-                  
-                    <ul class="card-text font-weight-light list-group list-group-flush">
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">Membership</h3>
+                    <div>
+                    
+                      <ul class="card-text font-weight-light list-group list-group-flush">
     
       <li class="list-group-item">The Japanese Society for Artificial Intelligence (JSAI)</li>
     
       <li class="list-group-item">The Association for Natural Language Processing (NLP JAPAN)</li>
     
 </ul>
-                  
+                    
+                    </div>
                   </div>
-                </div>
-              
-                <div class="card mt-3 p-3">
-                  <h3 class="card-title font-weight-medium">Professional Activities</h3>
-                  <div>
-                  
-                   <ul class="card-text font-weight-light list-group list-group-flush">
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">Professional Activities</h3>
+                    <div>
+                    
+                     <ul class="card-text font-weight-light list-group list-group-flush">
     
       <li class="list-group-item">
         <div class="row">
@@ -561,7 +1090,7 @@
           
           <div class="col-xs-10 cl-sm-10 col-md-10 mt-2 mt-md-0">
             
-            <h6 class="title font-weight-bold ml-1 ml-md-4"><a href="https://anlp.jp/nlp2026/index.html#ts4" rel="external nofollow noopener" target="_blank">言語処理学会(2026)テーマセッション「大規模言語モデル時代の数式NLP：表現・推論・検証の実務基盤」</a></h6>
+            <h6 class="title font-weight-bold ml-1 ml-md-4"><a href="https://anlp.jp/nlp2026/index.html#ts4" rel="external nofollow noopener" target="_blank">Theme Session at NLP 2026: "Mathematical NLP in the Era of Large Language Models: Practical Foundations for Representation, Reasoning, and Verification"</a></h6>
             
             
             
@@ -569,7 +1098,7 @@
                 
                   <li>
                     
-                      <span class="item">企画者としてテーマセッションの立案・運営に従事</span>
+                      <span class="item">Served as organizer and planner for the theme session</span>
                     
                   </li>
                 
@@ -581,25 +1110,26 @@
       </li>
     
     </ul>
-                  
+                    
+                    </div>
                   </div>
-                </div>
-              
-                <div class="card mt-3 p-3">
-                  <h3 class="card-title font-weight-medium">Review experience</h3>
-                  <div>
-                  
-                    <ul class="card-text font-weight-light list-group list-group-flush">
+                
+                  <div class="card mt-3 p-3">
+                    <h3 class="card-title font-weight-medium">Review experience</h3>
+                    <div>
+                    
+                      <ul class="card-text font-weight-light list-group list-group-flush">
     
       <li class="list-group-item">EMNLP (2024, AreaChair)</li>
     
       <li class="list-group-item">NeurIPS (2023)</li>
     
 </ul>
-                  
+                    
+                    </div>
                   </div>
-                </div>
-              
+                
+              </div>
               </div>
           </article>
 
@@ -609,10 +1139,15 @@
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        © Copyright 2026 Terufumi  Morishita. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-Last updated: March 17, 2026.
+        © Copyright 2026 Terufumi  Morishita.
+        <span class="lang-ja"><a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> と <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> テーマを使って構築しています。
+</span>
+        <span class="lang-en">Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
+</span><span class="lang-ja">最終更新: 2026年03月31日.</span>
+        <span class="lang-en">Last updated: March 31, 2026.</span>
       </div>
     </footer>
+
 
     <!-- JavaScripts -->
     <!-- jQuery -->
@@ -631,6 +1166,7 @@ Last updated: March 17, 2026.
   <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script defer src="/MorishT/assets/js/zoom.js"></script><!-- Load Common JS -->
   <script defer src="/MorishT/assets/js/common.js"></script>
+  <script defer src="/MorishT/assets/js/language_switcher.js"></script>
   <script defer src="/MorishT/assets/js/copy_code.js" type="text/javascript"></script>
 
     

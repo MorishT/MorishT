@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" data-site-lang="ja">
 
   <!-- Head -->
   <head>
@@ -22,6 +22,24 @@
     <meta name="description" content="an example of a blog post with some code">
     <meta name="keywords" content="Terufumi Morishita, natural language processing, NLP, machine learning, ensemble learning">
 
+
+    <script>
+      (function() {
+        var storageKey = 'preferred-language';
+        var defaultLang = 'ja';
+        var lang = defaultLang;
+
+        try {
+          var savedLang = window.localStorage.getItem(storageKey);
+          if (savedLang === 'ja' || savedLang === 'en') {
+            lang = savedLang;
+          }
+        } catch (error) {}
+
+        document.documentElement.lang = lang;
+        document.documentElement.dataset.siteLang = lang;
+      })();
+    </script>
 
     <!-- Bootstrap & MDB -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
@@ -46,7 +64,7 @@
   </head>
 
   <!-- Body -->
-  <body class="fixed-top-nav sticky-bottom-footer">
+  <body class="fixed-top-nav sticky-bottom-footer" data-is-home="false" data-page-title-ja="a post with code" data-page-title-en="a post with code" data-site-title="Terufumi Morishita (森下 皓文)">
 
     <!-- Header -->
     <header>
@@ -68,16 +86,27 @@
 
               <!-- About -->
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/">about</a>
+                <a class="nav-link" href="/MorishT/">
+                  <span class="lang-ja">プロフィール</span>
+                  <span class="lang-en">about</span></a>
               </li>
               
 
               <!-- Other pages -->
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/publications/">publications</a>
+                <a class="nav-link" href="/MorishT/publications/">
+                  <span class="lang-ja">研究業績</span>
+                  <span class="lang-en">publications</span></a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/cv/">cv</a>
+                <a class="nav-link" href="/MorishT/cv/">
+                  <span class="lang-ja">経歴</span>
+                  <span class="lang-en">cv</span></a>
+              </li>
+<li class="nav-item lang-switcher" aria-label="Language switcher">
+                <button class="lang-switcher__button" type="button" data-lang-switch="ja" aria-pressed="true">JP</button>
+                <span class="lang-switcher__divider">/</span>
+                <button class="lang-switcher__button" type="button" data-lang-switch="en" aria-pressed="false">EN</button>
               </li>
             </ul>
           </div>
@@ -246,10 +275,15 @@ Produces something like this:</p>
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        © Copyright 2026 Terufumi  Morishita. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-Last updated: March 17, 2026.
+        © Copyright 2026 Terufumi  Morishita.
+        <span class="lang-ja"><a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> と <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> テーマを使って構築しています。
+</span>
+        <span class="lang-en">Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
+</span><span class="lang-ja">最終更新: 2026年03月31日.</span>
+        <span class="lang-en">Last updated: March 31, 2026.</span>
       </div>
     </footer>
+
 
     <!-- JavaScripts -->
     <!-- jQuery -->
@@ -268,6 +302,7 @@ Last updated: March 17, 2026.
   <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script defer src="/MorishT/assets/js/zoom.js"></script><!-- Load Common JS -->
   <script defer src="/MorishT/assets/js/common.js"></script>
+  <script defer src="/MorishT/assets/js/language_switcher.js"></script>
   <script defer src="/MorishT/assets/js/copy_code.js" type="text/javascript"></script>
 
     

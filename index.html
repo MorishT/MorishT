@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja" data-site-lang="ja">
 
   <!-- Head -->
   <head>
@@ -19,10 +19,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Terufumi Morishita (森下 皓文)</title>
     <meta name="author" content="Terufumi  Morishita">
-    <meta name="description" content="Terufumi's personal webpage.
+    <meta name="description" content="皓文の個人サイト。
 ">
     <meta name="keywords" content="Terufumi Morishita, natural language processing, NLP, machine learning, ensemble learning">
 
+
+    <script>
+      (function() {
+        var storageKey = 'preferred-language';
+        var defaultLang = 'ja';
+        var lang = defaultLang;
+
+        try {
+          var savedLang = window.localStorage.getItem(storageKey);
+          if (savedLang === 'ja' || savedLang === 'en') {
+            lang = savedLang;
+          }
+        } catch (error) {}
+
+        document.documentElement.lang = lang;
+        document.documentElement.dataset.siteLang = lang;
+      })();
+    </script>
 
     <!-- Bootstrap & MDB -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
@@ -47,7 +65,7 @@
   </head>
 
   <!-- Body -->
-  <body class="fixed-top-nav sticky-bottom-footer">
+  <body class="fixed-top-nav sticky-bottom-footer" data-is-home="true" data-page-title-ja="プロフィール" data-page-title-en="about" data-site-title="Terufumi Morishita (森下 皓文)">
 
     <!-- Header -->
     <header>
@@ -77,16 +95,27 @@
 
               <!-- About -->
               <li class="nav-item active">
-                <a class="nav-link" href="/MorishT/">about<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/MorishT/">
+                  <span class="lang-ja">プロフィール</span>
+                  <span class="lang-en">about</span><span class="sr-only">(current)</span></a>
               </li>
               
 
               <!-- Other pages -->
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/publications/">publications</a>
+                <a class="nav-link" href="/MorishT/publications/">
+                  <span class="lang-ja">研究業績</span>
+                  <span class="lang-en">publications</span></a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/cv/">cv</a>
+                <a class="nav-link" href="/MorishT/cv/">
+                  <span class="lang-ja">経歴</span>
+                  <span class="lang-en">cv</span></a>
+              </li>
+<li class="nav-item lang-switcher" aria-label="Language switcher">
+                <button class="lang-switcher__button" type="button" data-lang-switch="ja" aria-pressed="true">JP</button>
+                <span class="lang-switcher__divider">/</span>
+                <button class="lang-switcher__button" type="button" data-lang-switch="en" aria-pressed="false">EN</button>
               </li>
             </ul>
           </div>
@@ -110,7 +139,10 @@
           <h1 class="post-title">
            Terufumi Morishita (森下 皓文)
           </h1>
-          <p class="desc"></p>
+          <p class="desc">
+            <span class="lang-ja"></span>
+            <span class="lang-en"></span>
+          </p>
         </header>
 
         <article>
@@ -135,17 +167,29 @@
           </div>
 
           <div class="clearfix">
-            <p><strong>A researcher on AI fields</strong> at the Hitachi central laboratory.</p>
+            <div class="lang-ja">
+  <p><strong>日立製作所 中央研究所で、AI 分野の研究に取り組んでいます。</strong></p>
 
-<p>I’m developing mainly <strong>NLP technologies</strong>, such as reasoning LLMs, to help people make better decisions.
-I also work on <strong>LLM-agent-based simulation to investigate economic phenomena</strong>, such as economic growth and international trade.
-I’m also interested in <strong>generic machine learning technologies</strong>, such ensemble learning.</p>
+  <p>主に、人のよりよい意思決定を支援するための、推論能力を持つ大規模言語モデルをはじめとした <strong>自然言語処理技術</strong> を研究しています。あわせて、経済成長や国際貿易などの経済現象を理解するための <strong>LLM エージェントベースのシミュレーション</strong> にも取り組んでいます。また、<strong>アンサンブル学習</strong> などの汎用的な機械学習技術にも関心があります。</p>
 
-<p>In my past life at the University of Tokyo, I studied particle- and astro- physics at the <a href="https://www.ipmu.jp/ja" rel="external nofollow noopener" target="_blank">Kavli Institute for the Physics and Mathematics of the Universe</a> under the supervision of Prof <a href="https://www.ipmu.jp/ja/hitoshi-murayama" rel="external nofollow noopener" target="_blank">Hitoshi Murayama</a>.</p>
+  <p>東京大学では、<a href="https://www.ipmu.jp/ja" rel="external nofollow noopener" target="_blank">Kavli Institute for the Physics and Mathematics of the Universe</a> にて、<a href="https://www.ipmu.jp/ja/hitoshi-murayama" rel="external nofollow noopener" target="_blank">村山斉先生</a> の指導のもと、素粒子・宇宙物理を研究していました。</p>
 
-<p>I like formal academic fields such as physics, mathematics, economics, and symbolic logic.</p>
+  <p>物理学、数学、経済学、記号論理学のような、形式性の高い学問が好きです。</p>
 
-<p><strong>Feel free to talk to <a href="https://twitter.com/MorishTr" rel="external nofollow noopener" target="_blank">me on X</a></strong></p>
+  <p><strong><a href="https://twitter.com/MorishTr" rel="external nofollow noopener" target="_blank">X</a> からお気軽にご連絡ください。</strong></p>
+</div>
+
+<div class="lang-en">
+  <p><strong>A researcher in AI</strong> at Hitachi's Central Research Laboratory.</p>
+
+  <p>I mainly work on <strong>natural language processing</strong>, including reasoning-capable large language models that help people make better decisions. I also study <strong>LLM-agent-based simulations of economic phenomena</strong>, such as economic growth and international trade. More broadly, I am interested in <strong>general machine learning methods</strong>, including ensemble learning.</p>
+
+  <p>Earlier, at the University of Tokyo, I studied particle and astroparticle physics at the <a href="https://www.ipmu.jp/ja" rel="external nofollow noopener" target="_blank">Kavli Institute for the Physics and Mathematics of the Universe</a> under the supervision of Prof. <a href="https://www.ipmu.jp/ja/hitoshi-murayama" rel="external nofollow noopener" target="_blank">Hitoshi Murayama</a>.</p>
+
+  <p>I enjoy formal academic disciplines such as physics, mathematics, economics, and symbolic logic.</p>
+
+  <p><strong>Feel free to reach out on <a href="https://twitter.com/MorishTr" rel="external nofollow noopener" target="_blank">X</a>.</strong></p>
+</div>
 
           </div>
 
@@ -153,7 +197,7 @@ I’m also interested in <strong>generic machine learning technologies</strong>,
           
 
           <!-- Selected papers -->
-          <h2><a href="/MorishT/publications/" style="color: inherit;">selected contents</a></h2>
+          <h2><a href="/MorishT/publications/" style="color: inherit;"><span class="lang-ja">主な研究・発表</span><span class="lang-en">selected work</span></a></h2>
           <div class="publications">
             <ol class="bibliography">
 <li>
@@ -803,7 +847,8 @@ I’m also interested in <strong>generic machine learning technologies</strong>,
               </div>
 
               <div class="contact-note">
-                Feel free to talk to me on my SNS accounts.
+                <span class="lang-ja">SNS などからお気軽にご連絡ください。</span>
+                <span class="lang-en">Feel free to talk to me on my social accounts.</span>
               </div>
               
             </div>
@@ -815,10 +860,15 @@ I’m also interested in <strong>generic machine learning technologies</strong>,
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        © Copyright 2026 Terufumi  Morishita. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-Last updated: March 17, 2026.
+        © Copyright 2026 Terufumi  Morishita.
+        <span class="lang-ja"><a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> と <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> テーマを使って構築しています。
+</span>
+        <span class="lang-en">Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
+</span><span class="lang-ja">最終更新: 2026年03月31日.</span>
+        <span class="lang-en">Last updated: March 31, 2026.</span>
       </div>
     </footer>
+
 
     <!-- JavaScripts -->
     <!-- jQuery -->
@@ -837,6 +887,7 @@ Last updated: March 17, 2026.
   <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script>
   <script defer src="/MorishT/assets/js/zoom.js"></script><!-- Load Common JS -->
   <script defer src="/MorishT/assets/js/common.js"></script>
+  <script defer src="/MorishT/assets/js/language_switcher.js"></script>
   <script defer src="/MorishT/assets/js/copy_code.js" type="text/javascript"></script>
 
     

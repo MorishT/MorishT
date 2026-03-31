@@ -21,6 +21,24 @@
     <meta name="keywords" content="Terufumi Morishita, natural language processing, NLP, machine learning, ensemble learning">
 
 
+    <script>
+      (function() {
+        var storageKey = 'preferred-language';
+        var defaultLang = 'ja';
+        var lang = defaultLang;
+
+        try {
+          var savedLang = window.localStorage.getItem(storageKey);
+          if (savedLang === 'ja' || savedLang === 'en') {
+            lang = savedLang;
+          }
+        } catch (error) {}
+
+        document.documentElement.lang = lang;
+        document.documentElement.dataset.siteLang = lang;
+      })();
+    </script>
+
     <!-- Bootstrap & MDB -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-DF7Zhf293AJxJNTmh5zhoYYIMs2oXitRfBjY+9L//AY=" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous">
@@ -158,16 +176,27 @@
 
               <!-- About -->
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/">about</a>
+                <a class="nav-link" href="/MorishT/">
+                  <span class="lang-ja">プロフィール</span>
+                  <span class="lang-en">about</span></a>
               </li>
               
 
               <!-- Other pages -->
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/publications/">publications</a>
+                <a class="nav-link" href="/MorishT/publications/">
+                  <span class="lang-ja">研究業績</span>
+                  <span class="lang-en">publications</span></a>
               </li>
               <li class="nav-item ">
-                <a class="nav-link" href="/MorishT/cv/">cv</a>
+                <a class="nav-link" href="/MorishT/cv/">
+                  <span class="lang-ja">経歴</span>
+                  <span class="lang-en">cv</span></a>
+              </li>
+<li class="nav-item lang-switcher" aria-label="Language switcher">
+                <button class="lang-switcher__button" type="button" data-lang-switch="ja" aria-pressed="true">JP</button>
+                <span class="lang-switcher__divider">/</span>
+                <button class="lang-switcher__button" type="button" data-lang-switch="en" aria-pressed="false">EN</button>
               </li>
             </ul>
           </div>
@@ -510,7 +539,7 @@ This line is only separated by a single newline, so it’s a separate line in th
         "data-emit-metadata": "0",
         "data-input-position": "bottom",
         "data-theme": giscusTheme,
-        "data-lang": "en",
+        "data-lang": "ja",
         "crossorigin": "anonymous",
         "async": "",
     };
@@ -527,10 +556,15 @@ This line is only separated by a single newline, so it’s a separate line in th
 
     <!-- Footer -->    <footer class="sticky-bottom mt-5">
       <div class="container">
-        © Copyright 2026 Terufumi  Morishita. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-Last updated: March 17, 2026.
+        © Copyright 2026 Terufumi  Morishita.
+        <span class="lang-ja"><a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> と <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> テーマを使って構築しています。
+</span>
+        <span class="lang-en">Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
+</span><span class="lang-ja">最終更新: 2026年03月31日.</span>
+        <span class="lang-en">Last updated: March 31, 2026.</span>
       </div>
     </footer>
+
 
     <!-- Bootsrap & MDB scripts -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha256-fgLAgv7fyCGopR/gBNq2iW3ZKIdqIcyshnUULC4vex8=" crossorigin="anonymous"></script>
