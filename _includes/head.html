@@ -1,6 +1,24 @@
     <!-- Metadata, OpenGraph and Schema.org -->
     {% include metadata.html %}
 
+    <script>
+      (function() {
+        var storageKey = 'preferred-language';
+        var defaultLang = '{{ site.lang | default: "ja" }}';
+        var lang = defaultLang;
+
+        try {
+          var savedLang = window.localStorage.getItem(storageKey);
+          if (savedLang === 'ja' || savedLang === 'en') {
+            lang = savedLang;
+          }
+        } catch (error) {}
+
+        document.documentElement.lang = lang;
+        document.documentElement.dataset.siteLang = lang;
+      })();
+    </script>
+
     <!-- Bootstrap & MDB -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@{{ site.bootstrap.version }}/dist/css/bootstrap.min.css" rel="stylesheet" integrity="{{ site.bootstrap.integrity.css }}" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@{{ site.mdb.version }}/css/mdb.min.css" integrity="{{ site.mdb.integrity.css }}" crossorigin="anonymous" />

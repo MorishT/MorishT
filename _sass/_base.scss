@@ -160,6 +160,11 @@ blockquote {
   }
 }
 
+html[data-site-lang="ja"] .lang-en,
+html[data-site-lang="en"] .lang-ja {
+  display: none !important;
+}
+
 
 // Navbar customization
 
@@ -205,6 +210,38 @@ blockquote {
 
   .navbar-brand {
     color: var(--global-text-color);
+  }
+
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    margin-left: 1rem;
+    padding-left: 0.5rem;
+  }
+
+  .lang-switcher__button {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--global-text-color);
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+
+    &:hover {
+      color: var(--global-hover-color);
+    }
+
+    &.is-active {
+      color: var(--global-theme-color);
+      font-weight: 700;
+    }
+  }
+
+  .lang-switcher__divider {
+    margin: 0 0.35rem;
+    color: var(--global-text-color);
+    opacity: 0.6;
   }
 
   .navbar-nav .nav-item .nav-link {
@@ -282,6 +319,14 @@ blockquote {
 
   .bottom-bar {
     transform: rotate(0);
+  }
+}
+
+@media (max-width: 575.98px) {
+  .navbar.navbar-light .lang-switcher {
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    padding-right: 0.5rem;
   }
 }
 

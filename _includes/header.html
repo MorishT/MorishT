@@ -37,15 +37,18 @@
           <div class="collapse navbar-collapse text-right" id="navbarNav">
             <ul class="navbar-nav ml-auto flex-nowrap">
 
-              {%- for page in site.pages -%}
-                {% if page.permalink == '/' %}
-                  {% assign about_title = page.title %}
+              {%- for nav_page in site.pages -%}
+                {% if nav_page.permalink == '/' %}
+                  {% assign about_title = nav_page.title %}
+                  {% assign about_title_en = nav_page.title_en | default: nav_page.title %}
                 {% endif %}
               {% endfor %}
 
               <!-- About -->
               <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
-                <a class="nav-link" href="{{ '/' | relative_url }}">{{ about_title }}
+                <a class="nav-link" href="{{ '/' | relative_url }}">
+                  <span class="lang-ja">{{ about_title }}</span>
+                  <span class="lang-en">{{ about_title_en }}</span>
                   {%- if page.permalink == '/' -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
@@ -68,7 +71,9 @@
               {%- if p.nav and p.autogen == nil -%}
               {%- if p.dropdown %}
               <li class="nav-item dropdown {% if page.title == p.title %}active{% endif %}">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ p.title }}
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="lang-ja">{{ p.title }}</span>
+                  <span class="lang-en">{{ p.title_en | default: p.title }}</span>
                   {%- if page.title == p.title -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
@@ -78,14 +83,19 @@
                   {%- if child.title == 'divider' %}
                   <div class="dropdown-divider"></div>
                   {%- else %}
-                  <a class="dropdown-item" href="{{ child.permalink | relative_url }}">{{ child.title }}</a>
+                  <a class="dropdown-item" href="{{ child.permalink | relative_url }}">
+                    <span class="lang-ja">{{ child.title }}</span>
+                    <span class="lang-en">{{ child.title_en | default: child.title }}</span>
+                  </a>
                   {%- endif -%}
                   {% endfor %}
                 </div>
               </li>
               {%- else %}
               <li class="nav-item {% if page.title == p.title %}active{% endif %}">
-                <a class="nav-link" href="{{ p.url | relative_url }}">{{ p.title }}
+                <a class="nav-link" href="{{ p.url | relative_url }}">
+                  <span class="lang-ja">{{ p.title }}</span>
+                  <span class="lang-en">{{ p.title_en | default: p.title }}</span>
                   {%- if page.title == p.title -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
@@ -94,6 +104,11 @@
               {%- endif -%}
               {%- endif -%}
               {% endfor -%}
+              <li class="nav-item lang-switcher" aria-label="Language switcher">
+                <button class="lang-switcher__button" type="button" data-lang-switch="ja" aria-pressed="true">JP</button>
+                <span class="lang-switcher__divider">/</span>
+                <button class="lang-switcher__button" type="button" data-lang-switch="en" aria-pressed="false">EN</button>
+              </li>
               {%- if site.enable_darkmode %}
 
               <!-- Toogle theme mode -->
