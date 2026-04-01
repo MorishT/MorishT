@@ -40,7 +40,7 @@ layout: default
           {%- endif %}
 
           <div class="clearfix">
-            {{ content }}
+            {% include render_bilingual_content.html rendered_content=content %}
           </div>
 
           <!-- News -->

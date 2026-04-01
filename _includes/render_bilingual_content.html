@@ -1,0 +1,19 @@
+{% assign language_sections = include.rendered_content | split: '<!--lang:en-->' %}
+{% assign ja_content = language_sections[0] | replace: '<!--lang:ja-->', '' | strip %}
+{% assign en_content = '' %}
+
+{% if language_sections.size > 1 %}
+  {% assign en_content = language_sections[1] | strip %}
+{% endif %}
+
+{% if en_content == '' %}
+  {% assign en_content = ja_content %}
+{% endif %}
+
+<div class="lang-ja">
+  {{ ja_content }}
+</div>
+
+<div class="lang-en">
+  {{ en_content }}
+</div>
