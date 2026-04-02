@@ -10,6 +10,14 @@
 - title: Education
   type: time_table
   contents:
+    - title: Doctoral Program in Intelligent and Mechanical Interaction Systems, University of Tsukuba
+      institution: University of Tsukuba, Tsukuba, Japan
+      year: 2025 - 2026
+      description:
+        - "Research theme: large language models and reasoning"
+        - "Dissertation title: Research on methods for improving the reasoning capabilities of large language models"
+        - "Early Graduation Program for Working Professionals"
+        - "Supervisor: Prof. Takehito Utsuro"
     - title: M.S. in Physics, the University of Tokyo
       institution: The University of Tokyo, Tokyo, Japan
       year: 2012.4 - 2014.3

@@ -15,7 +15,8 @@
     data-is-home="{% if page.url == '/' %}true{% else %}false{% endif %}"
     data-page-title-ja="{{ page.title | default: '' | escape }}"
     data-page-title-en="{{ page.title_en | default: page.title | default: '' | escape }}"
-    data-site-title="{{ site.title | escape }}"
+    data-site-title-ja="{{ page.site_title_ja | default: site.title | escape }}"
+    data-site-title-en="{{ page.site_title_en | default: site.title | escape }}"
   >
 
     <!-- Header -->

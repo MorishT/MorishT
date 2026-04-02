@@ -23,7 +23,10 @@
       return;
     }
 
-    const siteTitle = document.body.dataset.siteTitle || document.title;
+    const siteTitle =
+      language === 'en'
+        ? document.body.dataset.siteTitleEn || document.title
+        : document.body.dataset.siteTitleJa || document.title;
     const pageTitle =
       language === 'en'
         ? document.body.dataset.pageTitleEn

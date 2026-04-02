@@ -5,7 +5,10 @@ title_en: Profile
 permalink: /
 subtitle: ""
 subtitle_en: ""
-
+header_title_ja: 森下 皓文
+header_title_en: Terufumi Morishita
+site_title_ja: 森下 皓文
+site_title_en: Terufumi Morishita
 
 profile:
   align: right
@@ -24,13 +27,14 @@ social: true  # includes social icons at the bottom of the page
 
 <!--lang:ja-->
 
-**日立製作所 中央研究所で、AI 分野の研究に取り組んでいます。**
-
-主に、人のよりよい意思決定を支援するための、推論能力を持つ大規模言語モデルをはじめとした **自然言語処理技術** を研究しています。あわせて、経済成長や国際貿易などの経済現象を理解するための **LLM エージェントベースのシミュレーション** にも取り組んでいます。また、**アンサンブル学習** などの汎用的な機械学習技術にも関心があります。
+**日立製作所 中央研究所で、AIに関連する複数分野の研究に取り組んでいます:**
+* 自然言語処理: 大規模言語モデルの推論能力を向上させるための、形式論理推論コーパスの自動生成
+* 計算社会科学: 経済現象を解明するための、LLMエージェントに基づくシミュレーション
+* 機械学習    : アンサンブル学習の性能を決める要因の理論的な分析
 
 東京大学では、[Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) にて、[村山斉先生](https://www.ipmu.jp/ja/hitoshi-murayama) の指導のもと、素粒子・宇宙物理を研究していました。
 
-物理学、数学、経済学、記号論理学のような、形式性の高い学問が好きです。
+物理学、数学、経済学、記号論理学のような、公理論的な要素のある学問が好きです。
 
 **[X](https://twitter.com/MorishTr) からお気軽にご連絡ください。**
 
