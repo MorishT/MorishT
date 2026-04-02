@@ -10,23 +10,23 @@
 - title: Education
   type: time_table
   contents:
-    - title: Doctoral Program in Intelligent and Mechanical Interaction Systems, University of Tsukuba
-      institution: University of Tsukuba, Tsukuba, Japan
+    - title: Ph.D. in Engineering
+      institution: Doctoral Program in Intelligent and Mechanical Interaction Systems, University of Tsukuba (Early Graduation Program)
       year: 2025 - 2026
       description:
         - "Research theme: large language models and reasoning"
         - "Dissertation title: Research on methods for improving the reasoning capabilities of large language models"
         - "Early Graduation Program for Working Professionals"
         - "Supervisor: Prof. Takehito Utsuro"
-    - title: M.S. in Physics, the University of Tokyo
-      institution: The University of Tokyo, Tokyo, Japan
+    - title: Master of Science
+      institution: Department of Physics, Graduate School of Science, The University of Tokyo
       year: 2012.4 - 2014.3
       description:
         - "Research theme: particle- and astro- physics"
         - "Supervisor: Prof. Hitoshi Murayama"
         - "Thesis title: Constraints on Wino Dark Matter from the Milky Way Galaxy"
-    - title: B.S. in Physics, the University of Tokyo
-      institution: The University of Tokyo, Tokyo, Japan
+    - title: Bachelor of Science
+      institution: Department of Physics, Faculty of Science, The University of Tokyo
       year: 2008.4 - 2012.3
       description:
         - "Research theme: particle- and astro- physics"

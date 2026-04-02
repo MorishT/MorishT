@@ -1,23 +1,23 @@
 - title: 学歴
   type: time_table
   contents:
-    - title: 筑波大学大学院 理工情報生命学術院 システム情報工学研究群 知能機能システム学位プログラム 博士後期課程
-      institution: 筑波大学（茨城県つくば市）
+    - title: 博士(工学)
+      institution: 筑波大学大学院 知能機能システム学位プログラム(早期修了コース)
       year: 2025 - 2026
       description:
         - "研究テーマ: 大規模言語モデルと推論"
         - "博士論文: 大規模言語モデルの推論能力改善手法に関する研究"
         - "社会人のための博士後期課程早期修了プログラム"
         - "指導教員: 宇津呂武仁 教授"
-    - title: 東京大学大学院 理学系研究科 物理学専攻 修士課程
-      institution: 東京大学（東京都）
+    - title: 修士(理学)
+      institution: 東京大学大学院 理学系研究科 物理学専攻
       year: 2012.4 - 2014.3
       description:
         - "研究テーマ: 素粒子・宇宙物理学"
         - "指導教員: 村山斉 教授"
         - "修士論文: Constraints on Wino Dark Matter from the Milky Way Galaxy"
-    - title: 東京大学 理学部 物理学科
-      institution: 東京大学（東京都）
+    - title: 学士(理学)
+      institution: 東京大学 理学部 物理学科
       year: 2008.4 - 2012.3
       description:
         - "研究テーマ: 素粒子・宇宙物理学"
