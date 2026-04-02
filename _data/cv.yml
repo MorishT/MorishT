@@ -7,7 +7,6 @@
 #       value: 14th March 1879
 #     - name: Languages
 #       value: English, German
-
 - title: Education
   type: time_table
   contents:
@@ -24,7 +23,6 @@
       description:
         - "Research theme: particle- and astro- physics"
         - "Supervisor: Prof. Masashi Yokoyama"
-
 - title: Work Experience
   type: time_table
   contents:
@@ -44,14 +42,6 @@
         - title: Research topic
           contents:
            - Automatic speech recognition
-
-#- title: Open Source Projects
-#  type: time_table
-#  contents:
-#    - title: <a href="https://github.com/alshedivat/al-folio">al-folio</a>
-#      year: 2015-now
-#      description: A beautiful, simple, clean, and responsive Jekyll theme for academics.
-
 - title: Honors and Awards
   type: time_table
   contents:
@@ -86,14 +76,30 @@
       items:
         - <a href="https://aclanthology.org/2020.semeval-1.184/">official paper</a>
         - <a href="https://www.aclweb.org/anthology/2020.semeval-1.216/">our method</a>
-
+- title: Invited Talks
+  type: time_table
+  contents:
+    - title: "Can We Teach Logical Reasoning to LLMs? –An Approach Using Synthetic Corpora"
+      year: 2026.1
+      items:
+        - '<a href="https://sites.google.com/view/aaai-2026-lmreasoning/%E9%A6%96%E9%A1%B5">AAAI 2026 Bridge Program: "Logical and Symbolic Reasoning in Language Models"</a> / <a href="https://speakerdeck.com/morishtr/can-we-teach-logical-reasoning-to-llms-an-approach-using-synthetic-corpora">Slides</a>'
+    - title: "An Approach Using Synthetic Logic Corpora to Teach Reasoning to Large Language Models"
+      year: 2026.3
+      items:
+        - <a href="https://www.anlp.jp/proceedings/annual_meeting/2026/">Invited Paper Session, the 32nd Annual Meeting of the Association for Natural Language Processing</a> / <a href="https://speakerdeck.com/morishtr/2026nian-du-yan-yu-chu-li-xue-hui-zui-you-xiu-lun-wen-shang-zhao-dai-jiang-yan-da-gui-mo-yan-yu-moderunitui-lun-wojiao-erutamenoren-gong-lun-li-tui-lun-kopasuwoyong-itaapuroti">Slides</a>
+    - title: "Working at a Corporate Research Lab (and a Path Toward Conducting Research Freely)"
+      year: 2025.9
+      items:
+        - <a href="https://yans.anlp.jp/entry/yans2025program">The 20th Young Researchers' Symposium on NLP (YANS 2025)</a> / <a href="https://drive.google.com/file/d/1ROdeh8RRKwTDu6PnTHvfSiwcOnrpGtus/view">Slides</a>
+    - title: "Can We Teach Logical Reasoning to LLMs? - An Approach Using Synthetic Corpora"
+      year: 2024.12
+      items:
+        - <a href="https://nlp-colloquium-jp.github.io/schedule/2024-12-04_terufumi-morishita/">NLP Colloquium</a>
 - title: Membership
   type: list
   contents:
   - The Japanese Society for Artificial Intelligence (JSAI)
   - The Association for Natural Language Processing (NLP JAPAN)
-
-
 - title: Professional Activities
   type: time_table
   contents:
@@ -101,8 +107,6 @@
       year: 2026
       description:
         - Served as organizer and planner for the theme session
-
-
 - title: Review experience
   type: list
   contents:

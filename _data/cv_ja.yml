@@ -14,7 +14,6 @@
       description:
         - "研究テーマ: 素粒子・宇宙物理学"
         - "指導教員: 横山雅史 教授"
-
 - title: 職歴
   type: time_table
   contents:
@@ -34,7 +33,6 @@
         - title: 研究テーマ
           contents:
             - 音声認識
-
 - title: 受賞
   type: time_table
   contents:
@@ -69,13 +67,30 @@
       items:
         - <a href="https://aclanthology.org/2020.semeval-1.184/">公式論文</a>
         - <a href="https://www.aclweb.org/anthology/2020.semeval-1.216/">手法論文</a>
-
+- title: 招待講演
+  type: time_table
+  contents:
+    - title: "Can We Teach Logical Reasoning to LLMs? –An Approach Using Synthetic Corpora"
+      year: 2026.1
+      items:
+        - '<a href="https://sites.google.com/view/aaai-2026-lmreasoning/%E9%A6%96%E9%A1%B5">AAAI 2026 Bridge Program: "Logical and Symbolic Reasoning in Language Models"</a> / <a href="https://speakerdeck.com/morishtr/can-we-teach-logical-reasoning-to-llms-an-approach-using-synthetic-corpora">スライド</a>'
+    - title: 大規模言語モデルに推論を教えるための人工論理推論コーパスを用いたアプローチ
+      year: 2026.3
+      items:
+        - <a href="https://www.anlp.jp/proceedings/annual_meeting/2026/">言語処理学会第32回年次大会 招待論文セッション</a> / <a href="https://speakerdeck.com/morishtr/2026nian-du-yan-yu-chu-li-xue-hui-zui-you-xiu-lun-wen-shang-zhao-dai-jiang-yan-da-gui-mo-yan-yu-moderunitui-lun-wojiao-erutamenoren-gong-lun-li-tui-lun-kopasuwoyong-itaapuroti">スライド</a>
+    - title: 企業研究所での働き方(及び、自由に研究をするための道)
+      year: 2025.9
+      items:
+        - <a href="https://yans.anlp.jp/entry/yans2025program">第20回言語処理若手シンポジウム (YANS2025)</a> / <a href="https://drive.google.com/file/d/1ROdeh8RRKwTDu6PnTHvfSiwcOnrpGtus/view">スライド</a>
+    - title: LLMに論理推論を教えられるか？ - 人工コーパスを用いたアプローチ
+      year: 2024.12
+      items:
+        - <a href="https://nlp-colloquium-jp.github.io/schedule/2024-12-04_terufumi-morishita/">NLPコロキウム</a>
 - title: 学会
   type: list
   contents:
     - 人工知能学会
     - 言語処理学会
-
 - title: 学会・コミュニティ活動
   type: time_table
   contents:
@@ -83,7 +98,6 @@
       year: 2026
       description:
         - 企画者としてテーマセッションの立案・運営に従事
-
 - title: 査読歴
   type: list
   contents:
