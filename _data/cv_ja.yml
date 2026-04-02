@@ -1,22 +1,21 @@
 - title: 学歴
   type: time_table
   contents:
-    - title: 博士(工学)
+    - title: 博士 (工学)
       institution: 筑波大学大学院 知能機能システム学位プログラム(早期修了コース)
-      year: 2025 - 2026
+      year: 2025.4 - 2026.3
       description:
         - "研究テーマ: 大規模言語モデルと推論"
         - "博士論文: 大規模言語モデルの推論能力改善手法に関する研究"
-        - "社会人のための博士後期課程早期修了プログラム"
         - "指導教員: 宇津呂武仁 教授"
-    - title: 修士(理学)
+    - title: 修士 (理学)
       institution: 東京大学大学院 理学系研究科 物理学専攻
       year: 2012.4 - 2014.3
       description:
         - "研究テーマ: 素粒子・宇宙物理学"
         - "指導教員: 村山斉 教授"
         - "修士論文: Constraints on Wino Dark Matter from the Milky Way Galaxy"
-    - title: 学士(理学)
+    - title: 学士 (理学)
       institution: 東京大学 理学部 物理学科
       year: 2008.4 - 2012.3
       description:

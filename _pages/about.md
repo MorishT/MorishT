@@ -28,9 +28,9 @@ social: true  # includes social icons at the bottom of the page
 <!--lang:ja-->
 
 **日立製作所 中央研究所で、AIに関連する複数分野の研究に取り組んでいます:**
-* 自然言語処理: 大規模言語モデルの推論能力を向上させるための、形式論理推論コーパスの自動生成
-* 計算社会科学: 経済現象を解明するための、LLMエージェントに基づくシミュレーション
+* 自然言語処理: 大規模言語モデルの推論能力を向上させるための、論理推論コーパスの自動生成
 * 機械学習    : アンサンブル学習の性能を決める要因の理論的な分析
+* 計算社会科学: 経済現象を解明するための、LLMエージェントを用いたマクロ経済シミュレーション
 
 東京大学では、[Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) にて、[村山斉先生](https://www.ipmu.jp/ja/hitoshi-murayama) の指導のもと、素粒子・宇宙物理を研究していました。
 
