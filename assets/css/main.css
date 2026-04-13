@@ -306,10 +306,16 @@ html[data-site-lang=en] .lang-ja {
 .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
   background-color: inherit;
   font-weight: bolder;
-  color: var(--global-theme-color);
+  color: rgb(117.65, 5.85, 111.8);
 }
 .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
-  color: var(--global-hover-color);
+  color: rgb(99.55, 4.95, 94.6);
+}
+html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
+  color: rgba(255, 255, 255, 0.9);
+}
+html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
+  color: #ffffff;
 }
 .navbar.navbar-light .navbar-brand.social {
   padding-bottom: 0;
