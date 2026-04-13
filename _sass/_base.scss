@@ -412,7 +412,19 @@ footer.sticky-bottom {
 
       .badge {
         color: var(--global-card-bg-color) !important;
-        background-color: var(--global-theme-color) !important;
+        background-color: darken($purple-color, 10%) !important;
+      }
+    }
+  }
+}
+
+html[data-theme='dark'] {
+  .cv {
+    .card {
+      .list-group-item {
+        .badge {
+          background-color: darken($cyan-color, 12%) !important;
+        }
       }
     }
   }
