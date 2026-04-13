@@ -412,19 +412,7 @@ footer.sticky-bottom {
 
       .badge {
         color: var(--global-card-bg-color) !important;
-        background-color: darken($purple-color, 10%) !important;
-      }
-    }
-  }
-}
-
-html[data-theme='dark'] {
-  .cv {
-    .card {
-      .list-group-item {
-        .badge {
-          background-color: darken($cyan-color, 12%) !important;
-        }
+        background-color: var(--global-theme-color) !important;
       }
     }
   }
@@ -606,7 +594,7 @@ html[data-theme='dark'] {
   }
 
   h2.year {
-    color: var(--global-divider-color);
+    color: var(--global-text-color-light);
     border-top: 1px solid var(--global-divider-color);
     padding-top: 1rem;
     margin-top: 2rem;
