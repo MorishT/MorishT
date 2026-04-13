@@ -255,10 +255,21 @@ html[data-site-lang="en"] .lang-ja {
   .navbar-nav .nav-item.active>.nav-link {
     background-color: inherit;
     font-weight: bolder;
-    color: var(--global-theme-color);
+    color: mix($black-color, $purple-color, 35%);
 
     &:hover {
-      color: var(--global-hover-color);
+      color: mix($black-color, $purple-color, 45%);
+    }
+  }
+
+
+  html[data-theme='dark'] & {
+    .navbar-nav .nav-item.active>.nav-link {
+      color: rgba($white-color, 0.9);
+
+      &:hover {
+        color: $white-color;
+      }
     }
   }
 
