@@ -93,20 +93,18 @@
       year: 2024.12
       items:
         - <a href="https://nlp-colloquium-jp.github.io/schedule/2024-12-04_terufumi-morishita/">NLPコロキウム</a>
-- title: 学会
+- title: 所属学会
   type: list
   contents:
     - 人工知能学会
     - 言語処理学会
-- title: 学会・コミュニティ活動
-  type: time_table
+- title: 学術貢献活動
+  type: nested_list
   contents:
-    - title: <a href="https://anlp.jp/nlp2026/index.html#ts4">言語処理学会(2026)テーマセッション「大規模言語モデル時代の数式NLP：表現・推論・検証の実務基盤」</a>
-      year: 2026
-      description:
-        - 企画者としてテーマセッションの立案・運営に従事
-- title: 査読歴
-  type: list
-  contents:
-    - EMNLP (2024, Area Chair)
-    - NeurIPS (2023)
+    - title: 企画・運営
+      items:
+        - '<a href="https://anlp.jp/nlp2026/index.html#ts4">言語処理学会(2026)テーマセッション「大規模言語モデル時代の数式NLP：表現・推論・検証の実務基盤」</a> 企画者・運営'
+    - title: 査読
+      items:
+        - EMNLP (2024, Area Chair)
+        - NeurIPS (2023)

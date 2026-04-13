@@ -103,20 +103,18 @@
       year: 2024.12
       items:
         - <a href="https://nlp-colloquium-jp.github.io/schedule/2024-12-04_terufumi-morishita/">NLP Colloquium</a>
-- title: Membership
+- title: Professional Memberships
   type: list
   contents:
   - The Japanese Society for Artificial Intelligence (JSAI)
   - The Association for Natural Language Processing (NLP JAPAN)
-- title: Professional Activities
-  type: time_table
+- title: Academic Service
+  type: nested_list
   contents:
-    - title: '<a href="https://anlp.jp/nlp2026/index.html#ts4">Theme Session at NLP 2026: "Mathematical NLP in the Era of Large Language Models: Practical Foundations for Representation, Reasoning, and Verification"</a>'
-      year: 2026
-      description:
-        - Served as organizer and planner for the theme session
-- title: Review experience
-  type: list
-  contents:
-  - EMNLP (2024, AreaChair)
-  - NeurIPS (2023)
+    - title: Organization
+      items:
+        - '<a href="https://anlp.jp/nlp2026/index.html#ts4">Theme Session at NLP 2026: "Mathematical NLP in the Era of Large Language Models: Practical Foundations for Representation, Reasoning, and Verification"</a> Organizer and planner'
+    - title: Review
+      items:
+        - EMNLP (2024, Area Chair)
+        - NeurIPS (2023)
