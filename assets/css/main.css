@@ -426,7 +426,11 @@ footer.sticky-bottom {
 }
 .cv .card .list-group-item .badge {
   color: var(--global-card-bg-color) !important;
-  background-color: var(--global-theme-color) !important;
+  background-color: rgb(132.4157894737, 6.5842105263, 125.8315789474) !important;
+}
+
+html[data-theme=dark] .cv .card .list-group-item .badge {
+  background-color: rgb(27.6178571429, 110.4714285714, 135.1821428571) !important;
 }
 
 @media (min-width: 768px) {
