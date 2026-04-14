@@ -32,7 +32,7 @@ social: true  # includes social icons at the bottom of the page
 * 機械学習    : アンサンブル学習の性能を決める要因の理論的な分析
 * 計算社会科学: 経済現象を解明するための、LLMエージェントを用いたマクロ経済シミュレーション
 
-東京大学では、[Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) にて、[村山斉先生](https://www.ipmu.jp/ja/hitoshi-murayama) の指導のもと、素粒子・宇宙物理を研究していました。
+東京大学では、[Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) にて、[村山斉先生](https://ja.wikipedia.org/wiki/%E6%9D%91%E5%B1%B1%E6%96%89) の指導のもと、素粒子・宇宙物理を研究していました。
 
 物理学、数学、経済学、記号論理学のような、公理論的な要素のある学問が好きです。
 
