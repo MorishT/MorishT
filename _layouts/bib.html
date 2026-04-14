@@ -127,8 +127,11 @@
         {%- capture acceptance_rate -%}
           {%- if entry.acceptance_rate -%}, <span class="lang-ja">採択率{{ entry.acceptance_rate }}%</span><span class="lang-en">Acceptance rate {{ entry.acceptance_rate }}%</span>{%- endif -%}
         {%- endcapture -%}
+        {%- capture spotlight_rate -%}
+          {%- if entry.spotlight_rate -%}, <span class="lang-ja">Spotlight上位{{ entry.spotlight_rate }}%</span><span class="lang-en">Spotlight top {{ entry.spotlight_rate }}%</span>{%- endif -%}
+        {%- endcapture -%}
         {% assign entrytype_text = entrytype | strip_html | strip %}
-        {%- capture periodical -%}{{ entrytype }}{%- if entrytype_text != "" and entryyear != "" -%}, {%- endif -%}{{ entrymonth }}{{ entryyear }}{{ acceptance_rate }}{%- endcapture -%}
+        {%- capture periodical -%}{{ entrytype }}{%- if entrytype_text != "" and entryyear != "" -%}, {%- endif -%}{{ entrymonth }}{{ entryyear }}{{ acceptance_rate }}{{ spotlight_rate }}{%- endcapture -%}
         <div class="periodical">
           {{ periodical | strip }}
         </div>
