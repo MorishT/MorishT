@@ -254,11 +254,11 @@ html[data-site-lang="en"] .lang-ja {
 
   .navbar-nav .nav-item.active>.nav-link {
     background-color: inherit;
-    font-weight: bolder;
-    color: mix($black-color, $purple-color, 35%);
+    font-weight: 700;
+    color: mix($black-color, $purple-color, 50%);
 
     &:hover {
-      color: mix($black-color, $purple-color, 45%);
+      color: mix($black-color, $purple-color, 58%);
     }
   }
 
