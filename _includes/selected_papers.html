@@ -1,6 +1,6 @@
 
           <div class="publications">
-            {% bibliography -f writings -q @*[selected=true]* %}
+            {% bibliography -f publications -q @article[keywords ~= selected], @inproceedings[keywords ~= selected], @misc[keywords ~= selected] %}
             {% bibliography -f media -q @*[selected=true]* %}
             {% bibliography -f oss -q @*[selected=true]* %}
           </div>

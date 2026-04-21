@@ -109,10 +109,15 @@
         <!-- Journal/Book title and date -->
         {% assign proceedings = "inproceedings,incollection" | split: ','%}
         {% assign thesis = "thesis,mastersthesis,phdthesis" | split: ','%}
+        {% assign journal_title = entry.journal | default: entry.journaltitle %}
         {% if entry.type == "article" -%}
-          {%- capture entrytype -%}<em>{{entry.journal}}</em>{%- endcapture -%}
+          {%- capture entrytype -%}<em>{{journal_title}}</em>{%- endcapture -%}
         {%- elsif proceedings contains entry.type -%}
           {%- capture entrytype -%}<em>In {{entry.booktitle}}</em> {%- endcapture -%}
+        {%- elsif entry.type == "misc" -%}
+          {%- capture entrytype -%}<em>{{entry.howpublished}}</em> {%- endcapture -%}
+        {%- elsif entry.type == "online" -%}
+          {%- capture entrytype -%}<em>{{entry.publisher}}</em> {%- endcapture -%}
         {%- elsif thesis contains entry.type -%}
           {%- capture entrytype -%}<em>{{entry.school}}</em> {%- endcapture -%}
         {%- else -%}
@@ -125,7 +130,8 @@
           {%- capture entryyear -%}{{ " " }}{{entry.year}}{%- endcapture -%}
         {%- endif -%}
         {%- capture acceptance_rate -%}
-          {%- if entry.acceptance_rate -%}, <span class="lang-ja">採択率{{ entry.acceptance_rate }}%</span><span class="lang-en">Acceptance rate {{ entry.acceptance_rate }}%</span>{%- endif -%}
+          {%- if entry.acceptance_rate -%}, <span class="lang-ja">採択率{{ entry.acceptance_rate }}%</span><span class="lang-en">Acceptance rate {{ entry.acceptance_rate }}%</span>
+          {%- elsif entry.usera -%}, <span class="lang-ja">採択率{{ entry.usera }}</span><span class="lang-en">Acceptance rate {{ entry.usera }}</span>{%- endif -%}
         {%- endcapture -%}
         {%- capture spotlight_rate -%}
           {%- if entry.spotlight_rate -%}, <span class="lang-ja">Spotlight上位{{ entry.spotlight_rate }}%</span><span class="lang-en">Spotlight top {{ entry.spotlight_rate }}%</span>{%- endif -%}
@@ -152,6 +158,8 @@
           {%- endif %}
           {%- if entry.html %}
             <a href="{{ entry.html }}" class="btn btn-sm z-depth-0" role="button">HTML</a>
+          {%- elsif entry.url %}
+            <a href="{{ entry.url }}" class="btn btn-sm z-depth-0" role="button">URL</a>
           {%- endif %}
           {%- if entry.pdf %}
             {% if entry.pdf contains '://' -%}

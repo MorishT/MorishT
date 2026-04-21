@@ -21,7 +21,7 @@ profile:
 #    <p>Your City, State 12345</p>
 
 news: false  # includes a list of news items
-selected_papers: true # includes a list of papers marked as "selected={true}"
+selected_papers: true # includes a list of selected items from the bibliography files
 social: true  # includes social icons at the bottom of the page
 ---
 
