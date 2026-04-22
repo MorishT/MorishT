@@ -1,0 +1,881 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% "ModernCV" CV and Cover Letter
+% LaTeX Template
+% Version 1.1 (9/12/12)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original author:
+% Xavier Danaux (xdanaux@gmail.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+% Important note:
+% This template requires the moderncv.cls and .sty files to be in the same 
+% directory as this .tex file. These files provide the resume style and themes 
+% used for structuring the document.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+
+
+
+\PassOptionsToPackage{dvipdfmx}{hyperref}
+\documentclass[11pt,a4paper,sans]{moderncv} % Font sizes: 10, 11, or 12; paper sizes: a4paper, letterpaper, a5paper, legalpaper, executivepaper or landscape; font families: sans or roman
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\newif\ifispublicationlist
+
+% HONOKA
+\ispublicationlistfalse % resume version
+% \ispublicationlisttrue  % publication list version
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\usepackage{standalone}
+\moderncvstyle{classic} % CV theme - options include: 'casual' (default), 'classic', 'oldstyle' and 'banking'
+\moderncvcolor{blue} % CV color - options include: 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
+
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+
+\usepackage[scale=0.85]{geometry} % Reduce document margins
+%\setlength{\hintscolumnwidth}{3cm} % Uncomment to change the width of the dates column
+%\setlength{\makecvtitlenamewidth}{10cm} % For the 'classic' style, uncomment to adjust the width of the space allocated to your name
+
+%\usepackage[utf8]{inputenc}
+
+%\usepackage{booktabs}
+\usepackage{fontawesome}
+\usepackage{amssymb}
+\usepackage{marvosym} % For cool symbols.
+\AtEndPreamble{\RequirePackage{pxjahyper}}
+%\usepackage{hyperref}
+
+% \usepackage{ulem}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage[
+  backend=biber,
+  sorting=ydnt,
+  maxbibnames=99,
+  giveninits=false,
+  doi=false,
+  isbn=false,
+  url=false,
+  eprint=false
+]{biblatex}
+\addbibresource{data/publications.bib}
+\renewcommand*{\finentrypunct}{}
+\DeclareFieldFormat{cvpubplain}{#1}
+\DeclareFieldFormat{usera}{(採択率#1)}
+
+
+
+
+
+
+
+
+
+\newcommand{\cvdocumenttitle}{職務経歴書}
+\newcommand{\cvpublicationsectiontitle}{論文・発表 (一部のみ抜粋)}
+\ifispublicationlist
+  \renewcommand{\cvdocumenttitle}{業績リスト}
+  \renewcommand{\cvpublicationsectiontitle}{論文・発表}
+\fi
+\newcommand{\cvprintmainpublications}[1]{%
+  \ifispublicationlist
+    \printpublicationbibliography[labels={#1}]%
+  \else
+    \printpublicationbibliography[labels={#1}, selected=true]%
+  \fi
+}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% HONOKA settings %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% 薄くて小さい bullet
+\newcommand{\mybullet}{\textcolor{gray!100}{\scalebox{0.8}{$\bullet$ }}}
+
+
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CONTACT INFORMATION SECTION
+%----------------------------------------------------------------------------------------
+
+% \firstname{PRATIK} % Your first name
+% \familyname{DUTTA} % Your last name
+
+\makeatletter
+\newif\ifcvjapanese
+\cvjapanesetrue % set \cvjapanesefalse for English ordering
+
+\firstname{\ifcvjapanese 皓文\else Terufumi\fi} % Your first name
+\familyname{\ifcvjapanese 森下\else Morishita\fi} % Your last name
+
+\newcommand{\cvdisplayname}{%
+  \ifcvjapanese
+    {\color{black}\@familyname} {\color{black}\@firstname}%
+  \else
+    {\color{black}\@firstname} {\color{black}\@familyname}%
+  \fi
+}
+
+% \newcommand{\cvtitlename}{%
+%   \ifcvjapanese
+%     \@familyname\ \@firstname
+%   \else
+%     \@firstname\ \@familyname
+%   \fi
+% }
+
+\patchcmd{\makecvtitle}
+  {\namestyle{{\color{gray}\@firstname} {\color{darkgray}\@familyname}}}
+  {\namestyle{\cvdisplayname}}
+  {}{}
+\patchcmd{\makecvtitle}
+  {\emailsymbol\emaillink{\@email}}
+  {\emailsymbol\texttt{\@email}}
+  {}{}
+\makeatother
+
+% All information in this block is optional, comment out any lines you don't need
+% \title{\cvtitlename}
+\title{\cvdocumenttitle}
+% \address{Department of CSE}{Indian Institute of Technology xyz}
+\ifispublicationlist
+\else
+\address{日立製作所}{中央研究所 先端AIイノベーションセンタ}
+% \mobile{(+91) 0000000, (+91) 0000000}
+
+
+%\fax{(000) 111 1113}
+ 
+%\social{github}{stefano-bragaglia}
+% \email{pratikabc@gmail.com} 
+\email{terufumi.morishita.wp [AT] hitachi.com} 
+
+
+
+% \homepage{www.xyz.com/}{My Webpage}
+\homepage{morisht.github.io/MorishT/}{My Webpage}
+
+% social link \faGithub, \faSkype, \faLinkedin,\faStackExchange, and \faStackOverflow
+\extrainfo{
+    \href{https://scholar.google.com/citations?user=DBD9bzYAAAAJ}{\faGoogle\ Scholar} \quad
+    % \href{https://www.linkedin.com/in/terufumi-morishita-09076712a}{\faLinkedin\ LinkedIn} \quad
+    \href{https://twitter.com/MorishTr}{\faTwitter\ X (@MorishTr)}
+    }
+\fi
+
+
+
+%\social[linkedin][www.linkedin.com]{name}
+% The first argument is %the url for the clickable link, the second argument is the url displayed in the %template - this allows special characters to be displayed such as the tilde in this %example
+
+% \photo[70pt][0.3pt]{picture} % The first bracket is the picture height, the second is %the thickness of the frame around the picture (0pt for no frame)
+%\quote{Not Attention, Patience is all we need.}
+
+%----------------------------------------------------------------------------------------
+
+\newcommand{\cvdoublecolumn}[2]{%
+  \cvitem[.75em]{}{%
+    \begin{minipage}[t]{\listdoubleitemcolumnwidth}#1\end{minipage}%
+    \hfill%
+    \begin{minipage}[t]{\listdoubleitemcolumnwidth}#2\end{minipage}%
+    }%
+}
+
+\newcommand*{\cvsubsection}[3][0.5ex]{%
+  \par\addvspace{1ex}%
+  \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
+    \raggedleft\hintstyle{#2} &{\strut\subsectionstyle{\textbf{#3}}}%
+  \end{tabular}%
+  \par\nobreak\addvspace{#1}%
+}
+
+\newcommand{\cvsmallbulletcolor}{gray}
+\newcommand{\cvsmallbulletsize}{\scriptsize}
+\newcommand{\cvsmallbulletsymbol}{$\bullet$}
+\newcommand{\cvsmallbulletraise}{0.2ex}
+\newlength{\cvsmallbulletleftmargin}
+\newlength{\cvsmallbulletlabelwidth}
+\newlength{\cvsmallbulletlabelsep}
+\newlength{\cvsmallbulletitemsep}
+\setlength{\cvsmallbulletleftmargin}{1.4em}
+\setlength{\cvsmallbulletlabelwidth}{0.8em}
+\setlength{\cvsmallbulletlabelsep}{0.4em}
+\setlength{\cvsmallbulletitemsep}{0.2ex}
+\newcommand{\cvsmallbulletlabel}{%
+  \raisebox{\cvsmallbulletraise}{\textcolor{\cvsmallbulletcolor}{{\cvsmallbulletsize\cvsmallbulletsymbol}}}%
+}
+\newenvironment{cvsmallitemize}{%
+  \begin{list}{\cvsmallbulletlabel}{%
+    \setlength{\leftmargin}{\cvsmallbulletleftmargin}%
+    \setlength{\labelwidth}{\cvsmallbulletlabelwidth}%
+    \setlength{\labelsep}{\cvsmallbulletlabelsep}%
+    \setlength{\itemsep}{\cvsmallbulletitemsep}%
+    \setlength{\parsep}{0pt}%
+    \setlength{\topsep}{0pt}%
+    \setlength{\partopsep}{0pt}%
+  }%
+}{%
+  \end{list}%
+}
+\newcommand*{\cvsmallitem}[1]{%
+  \begin{cvsmallitemize}%
+    \item #1%
+  \end{cvsmallitemize}%
+}
+
+\newcommand\Colorhref[3][orange]{\href{#2}{\small\color{#1}#3}}
+
+\ExplSyntaxOn
+\cs_generate_variant:Nn \regex_match:nnT { ne }
+\cs_generate_variant:Nn \str_case:nnF { V }
+\cs_generate_variant:Nn \str_if_eq:nnTF { ee }
+\cs_generate_variant:Nn \str_if_eq:nnTF { Vn }
+\cs_generate_variant:Nn \seq_set_split:Nnn { NnV }
+\bool_new:N \l_cvpub_japanese_entry_bool
+\bool_new:N \l_cvdata_seen_header_bool
+\ior_new:N \g_cvdata_primary_ior
+\ior_new:N \g_cvdata_secondary_ior
+\ior_new:N \g_cvdata_text_ior
+\seq_new:N \l_cvdata_row_seq
+\tl_new:N \l_cvdata_line_tl
+\tl_new:N \l_cvdata_current_position_tl
+
+\cs_new_protected:Npn \cvpub_set_entry_script:
+  {
+    \bool_set_false:N \l_cvpub_japanese_entry_bool
+    \iffieldundef{title}
+      {}
+      {
+        \regex_match:neT { [ぁ-んァ-ヶ一-龠々ー] } { \thefield{title} }
+          { \bool_set_true:N \l_cvpub_japanese_entry_bool }
+      }
+  }
+
+\cs_new:Npn \cvpub_if_own_name:nnTF #1#2#3#4
+  {
+    \str_if_eq:eeTF {#1} {Morishita}
+      {
+        \str_if_eq:eeTF {#2} {Terufumi} {#3} {#4}
+      }
+      {
+        \str_if_eq:eeTF {#1} {森下}
+          { \str_if_eq:eeTF {#2} {皓文} {#3} {#4} }
+          {
+            \str_if_eq:eeTF {#1} {森下皓文}
+              {#3}
+              {#4}
+          }
+      }
+  }
+
+\cs_new:Npn \cvpub_format_name_text:nn #1#2
+  {
+    \tl_if_blank:nTF {#1}
+      {#2}
+      {
+        \tl_if_blank:nTF {#2}
+          {#1}
+          {
+            \bool_if:NTF \l_cvpub_japanese_entry_bool
+              {#1 \space #2}
+              {#2 \space #1}
+          }
+      }
+  }
+
+\cs_new:Npn \cvpub_format_name_weighted:nn #1#2
+  {
+    \cvpub_if_own_name:nnTF {#1} {#2}
+      { {\bfseries \cvpub_format_name_text:nn {#1} {#2}} }
+      { {\mdseries \cvpub_format_name_text:nn {#1} {#2}} }
+  }
+\DeclareNameFormat{cvpubauthor}{%
+  \nameparts{#1}%
+  \cvpub_format_name_weighted:nn {\namepartfamily} {\namepartgiven}%
+  \ifnum\value{listcount}<\value{liststop}%
+    \bool_if:NTF \l_cvpub_japanese_entry_bool
+      {,\space}
+      {
+        \ifnum\numexpr\value{listcount}+1\relax=\value{liststop}%
+          \ifnum\value{liststop}=2 %
+            \space and\space
+          \else
+            ,\space and\space
+          \fi
+        \else
+          ,\space
+        \fi
+      }%
+  \fi
+}
+
+\newbibmacro*{cvpub:lead}{%
+  \ifnameundef{author}
+    {{\mdseries\printfield{title}}}
+    {{\mdseries\cvpub_set_entry_script:\printnames[cvpubauthor]{author}}}%
+}
+
+\newbibmacro*{cvpub:titlearg}{%
+  \ifnameundef{author}
+    {}
+    {\iffieldundef{url}
+      {\printfield{title}}
+      {\href{\thefield{url}}{\printfield{title}}}}%
+}
+
+\newbibmacro*{cvpub:plaintitlearg}{%
+  \iffieldundef{url}
+    {\mkbibquote{\printfield[cvpubplain]{title}}}
+    {\href{\thefield{url}}{\mkbibquote{\printfield[cvpubplain]{title}}}}%
+}
+
+\newbibmacro*{cvpub:venue}{%
+  \iffieldundef{journaltitle}
+    {\iffieldundef{journal}
+      {\iffieldundef{booktitle}
+        {\iflistundef{publisher}
+          {\iflistundef{organization}
+            {\iffieldundef{howpublished}
+              {}
+              {\printfield{howpublished}}}
+            {\printlist{organization}}}
+          {\printlist{publisher}}}
+        {\printfield{booktitle}}}
+      {\printfield{journal}}}
+    {\printfield{journaltitle}}%
+}
+
+\newbibmacro*{cvpub:venuearg}{%
+  \iffieldundef{journaltitle}
+    {\iffieldundef{journal}
+      {\iffieldundef{booktitle}
+        {\iflistundef{publisher}
+          {\iflistundef{organization}
+            {\iffieldundef{howpublished}
+              {}
+              {\textit{\usebibmacro{cvpub:venue}}}}
+            {\textit{\usebibmacro{cvpub:venue}}}}
+          {\textit{\usebibmacro{cvpub:venue}}}}
+        {In\ \textit{\usebibmacro{cvpub:venue}}}}
+      {In\ \textit{\usebibmacro{cvpub:venue}}}}
+    {In\ \textit{\usebibmacro{cvpub:venue}}}%
+  \iffieldundef{note}
+    {}
+    {\space\printfield{note}}%
+  \iffieldundef{usera}
+    {}
+    {\space\printfield{usera}}%
+}
+
+\newbibmacro*{cvpub:plainvenuearg}{%
+  \iffieldundef{journaltitle}
+    {\iffieldundef{journal}
+      {\iffieldundef{booktitle}
+        {\iflistundef{publisher}
+          {\iflistundef{organization}
+            {\iffieldundef{howpublished}
+              {}
+              {,\space\printfield[cvpubplain]{howpublished}}}
+            {,\space\printlist{organization}}}
+          {,\space\printlist{publisher}}}
+        {,\space\printfield[cvpubplain]{booktitle}}}
+      {,\space\printfield[cvpubplain]{journal}}}
+    {,\space\printfield[cvpubplain]{journaltitle}}%
+  \iffieldundef{note}
+    {}
+    {\space\printfield[cvpubplain]{note}}%
+  \iffieldundef{usera}
+    {}
+    {\space\printfield{usera}}%
+}
+
+\newbibmacro*{cvpub:entry}{%
+  \bool_if:NTF \l_cvpub_show_authors_bool
+    {
+      \ifnameundef{author}
+        {\cvitem{\printdate}{{\normalfont\mdseries\usebibmacro{cvpub:plaintitlearg}\usebibmacro{cvpub:plainvenuearg}.}}}
+        {\cventry{\printdate}{\usebibmacro{cvpub:lead}}{}{\usebibmacro{cvpub:titlearg}}{\usebibmacro{cvpub:venuearg}}{}}%
+    }
+    {\cvitem{\printdate}{{\normalfont\mdseries\usebibmacro{cvpub:plaintitlearg}\space\usebibmacro{cvpub:venuearg}.}}}%
+  \finentry
+}
+
+\DeclareBibliographyDriver{article}{\usebibmacro{cvpub:entry}}
+\DeclareBibliographyDriver{inproceedings}{\usebibmacro{cvpub:entry}}
+\DeclareBibliographyDriver{misc}{\usebibmacro{cvpub:entry}}
+\DeclareBibliographyDriver{online}{\usebibmacro{cvpub:entry}}
+
+\defbibenvironment{cvpublist}
+  {}
+  {}
+  {}
+
+\clist_new:N \l_cvpub_labels_clist
+\bool_new:N \l_cvpub_selected_bool
+\bool_new:N \l_cvpub_match_bool
+\bool_new:N \l_cvpub_show_authors_bool
+
+\msg_new:nnn { cvpub } { unknown-label }
+  { Unknown~publication~label~'#1'. }
+
+\keys_define:nn { cvpub }
+  {
+    labels .clist_set:N = \l_cvpub_labels_clist,
+    labels .initial:n = ,
+    label .meta:n = { labels = {#1} },
+    selected .bool_set:N = \l_cvpub_selected_bool,
+    selected .initial:n = false,
+    show-authors .bool_set:N = \l_cvpub_show_authors_bool,
+    show-authors .initial:n = true,
+    showauthors .meta:n = { show-authors = #1 },
+  }
+
+\cs_new_protected:Npn \cvpub_require_keyword:n #1
+  {
+    \ifkeyword{#1}
+      {}
+      { \bool_set_false:N \l_cvpub_match_bool }
+  }
+
+\cs_new_protected:Npn \cvpub_require_not_keyword:n #1
+  {
+    \ifkeyword{#1}
+      { \bool_set_false:N \l_cvpub_match_bool }
+      {}
+  }
+
+\cs_new_protected:Npn \cvpub_apply_label:n #1
+  {
+    \tl_set:Nn \l_tmpa_tl {#1}
+    \tl_trim_spaces:N \l_tmpa_tl
+    \regex_replace_all:nnN { [\{\}] } { } \l_tmpa_tl
+    \str_case:VnF \l_tmpa_tl
+      {
+        {journal}    { \cvpub_require_keyword:n {journal} }
+        {論文誌}     { \cvpub_require_keyword:n {journal} }
+        {international-conference} { \cvpub_require_keyword:n {international} }
+        {international} { \cvpub_require_keyword:n {international} }
+        {国際学会}   { \cvpub_require_keyword:n {international} }
+        {domestic-conference} { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
+        {domestic}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
+        {国内学会}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
+        {arxiv}      { \cvpub_require_keyword:n {arxiv} }
+        {arXiv}      { \cvpub_require_keyword:n {arxiv} }
+        {invited-talk} { \cvpub_require_keyword:n {talk} }
+        {talk}       { \cvpub_require_keyword:n {talk} }
+        {招待講演}   { \cvpub_require_keyword:n {talk} }
+        {media}      { \cvpub_require_keyword:n {media} }
+        {press}      { \cvpub_require_keyword:n {media} }
+        {発表・報道} { \cvpub_require_keyword:n {media} }
+        {blog}       { \cvpub_require_keyword:n {blog} }
+        {tech-blog}  { \cvpub_require_keyword:n {blog} }
+        {テックブログ} { \cvpub_require_keyword:n {blog} }
+        {OSS}        { \cvpub_require_keyword:n {oss} }
+        {oss}        { \cvpub_require_keyword:n {oss} }
+        {peer-reviewed} { \cvpub_require_keyword:n {peer} }
+        {査読あり}   { \cvpub_require_keyword:n {peer} }
+        {peer}       { \cvpub_require_keyword:n {peer} }
+        {non-peer-reviewed} { \cvpub_require_keyword:n {nonpeer} }
+        {査読なし}   { \cvpub_require_keyword:n {nonpeer} }
+        {nonpeer}    { \cvpub_require_keyword:n {nonpeer} }
+        {first-author} { \cvpub_require_keyword:n {first} }
+        {主著}       { \cvpub_require_keyword:n {first} }
+        {first}      { \cvpub_require_keyword:n {first} }
+        {co-author}  { \cvpub_require_keyword:n {coauthor} }
+        {共著}       { \cvpub_require_keyword:n {coauthor} }
+        {coauthor}   { \cvpub_require_keyword:n {coauthor} }
+        {受賞}       { \cvpub_require_keyword:n {award} }
+        {award}      { \cvpub_require_keyword:n {award} }
+        {selected}   { \cvpub_require_keyword:n {selected} }
+      }
+      {
+        \msg_warning:nnx { cvpub } { unknown-label } { \tl_use:N \l_tmpa_tl }
+        \bool_set_false:N \l_cvpub_match_bool
+      }
+  }
+
+\defbibcheck{cvpubfilter}
+  {
+    \bool_set_true:N \l_cvpub_match_bool
+    \bool_if:NT \l_cvpub_selected_bool
+      { \cvpub_require_keyword:n {selected} }
+    \clist_map_inline:Nn \l_cvpub_labels_clist
+      { \cvpub_apply_label:n {##1} }
+    \bool_if:NF \l_cvpub_match_bool
+      { \skipentry }
+  }
+
+\NewDocumentCommand{\printpublicationbibliography}{ O{} }
+  {
+    \group_begin:
+      \keys_set:nn { cvpub } { #1 }
+      \printbibliography[heading=none, env=cvpublist, check=cvpubfilter]
+    \group_end:
+  }
+
+\cs_new_protected:Npn \cvdata_map_csv_rows:Nnn #1#2#3
+  {
+    \ior_open:Nn #1 {#2}
+    \bool_set_false:N \l_cvdata_seen_header_bool
+    \ior_str_map_inline:Nn #1
+      {
+        \tl_set:Nn \l_cvdata_line_tl {##1}
+        \tl_trim_spaces:N \l_cvdata_line_tl
+        \tl_if_blank:NF \l_cvdata_line_tl
+          {
+            \bool_if:NTF \l_cvdata_seen_header_bool
+              {
+                \seq_set_split:NnV \l_cvdata_row_seq { , } \l_cvdata_line_tl
+                #3
+              }
+              { \bool_set_true:N \l_cvdata_seen_header_bool }
+          }
+      }
+    \ior_close:N #1
+  }
+
+\cs_new_protected:Npn \cvdata_map_csv_rows:nn #1#2
+  {
+    \cvdata_map_csv_rows:Nnn \g_cvdata_primary_ior {#1} {#2}
+  }
+\ExplSyntaxOff
+
+\newcommand{\cvpubsubsection}[1]{\subsection{\underline{\textbf{#1}}}}
+\newif\ifshowacademicservice
+\showacademicservicefalse
+
+\newread\cvprimaryreader
+\newread\cvsecondaryreader
+\newcommand{\cvcsvend}{}
+\newcommand{\cvcurrentline}{}
+\newcommand{\cvworkprojectsfile}{}
+\newcommand{\cvtargetposition}{}
+\newcommand{\cvpositionid}{}
+\newcommand{\cvthesisvalue}{}
+
+\newcommand{\cvreadcsvrows}[3]{%
+  \openin#1=#2\relax
+  \read#1 to \cvcurrentline % skip header
+  \loop\unless\ifeof#1
+    \read#1 to \cvcurrentline
+    \expandafter#3\cvcurrentline\cvcsvend
+  \repeat
+  \closein#1
+}
+
+\def\cveducationrow#1,#2,#3,#4,#5,#6,#7\cvcsvend{%
+  \def\cvthesisvalue{#7}%
+  \cventry{#2}{#3}{#4}{}{}{%
+    研究分野: #5 \quad 指導教員: #6%
+    \if\relax\detokenize{#7}\relax
+    \else
+      \\#7%
+    \fi
+  }%
+}
+
+\newcommand{\cvrendereducation}[1]{%
+  \cvreadcsvrows{\cvprimaryreader}{#1}{\cveducationrow}%
+}
+
+\def\cvworkprojectrow#1,#2,#3,#4\cvcsvend{%
+  \def\cvpositionid{#1}%
+  \ifx\cvpositionid\cvtargetposition
+    \cventry{}{#3}{}{}{}{\cvsmallitem{#4}}%
+  \fi
+}
+
+\newcommand{\cvrenderworkprojects}[2]{%
+  \def\cvtargetposition{#2}%
+  \cvreadcsvrows{\cvsecondaryreader}{#1}{\cvworkprojectrow}%
+}
+
+\def\cvworkpositionrow#1,#2,#3,#4\cvcsvend{%
+  \cvsubsection{#3}{#4}%
+  \cvrenderworkprojects{\cvworkprojectsfile}{#1}%
+}
+
+\newcommand{\cvrenderworkexperience}[2]{%
+  \def\cvworkprojectsfile{#2}%
+  \cvreadcsvrows{\cvprimaryreader}{#1}{\cvworkpositionrow}%
+}
+
+\def\cvacademicservicerow#1,#2,#3\cvcsvend{%
+  \cventry{}{#2}{}{}{}{\cvsmallitem{#3}}%
+}
+
+\newcommand{\cvrenderacademicservice}[1]{%
+  \cvreadcsvrows{\cvprimaryreader}{#1}{\cvacademicservicerow}%
+}
+
+
+% \newcommand{\cvreference}[7]{%
+%     \textbf{#1}\newline% Name
+%     \ifthenelse{\equal{#2}{}}{}{\addresssymbol~#2\newline}%
+%     \ifthenelse{\equal{#3}{}}{}{#3\newline}%
+%     \ifthenelse{\equal{#4}{}}{}{#4\newline}%
+%     \ifthenelse{\equal{#5}{}}{}{#5\newline}%
+%     \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{#6}\newline}%
+%     \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7}}
+
+\begin{document}
+
+\nocite{*}
+\makecvtitle % Print the CV title
+
+
+\ifispublicationlist
+\else
+% \vspace{-5mm}
+\section{\textbf{研究分野}}
+
+\input{data/about.tex}
+\fi
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	EDUCATION SECTION
+%----------------------------------------------------------------------------------------
+
+\section{\textbf{学歴}}
+
+\cvrendereducation{data/education.csv}
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	WORK EXPERIENCE SECTION
+%----------------------------------------------------------------------------------------
+
+
+\ifispublicationlist
+\else
+\section{\textbf{職歴}}
+\cvrenderworkexperience{data/work_positions.csv}{data/work_projects.csv}
+\fi
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	PUBLICATION SECTION
+%----------------------------------------------------------------------------------------
+
+
+\section{\textbf{\cvpublicationsectiontitle}}
+
+
+
+
+\cvpubsubsection{論文誌}
+\cvprintmainpublications{journal}
+
+
+
+\cvpubsubsection{国際学会}
+\cvprintmainpublications{international-conference}
+
+
+
+
+
+\cvpubsubsection{国内学会}
+\cvprintmainpublications{domestic-conference}
+
+
+
+
+
+\cvpubsubsection{テックブログ}
+\printpublicationbibliography[labels={blog}]
+
+
+
+\ifispublicationlist
+\cvpubsubsection{arXiv}
+\printpublicationbibliography[labels={arxiv}]
+\fi
+
+
+
+
+
+\section{\textbf{招待講演}}
+\printpublicationbibliography[labels={invited-talk}, show-authors=false]
+
+
+
+\section{\textbf{プレスリリース・取材}}
+\printpublicationbibliography[labels={press}]
+
+
+
+\section{\textbf{OSS}}
+\printpublicationbibliography[labels={oss}]
+
+
+
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	AWARDS
+%----------------------------------------------------------------------------------------
+
+\section{\textbf{受賞}}
+
+\cvitem{2025}{言語処理学会論文誌「自然言語処理」 2025年度 \underline{最優秀論文賞 (主著)}}
+\cvitem{2025}{人工知能学会全国大会 第39回 \underline{優秀賞 (主著)}}
+\cvitem{2023}{人工知能学会全国大会 第37回 優秀賞 (共著)}
+\cvitem{2022}{International Conference on Machine Learning (ICML 2022) \underline{Spotlight (上位5\%) (主著)}}
+\cvitem{2020}{SemEval Task3 Predicting the Effect of Context in Word Similarity Slovenian \underline{1位 (主著)}}
+\cvitem{2020}{SemEval Task7 Assessing the Funniness of Edited News Headlines \underline{1位 (主著)}}
+\cvitem{2020}{SemEval Task8 Memotion Analysis subtask3 \underline{2位 (主著)}}
+\cvitem{2020}{SemEval Task10 Emphasis Selection 2位 (共著)}
+\cvitem{2020}{SemEval Task11 Detection of Propaganda Techniques in News Articles subtask1 1位 (共著)}
+\cvitem{2020}{CoNLL 2020 Shared Task Cross-Framework Meaning Representation Parsing 1位 (共著)}
+
+
+%----------------------------------------------------------------------------------------
+%	Academic achievements
+%----------------------------------------------------------------------------------------
+
+
+
+\ifshowacademicservice
+\section{\textbf{学術貢献活動}}
+\cvrenderacademicservice{data/academic_service.csv}
+\fi
+
+
+
+
+
+
+
+% \cvitem{2018}{Invited to conduct lab sessions in \textit{\textbf{"Training Program on Machine Learning For Ocean Acoustics and Climate Data Analysis"}}, during 22-36 October 2018 at \textbf{Defence R\&D Organization- Naval Physical \& Oceanographic Laboratory (DRDO-NPOL), Kochi, Kerala}.}
+% 
+
+
+
+% %----------------------------------------------------------------------------------------
+% %	COMPUTER SKILLS SECTION
+% %----------------------------------------------------------------------------------------
+% 
+% \section{Computer skills}
+% 
+% \cvitem{Programming Languages}{Python, PyTorch, keras, R, C, C++, Advanced JAVA}
+% \cvitem{Web Technologies}{HTML 5, PHP, JSP, Javascript}
+% \cvitem{Database}{SQL, MySQL, Apache, Neo4j}
+
+
+%----------------------------------------------------------------------------------------
+%	Position of Responsibility SECTION
+%----------------------------------------------------------------------------------------
+
+% \section{Position of Responsibility}
+% \cventry{2016-2020}{Executive member of IEEE Student Branch}{}{IIT ABC}{}{}
+% \cventry{April 1-5, 2019}{Organizer, GIAN Workshop on subjects}{}{IIT ABC}{}{}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	Teaching Assistantship SECTION
+%----------------------------------------------------------------------------------------
+
+% \section{Teaching Assistantship}
+% \cventry{Fall, 2019 :}{CS564: Foundations of Machine Learning}{}{IIT ABC}{}{}
+% \cventry{Spring, 2019 :}{CS342: Operating System Lab}{}{IIT ABC}{}{}
+% \cventry{Fall, 2018 :}{CS564: Foundations of Machine Learning}{}{IIT ABC}{}{}
+
+
+
+% \section{Referees}
+% 
+% 
+% \begin{tabular}{lr}
+% % Referee 1
+% \begin{minipage}[t]{3in}
+% \textbf{Dr. XXXXX XXXXX}\\
+% \textit{Associate Professor, Department of} \\
+% \textit{Computer Science \& Engineering}\\
+% Institute name\\
+% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
+% \end{minipage}
+% &
+% % Referee 2
+% \begin{minipage}[t]{3in}
+% \textbf{Dr. XXXXX XXXXX}\\
+% \textit{Associate Professor, Department of} \\
+% \textit{Computer Science \& Engineering}\\
+% Institute name\\
+% \Telefon\ +(601) 877-6236\\
+% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
+% \end{minipage}
+% \\
+% \\ % Additional newline for spacing.
+% % Referee 3
+% \begin{minipage}[t]{3in}
+% \textbf{Dr. XXXXX XXXXX}\\
+% \textit{Associate Professor, Department of} \\
+% \textit{Computer Science \& Engineering}\\
+% Institute name\\
+% \Telefon\ +(601) 877-6236\\
+% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
+% \end{minipage}
+% &
+% \\
+% \end{tabular}
+
+
+\end{document}
