@@ -52,6 +52,7 @@ module Jekyll
       [
         build_education_section(resume_data_dir),
         build_work_section(resume_data_dir),
+        build_awards_section(resume_data_dir),
         *local_sections,
         build_academic_service_section(site, resume_data_dir),
       ].compact
@@ -116,6 +117,23 @@ module Jekyll
 
       {
         "title" => "職歴",
+        "type" => "time_table",
+        "contents" => contents,
+      }
+    end
+
+    def build_awards_section(resume_data_dir)
+      rows = read_csv(File.join(resume_data_dir, "awards.csv"))
+      contents = rows.map do |row|
+        {
+          "title" => row["award"],
+          "institution" => row["event"],
+          "year" => row["year"].to_s.strip,
+        }
+      end
+
+      {
+        "title" => "受賞",
         "type" => "time_table",
         "contents" => contents,
       }
