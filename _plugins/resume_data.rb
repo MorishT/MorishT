@@ -104,8 +104,7 @@ module Jekyll
         project_lines = Array(projects_by_position[row["id"]])
           .sort_by { |project| project["order"].to_i }
           .map do |project|
-            summary = project["summary"].to_s.strip
-            summary.empty? ? project["title"] : "#{project['title']}: #{summary}"
+            project["title"].to_s.strip
           end
 
         {
