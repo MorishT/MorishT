@@ -33,7 +33,6 @@
         <!-- Author -->
         <div class="author">
         {% assign author_array_size = entry.author_array | size %}
-        {% assign entry_keywords = entry.keywords | default: "" | downcase | replace: " ", "" | split: "," %}
 
         {% assign author_array_limit = author_array_size %}
         {%- if site.max_author_limit and author_array_size > site.max_author_limit %}
@@ -62,17 +61,12 @@
               {%- endif -%}
             {%- endfor -%}
           {%- endif -%}
-          {%- assign underline_self_author = false -%}
-          {%- if author_is_self and entry_keywords contains "peer" -%}
-            {%- assign underline_self_author = true -%}
-          {%- endif -%}
-
           {%- if forloop.length > 1 -%}
             {%- if forloop.first == false -%},&nbsp;{%- endif -%}
             {%- if forloop.last and author_array_limit == author_array_size -%}and&nbsp;{%- endif -%}
           {%- endif -%}
           {%- if author_is_self -%}
-            <em class="self-author{% if underline_self_author %} self-author-paper{% endif %}">{{author_display_name}}</em>
+            <em class="self-author">{{author_display_name}}</em>
           {%- else -%}
             {%- if coauthor_url -%}
               <a href="{{coauthor_url}}">{{author_display_name}}</a>

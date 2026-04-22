@@ -676,17 +676,14 @@ footer.sticky-bottom {
         }
 
         >em.self-author {
+          border-bottom: 1px solid #000;
+          color: #000;
           font-style: normal;
-        }
-
-        >em.self-author-paper {
-          border-bottom: 2px solid currentColor;
-          font-weight: 700;
+          font-weight: 400;
         }
 
         .periodical.note-award {
-          color: #8b0000;
-          font-weight: 700;
+          color: #c00;
         }
 
         >span.more-authors {
