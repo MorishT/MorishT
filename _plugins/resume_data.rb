@@ -141,19 +141,9 @@ module Jekyll
 
     def build_academic_service_section(site, resume_data_dir)
       rows = read_csv(File.join(resume_data_dir, "academic_service.csv"))
-      contents = []
-
-      memberships = Array(site.data.dig("resume_overrides", "academic_service_memberships"))
-      unless memberships.empty?
-        contents << {
-          "title" => "所属学会",
-          "items" => memberships,
-        }
-      end
-
-      rows.sort_by { |row| row["order"].to_i }.each do |row|
+      contents = rows.sort_by { |row| row["order"].to_i }.map do |row|
         items = compact_strings(row["summary"].to_s.split(/\s*\/\s*/))
-        contents << {
+        {
           "title" => row["title"],
           "items" => items,
         }
