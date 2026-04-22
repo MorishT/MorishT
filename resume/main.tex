@@ -99,6 +99,7 @@
 \renewcommand*{\finentrypunct}{}
 \DeclareFieldFormat{cvpubplain}{#1}
 \DeclareFieldFormat{usera}{(採択率#1)}
+\newcommand{\cvpubformatnote}[1]{\textcolor{red}{#1}}
 
 
 
@@ -396,7 +397,7 @@
     {In\ \textit{\usebibmacro{cvpub:venue}}}%
   \iffieldundef{note}
     {}
-    {\space\printfield{note}}%
+    {\space\cvpubformatnote{\printfield{note}}}%
   \iffieldundef{usera}
     {}
     {\space\printfield{usera}}%
@@ -418,7 +419,7 @@
     {,\space\printfield[cvpubplain]{journaltitle}}%
   \iffieldundef{note}
     {}
-    {\space\printfield[cvpubplain]{note}}%
+    {\space\cvpubformatnote{\printfield[cvpubplain]{note}}}%
   \iffieldundef{usera}
     {}
     {\space\printfield{usera}}%
