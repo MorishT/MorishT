@@ -265,8 +265,8 @@ display_tags: ['formatting', 'images', 'links', 'math', 'code'] # this tags will
 
 scholar:
 
-  last_name: [Morishita, 森下皓文]
-  first_name: [Terufumi, T., ""]
+  last_name: [Morishita, 森下皓文, 森下]
+  first_name: [Terufumi, T., "", 皓文]
 
   style: apa
   locale: en

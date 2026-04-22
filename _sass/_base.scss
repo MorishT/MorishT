@@ -680,7 +680,12 @@ footer.sticky-bottom {
         }
 
         >em.self-author-paper {
-          border-bottom: 2px solid #ff5a5f;
+          border-bottom: 2px solid currentColor;
+          font-weight: 700;
+        }
+
+        .periodical.note-award {
+          color: #8b0000;
           font-weight: 700;
         }
 
