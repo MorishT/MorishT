@@ -644,6 +644,21 @@
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cvacademicservicerow}%
 }
 
+\def\cvawardrow#1,#2,#3,#4\cvcsvend{%
+  \cvitem{#1}{%
+    #2\space
+    \if\relax\detokenize{#4}\relax
+      #3%
+    \else
+      \underline{#3}%
+    \fi
+  }%
+}
+
+\newcommand{\cvrenderawards}[1]{%
+  \cvreadcsvrows{\cvprimaryreader}{#1}{\cvawardrow}%
+}
+
 
 % \newcommand{\cvreference}[7]{%
 %     \textbf{#1}\newline% Name
@@ -774,16 +789,7 @@
 
 \section{\textbf{受賞}}
 
-\cvitem{2025}{言語処理学会論文誌「自然言語処理」 2025年度 \underline{最優秀論文賞 (主著)}}
-\cvitem{2025}{人工知能学会全国大会 第39回 \underline{優秀賞 (主著)}}
-\cvitem{2023}{人工知能学会全国大会 第37回 優秀賞 (共著)}
-\cvitem{2022}{International Conference on Machine Learning (ICML 2022) \underline{Spotlight (上位5\%) (主著)}}
-\cvitem{2020}{SemEval Task3 Predicting the Effect of Context in Word Similarity Slovenian \underline{1位 (主著)}}
-\cvitem{2020}{SemEval Task7 Assessing the Funniness of Edited News Headlines \underline{1位 (主著)}}
-\cvitem{2020}{SemEval Task8 Memotion Analysis subtask3 \underline{2位 (主著)}}
-\cvitem{2020}{SemEval Task10 Emphasis Selection 2位 (共著)}
-\cvitem{2020}{SemEval Task11 Detection of Propaganda Techniques in News Articles subtask1 1位 (共著)}
-\cvitem{2020}{CoNLL 2020 Shared Task Cross-Framework Meaning Representation Parsing 1位 (共著)}
+\cvrenderawards{data/awards.csv}
 
 
 %----------------------------------------------------------------------------------------
