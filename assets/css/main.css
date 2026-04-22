@@ -624,7 +624,11 @@ footer.sticky-bottom {
   font-style: normal;
 }
 .publications ol.bibliography li .author > em.self-author-paper {
-  border-bottom: 2px solid #ff5a5f;
+  border-bottom: 2px solid currentColor;
+  font-weight: 700;
+}
+.publications ol.bibliography li .author .periodical.note-award {
+  color: #8b0000;
   font-weight: 700;
 }
 .publications ol.bibliography li .author > span.more-authors {
