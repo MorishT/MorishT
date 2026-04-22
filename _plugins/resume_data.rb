@@ -108,22 +108,10 @@ module Jekyll
             summary.empty? ? project["title"] : "#{project['title']}: #{summary}"
           end
 
-        description = if project_lines.empty?
-                        nil
-                      else
-                        [
-                          {
-                            "title" => "研究テーマ",
-                            "contents" => project_lines,
-                          },
-                        ]
-                      end
-
         {
-          "title" => "研究員",
-          "institution" => row["organization"],
+          "title" => row["organization"],
           "year" => normalize_period(row["period"]),
-          "description" => description,
+          "description" => project_lines.empty? ? nil : project_lines,
         }
       end
 
