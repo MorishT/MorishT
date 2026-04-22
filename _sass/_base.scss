@@ -682,10 +682,6 @@ footer.sticky-bottom {
           font-weight: 400;
         }
 
-        .periodical.note-award {
-          color: #c00;
-        }
-
         >span.more-authors {
           color: var(--global-text-color-light);
           border-bottom: 1px dashed var(--global-text-color-light);
@@ -712,6 +708,10 @@ footer.sticky-bottom {
             border-color: var(--global-theme-color);
           }
         }
+      }
+
+      .periodical .note-award {
+        color: #c00;
       }
 
       .badges {

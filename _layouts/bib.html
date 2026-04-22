@@ -141,16 +141,14 @@
         {%- capture spotlight_rate -%}
           {%- if entry.spotlight_rate -%}, <span class="lang-ja">Spotlight上位{{ entry.spotlight_rate }}%</span><span class="lang-en">Spotlight top {{ entry.spotlight_rate }}%</span>{%- endif -%}
         {%- endcapture -%}
+        {%- capture note_award -%}
+          {%- if entry.note -%}, <span class="note-award">{{ entry.note | strip }}</span>{%- endif -%}
+        {%- endcapture -%}
         {% assign entrytype_text = entrytype | strip_html | strip %}
-        {%- capture periodical -%}{{ entrytype }}{%- if entrytype_text != "" and entryyear != "" -%}, {%- endif -%}{{ entrymonth }}{{ entryyear }}{{ acceptance_rate }}{{ spotlight_rate }}{%- endcapture -%}
+        {%- capture periodical -%}{{ entrytype }}{%- if entrytype_text != "" and entryyear != "" -%}, {%- endif -%}{{ entrymonth }}{{ entryyear }}{{ note_award }}{{ acceptance_rate }}{{ spotlight_rate }}{%- endcapture -%}
         <div class="periodical">
           {{ periodical | strip }}
         </div>
-        {%- if entry.note -%}
-        <div class="periodical note-award">
-          {{ entry.note | strip }}
-        </div>
-        {%- endif -%}
 
           <!-- Links/Buttons -->
           <div class="links">
