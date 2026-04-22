@@ -621,15 +621,13 @@ footer.sticky-bottom {
   text-decoration: none;
 }
 .publications ol.bibliography li .author > em.self-author {
+  border-bottom: 1px solid #000;
+  color: #000;
   font-style: normal;
-}
-.publications ol.bibliography li .author > em.self-author-paper {
-  border-bottom: 2px solid currentColor;
-  font-weight: 700;
+  font-weight: 400;
 }
 .publications ol.bibliography li .author .periodical.note-award {
-  color: #8b0000;
-  font-weight: 700;
+  color: #c00;
 }
 .publications ol.bibliography li .author > span.more-authors {
   color: var(--global-text-color-light);
