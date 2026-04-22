@@ -620,9 +620,12 @@ footer.sticky-bottom {
   border-bottom-style: solid;
   text-decoration: none;
 }
-.publications ol.bibliography li .author > em {
-  border-bottom: 1px solid;
+.publications ol.bibliography li .author > em.self-author {
   font-style: normal;
+}
+.publications ol.bibliography li .author > em.self-author-paper {
+  border-bottom: 2px solid #ff5a5f;
+  font-weight: 700;
 }
 .publications ol.bibliography li .author > span.more-authors {
   color: var(--global-text-color-light);
