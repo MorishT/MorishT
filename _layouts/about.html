@@ -41,7 +41,11 @@ layout: default
           {%- endif %}
 
           <div class="clearfix">
-            {% include render_bilingual_content.html rendered_content=content %}
+            {% assign about_ja_override = nil %}
+            {% if page.resume_about_ja and site.data.resume.about_ja %}
+              {% assign about_ja_override = site.data.resume.about_ja | markdownify %}
+            {% endif %}
+            {% include render_bilingual_content.html rendered_content=content ja_content_override=about_ja_override %}
           </div>
 
           <!-- News -->

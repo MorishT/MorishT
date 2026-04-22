@@ -15,7 +15,8 @@ layout: default
           <article>
             <div class="cv">
               <div class="lang-ja">
-                {% for entry in site.data.cv_ja %}
+                {% assign cv_ja_entries = site.data.resume.cv_ja | default: site.data.cv_ja %}
+                {% for entry in cv_ja_entries %}
                   <div class="card mt-3 p-3">
                     <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
                     <div>

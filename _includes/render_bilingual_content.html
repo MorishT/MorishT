@@ -2,6 +2,10 @@
 {% assign ja_content = language_sections[0] | replace: '<!--lang:ja-->', '' | strip %}
 {% assign en_content = '' %}
 
+{% if include.ja_content_override %}
+  {% assign ja_content = include.ja_content_override | strip %}
+{% endif %}
+
 {% if language_sections.size > 1 %}
   {% assign en_content = language_sections[1] | strip %}
 {% endif %}
