@@ -626,9 +626,6 @@ footer.sticky-bottom {
   font-style: normal;
   font-weight: 400;
 }
-.publications ol.bibliography li .author .periodical.note-award {
-  color: #c00;
-}
 .publications ol.bibliography li .author > span.more-authors {
   color: var(--global-text-color-light);
   border-bottom: 1px dashed var(--global-text-color-light);
@@ -649,6 +646,9 @@ footer.sticky-bottom {
 .publications ol.bibliography li .links a.btn:hover {
   color: var(--global-theme-color);
   border-color: var(--global-theme-color);
+}
+.publications ol.bibliography li .periodical .note-award {
+  color: #c00;
 }
 .publications ol.bibliography li .badges span {
   display: inline-block;
