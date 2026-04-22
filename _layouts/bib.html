@@ -44,10 +44,14 @@
           {%- assign author_is_self = false -%}
           {%- assign author_last_name = author.last | remove: "¶" | remove: "&" | remove: "*" | remove: "†" | remove: "^" -%}
           {%- assign author_display_name = author.first | format_author_name: author.last -%}
+          {%- assign author_compact_name = author_display_name | remove: " " -%}
           {%- if site.scholar.last_name contains author_last_name -%}
             {%- if site.scholar.first_name contains author.first -%}
               {%- assign author_is_self = true -%}
             {%- endif -%}
+          {%- endif -%}
+          {%- if author_is_self == false and site.scholar.last_name contains author_compact_name -%}
+            {%- assign author_is_self = true -%}
           {%- endif -%}
           {%- assign coauthor_url = nil -%}
           {%- if site.data.coauthors[author_last_name] -%}
@@ -68,7 +72,7 @@
             {%- if forloop.last and author_array_limit == author_array_size -%}and&nbsp;{%- endif -%}
           {%- endif -%}
           {%- if author_is_self -%}
-            <em>{% if underline_self_author %}<u>{{author_display_name}}</u>{% else %}{{author_display_name}}{% endif %}</em>
+            <em class="self-author{% if underline_self_author %} self-author-paper{% endif %}">{{author_display_name}}</em>
           {%- else -%}
             {%- if coauthor_url -%}
               <a href="{{coauthor_url}}">{{author_display_name}}</a>

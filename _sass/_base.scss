@@ -675,9 +675,13 @@ footer.sticky-bottom {
           }
         }
 
-        >em {
-          border-bottom: 1px solid;
+        >em.self-author {
           font-style: normal;
+        }
+
+        >em.self-author-paper {
+          border-bottom: 2px solid #ff5a5f;
+          font-weight: 700;
         }
 
         >span.more-authors {
