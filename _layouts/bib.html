@@ -42,6 +42,7 @@
         {%- for author in entry.author_array limit: author_array_limit -%}
           {%- assign author_is_self = false -%}
           {%- assign author_last_name = author.last | remove: "¶" | remove: "&" | remove: "*" | remove: "†" | remove: "^" -%}
+          {%- assign author_display_name = author.first | format_author_name: author.last -%}
           {%- if site.scholar.last_name contains author_last_name -%}
             {%- if site.scholar.first_name contains author.first -%}
               {%- assign author_is_self = true -%}
@@ -62,12 +63,12 @@
             {%- if forloop.last and author_array_limit == author_array_size -%}and&nbsp;{%- endif -%}
           {%- endif -%}
           {%- if author_is_self -%}
-            <em>{{author.first}} {{author.last}}</em>
+            <em>{{author_display_name}}</em>
           {%- else -%}
             {%- if coauthor_url -%}
-              <a href="{{coauthor_url}}">{{author.first}} {{author.last}}</a>
+              <a href="{{coauthor_url}}">{{author_display_name}}</a>
             {%- else -%}
-              {{author.first}} {{author.last}}
+              {{author_display_name}}
             {%- endif -%}
           {%- endif -%}
         {%- endfor -%}
@@ -80,7 +81,8 @@
           {%- endif -%}
           {%- assign more_authors_show = '' -%}
           {%- for author in entry.author_array offset: author_array_limit -%}
-            {%- assign more_authors_show = more_authors_show | append: author.first | append: " " | append: author.last -%}
+            {%- assign more_author_display_name = author.first | format_author_name: author.last -%}
+            {%- assign more_authors_show = more_authors_show | append: more_author_display_name -%}
             {%- unless forloop.last -%}
               {%- assign more_authors_show = more_authors_show | append: ", " -%}
             {%- endunless -%}
