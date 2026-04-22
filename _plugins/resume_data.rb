@@ -125,10 +125,12 @@ module Jekyll
     def build_awards_section(resume_data_dir)
       rows = read_csv(File.join(resume_data_dir, "awards.csv"))
       contents = rows.map do |row|
+        award_title = row["award"].to_s.strip
         {
-          "title" => row["award"],
+          "title" => award_title,
           "institution" => row["event"],
           "year" => row["year"].to_s.strip,
+          "emphasize_title" => award_title.include?("(主著)"),
         }
       end
 
