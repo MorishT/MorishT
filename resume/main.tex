@@ -549,6 +549,15 @@
     \group_end:
   }
 
+\NewDocumentCommand{\printpublicationbibliographynone}{ O{} }
+  {
+    \group_begin:
+      \keys_set:nn { cvpub } { #1 }
+      \newrefcontext[sorting=none]
+      \printbibliography[heading=none, env=cvpublist, check=cvpubfilter]
+    \group_end:
+  }
+
 \cs_new_protected:Npn \cvdata_map_csv_rows:Nnn #1#2#3
   {
     \ior_open:Nn #1 {#2}
@@ -772,7 +781,7 @@
 
 
 \section{\textbf{招待講演}}
-\printpublicationbibliography[labels={invited-talk}, show-authors=false]
+\printpublicationbibliographynone[labels={invited-talk}, show-authors=false]
 
 
 
