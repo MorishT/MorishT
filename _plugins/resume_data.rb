@@ -202,7 +202,7 @@ module Jekyll
     def linked_title(text, url)
       return text if url.empty?
 
-      %(<a href="#{CGI.escapeHTML(url)}" target="_blank" rel="noopener noreferrer">#{CGI.escapeHTML(text)}</a>)
+      %(#{CGI.escapeHTML(text)} <a href="#{CGI.escapeHTML(url)}" target="_blank" rel="noopener noreferrer">[link]</a>)
     end
   end
 end
