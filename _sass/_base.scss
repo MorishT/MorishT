@@ -421,6 +421,10 @@ footer.sticky-bottom {
       background-color: inherit;
       border-color: var(--global-divider-color);
 
+      .cv-time-content {
+        padding-left: 2rem;
+      }
+
       .badge {
         color: var(--global-card-bg-color) !important;
         background-color: var(--global-theme-color) !important;
