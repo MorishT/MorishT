@@ -622,8 +622,12 @@ footer.sticky-bottom {
     padding: 0;
     margin-top: 0;
 
-    li {
-      margin-bottom: 0.5rem;
+    >li {
+      margin-bottom: 0.25rem;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
 
       @media (min-width: 576px) {
         .publication-content {
@@ -667,6 +671,21 @@ footer.sticky-bottom {
 
       .title {
         font-weight: bolder;
+      }
+
+      .author,
+      .periodical,
+      .links {
+        margin-bottom: 0.1rem;
+      }
+
+      .links {
+        line-height: 1.2;
+
+        a.btn {
+          margin-bottom: 0.1rem;
+          margin-top: 0;
+        }
       }
 
       .author {
