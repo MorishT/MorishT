@@ -189,6 +189,7 @@ module Jekyll
       {
         "title" => "学術貢献活動",
         "type" => "nested_list",
+        "hide" => true,
         "contents" => contents,
       }
     end
