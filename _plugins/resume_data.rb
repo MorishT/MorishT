@@ -150,11 +150,13 @@ module Jekyll
       contents = bibliography.each_with_object([]) do |entry, talks|
         next unless bibtex_keywords(entry).include?("talk")
 
-        display_text = compact_strings([bibtex_field(entry, :title), bibtex_field(entry, :booktitle)]).join(", ")
-        next if display_text.empty?
+        talk_title = bibtex_field(entry, :title)
+        talk_venue = bibtex_field(entry, :booktitle)
+        next if talk_title.empty?
 
         talks << {
-          "title" => linked_title(display_text, bibtex_field(entry, :url)),
+          "title" => talk_title,
+          "institution" => linked_title(talk_venue, bibtex_field(entry, :url)),
           "year" => bibtex_field(entry, :year),
           "normal_weight_title" => true,
         }
@@ -208,7 +210,7 @@ module Jekyll
     end
 
     def linked_title(text, url)
-      return text if url.empty?
+      return text if url.empty? || text.empty?
 
       %(#{CGI.escapeHTML(text)} <a href="#{CGI.escapeHTML(url)}" target="_blank" rel="noopener noreferrer">[link]</a>)
     end
