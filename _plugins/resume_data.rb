@@ -130,10 +130,11 @@ module Jekyll
       contents = rows.map do |row|
         award_title = row["award"].to_s.strip
         {
-          "title" => award_title,
-          "institution" => row["event"],
+          "title" => row["event"].to_s.strip,
+          "institution" => award_title,
           "year" => row["year"].to_s.strip,
-          "emphasize_title" => award_title.include?("(主著)"),
+          "emphasize_institution" => award_title.include?("(主著)"),
+          "normal_weight_institution" => true,
           "normal_weight_title" => true,
         }
       end
