@@ -430,6 +430,9 @@ footer.sticky-bottom {
   background-color: inherit;
   border-color: var(--global-divider-color);
 }
+.cv .card .list-group-item .cv-time-content {
+  padding-left: 2rem;
+}
 .cv .card .list-group-item .badge {
   color: var(--global-card-bg-color) !important;
   background-color: var(--global-theme-color) !important;
