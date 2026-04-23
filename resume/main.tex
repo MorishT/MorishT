@@ -644,14 +644,21 @@
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cvacademicservicerow}%
 }
 
-\def\cvawardrow#1,#2,#3,#4\cvcsvend{%
+\makeatletter
+\newcommand{\cvawardformat}[1]{%
+  \in@{主著}{#1}%
+  \ifin@
+    \underline{#1}%
+  \else
+    #1%
+  \fi
+}
+\makeatother
+
+\def\cvawardrow#1,#2,#3\cvcsvend{%
   \cvitem{#1}{%
     #2\space
-    \if\relax\detokenize{#4}\relax
-      #3%
-    \else
-      \underline{#3}%
-    \fi
+    \cvawardformat{#3}%
   }%
 }
 

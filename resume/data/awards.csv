@@ -1,11 +1,11 @@
-year,event,award,highlight
-2025,言語処理学会論文誌「自然言語処理」 2025年度,最優秀論文賞 (主著),yes
-2025,人工知能学会全国大会 第39回,優秀賞 (主著),yes
-2023,人工知能学会全国大会 第37回,優秀賞 (共著),
-2022,International Conference on Machine Learning (ICML 2022),Spotlight (上位5\%) (主著),yes
-2020,SemEval Task3 Predicting the Effect of Context in Word Similarity Slovenian,1位 (主著),yes
-2020,SemEval Task7 Assessing the Funniness of Edited News Headlines,1位 (主著),yes
-2020,SemEval Task8 Memotion Analysis subtask3,2位 (主著),yes
-2020,SemEval Task10 Emphasis Selection,2位 (共著),
-2020,SemEval Task11 Detection of Propaganda Techniques in News Articles subtask1,1位 (共著),
-2020,CoNLL 2020 Shared Task Cross-Framework Meaning Representation Parsing,1位 (共著),
+year,event,award
+2025,言語処理学会論文誌「自然言語処理」 2025年度,最優秀論文賞 (主著)
+2025,人工知能学会全国大会 第39回,優秀賞 (主著)
+2023,人工知能学会全国大会 第37回,優秀賞 (共著)
+2022,International Conference on Machine Learning (ICML 2022),Spotlight (上位5\%) (主著)
+2020,SemEval Task3 Predicting the Effect of Context in Word Similarity Slovenian,1位 (主著)
+2020,SemEval Task7 Assessing the Funniness of Edited News Headlines,1位 (主著)
+2020,SemEval Task8 Memotion Analysis subtask3,2位 (主著)
+2020,SemEval Task10 Emphasis Selection,2位 (共著)
+2020,SemEval Task11 Detection of Propaganda Techniques in News Articles subtask1,1位 (共著)
+2020,CoNLL 2020 Shared Task Cross-Framework Meaning Representation Parsing,1位 (共著)
