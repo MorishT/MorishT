@@ -581,7 +581,7 @@ footer.sticky-bottom {
   margin-top: 0;
 }
 .publications ol.bibliography li {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 @media (min-width: 576px) {
   .publications ol.bibliography li .publication-content {
