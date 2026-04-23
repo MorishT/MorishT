@@ -1,5 +1,4 @@
 require "csv"
-require "cgi"
 require "bibtex"
 require "fileutils"
 
@@ -153,16 +152,20 @@ module Jekyll
 
         talk_title = bibtex_field(entry, :title)
         talk_venue = bibtex_field(entry, :booktitle)
+        talk_url = bibtex_field(entry, :url)
         next if talk_title.empty?
 
-        talks << {
+        talk = {
           "title" => talk_title,
-          "institution" => linked_title(talk_venue, bibtex_field(entry, :url)),
+          "institution" => talk_venue,
           "year" => bibtex_field(entry, :year),
           "normal_weight_title" => true,
           "normal_weight_institution" => true,
           "underline_institution" => true,
         }
+        talk["institution_url"] = talk_url unless talk_url.empty?
+
+        talks << talk
       end
 
       return nil if contents.empty?
@@ -210,12 +213,6 @@ module Jekyll
       end
 
       ""
-    end
-
-    def linked_title(text, url)
-      return text if url.empty? || text.empty?
-
-      %(#{CGI.escapeHTML(text)} <a href="#{CGI.escapeHTML(url)}" target="_blank" rel="noopener noreferrer">[link]</a>)
     end
   end
 end
