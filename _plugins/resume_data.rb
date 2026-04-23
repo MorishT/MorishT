@@ -160,6 +160,7 @@ module Jekyll
           "institution" => linked_title(talk_venue, bibtex_field(entry, :url)),
           "year" => bibtex_field(entry, :year),
           "normal_weight_title" => true,
+          "normal_weight_institution" => true,
         }
       end
 
