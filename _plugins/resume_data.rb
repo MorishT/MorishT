@@ -161,6 +161,7 @@ module Jekyll
           "year" => bibtex_field(entry, :year),
           "normal_weight_title" => true,
           "normal_weight_institution" => true,
+          "underline_institution" => true,
         }
       end
 

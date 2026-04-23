@@ -14,7 +14,7 @@
             <h6 class="title ml-1" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{content.title}}</span>{% else %}{{content.title}}{% endif %}</h6>
             {% endif %}
             {% if content.institution %}
-            <h6 class="ml-1" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution %}<span style="text-decoration: underline;">{{content.institution}}</span>{% else %}{{content.institution}}{% endif %}</h6>
+            <h6 class="ml-1" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution or content.underline_institution %}<span style="text-decoration: underline;">{{content.institution}}</span>{% else %}{{content.institution}}{% endif %}</h6>
             {% endif %}
             {% if content.description %}
               <ul class="items">
