@@ -1,4 +1,6 @@
 require "csv"
+require "cgi"
+require "bibtex"
 require "fileutils"
 
 module Jekyll
@@ -48,11 +50,12 @@ module Jekyll
     end
 
     def build_cv_ja(site, resume_data_dir)
-      local_sections = Array(site.data["cv_ja_local"])
+      local_sections = Array(site.data["cv_ja_local"]).reject { |section| section["title"] == "招待講演" }
       [
         build_education_section(resume_data_dir),
         build_work_section(resume_data_dir),
         build_awards_section(resume_data_dir),
+        build_invited_talks_section(resume_data_dir),
         *local_sections,
         build_academic_service_section(site, resume_data_dir),
       ].compact
@@ -131,11 +134,36 @@ module Jekyll
           "institution" => row["event"],
           "year" => row["year"].to_s.strip,
           "emphasize_title" => award_title.include?("(主著)"),
+          "normal_weight_title" => true,
         }
       end
 
       {
         "title" => "受賞",
+        "type" => "time_table",
+        "contents" => contents,
+      }
+    end
+
+    def build_invited_talks_section(resume_data_dir)
+      bibliography = BibTeX.parse(File.read(File.join(resume_data_dir, "publications.bib")))
+      contents = bibliography.each_with_object([]) do |entry, talks|
+        next unless bibtex_keywords(entry).include?("talk")
+
+        display_text = compact_strings([bibtex_field(entry, :title), bibtex_field(entry, :booktitle)]).join(", ")
+        next if display_text.empty?
+
+        talks << {
+          "title" => linked_title(display_text, bibtex_field(entry, :url)),
+          "year" => bibtex_field(entry, :year),
+          "normal_weight_title" => true,
+        }
+      end
+
+      return nil if contents.empty?
+
+      {
+        "title" => "招待講演",
         "type" => "time_table",
         "contents" => contents,
       }
@@ -156,6 +184,25 @@ module Jekyll
         "type" => "nested_list",
         "contents" => contents,
       }
+    end
+
+    def bibtex_keywords(entry)
+      bibtex_field(entry, :keywords).split(",").map { |keyword| keyword.strip.downcase }.reject(&:empty?)
+    end
+
+    def bibtex_field(entry, *fields)
+      fields.each do |field|
+        value = entry[field].to_s.strip
+        return value unless value.empty?
+      end
+
+      ""
+    end
+
+    def linked_title(text, url)
+      return text if url.empty?
+
+      %(<a href="#{CGI.escapeHTML(url)}" target="_blank" rel="noopener noreferrer">#{CGI.escapeHTML(text)}</a>)
     end
   end
 end
