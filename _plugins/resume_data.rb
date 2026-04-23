@@ -173,10 +173,17 @@ module Jekyll
       rows = read_csv(File.join(resume_data_dir, "academic_service.csv"))
       contents = rows.sort_by { |row| row["order"].to_i }.map do |row|
         items = compact_strings(row["summary"].to_s.split(/\s*\/\s*/))
-        {
+        content = {
           "title" => row["title"],
-          "items" => items,
         }
+
+        if row["title"].to_s.include?("査読")
+          content["text"] = items.join(" / ")
+        else
+          content["items"] = items
+        end
+
+        content
       end
 
       {

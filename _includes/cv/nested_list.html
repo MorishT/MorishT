@@ -2,6 +2,9 @@
     {% for content in entry.contents %}
       <li class="list-group-item">
       <h5 class="font-italic">{{ content.title }}</h5>
+      {% if content.text %}
+        <div class="subitems">{{ content.text }}</div>
+      {% endif %}
       {% if content.items %}
         <ul class="subitems">
           {% for subitem in content.items %}
