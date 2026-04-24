@@ -49,19 +49,36 @@ module Jekyll
     end
 
     def build_cv_ja(site, resume_data_dir)
-      local_sections = Array(site.data["cv_ja_local"]).reject { |section| section["title"] == "招待講演" }
-      [
+      bibliography = load_bibliography(resume_data_dir)
+      sections = [
+        build_research_section(resume_data_dir),
         build_education_section(resume_data_dir),
         build_work_section(resume_data_dir),
+        build_publications_section(bibliography),
+        build_invited_talks_section(bibliography),
+        build_press_section(bibliography),
+        build_oss_section(bibliography),
         build_awards_section(resume_data_dir),
-        build_invited_talks_section(resume_data_dir),
-        *local_sections,
         build_academic_service_section(site, resume_data_dir),
+      ].compact
+      section_titles = sections.map { |section| section["title"] }
+      local_sections = Array(site.data["cv_ja_local"]).reject do |section|
+        section_titles.include?(section["title"])
+      end
+
+      [
+        *sections[0...-1],
+        *local_sections,
+        sections.last,
       ].compact
     end
 
     def read_csv(path)
       CSV.read(path, headers: true).map(&:to_h)
+    end
+
+    def load_bibliography(resume_data_dir)
+      BibTeX.parse(File.read(File.join(resume_data_dir, "publications.bib")))
     end
 
     def normalize_period(period)
@@ -98,6 +115,26 @@ module Jekyll
       }
     end
 
+    def build_research_section(resume_data_dir)
+      about_path = File.join(resume_data_dir, "about.md")
+      return nil unless File.exist?(about_path)
+
+      contents = File.readlines(about_path, chomp: true).filter_map do |line|
+        stripped = line.strip
+        next unless stripped.start_with?("- ")
+
+        stripped.sub(/\A-\s+/, "")
+      end
+
+      return nil if contents.empty?
+
+      {
+        "title" => "研究分野",
+        "type" => "list",
+        "contents" => contents,
+      }
+    end
+
     def build_work_section(resume_data_dir)
       positions = read_csv(File.join(resume_data_dir, "work_positions.csv"))
       projects = read_csv(File.join(resume_data_dir, "work_projects.csv"))
@@ -124,6 +161,23 @@ module Jekyll
       }
     end
 
+    def build_publications_section(bibliography)
+      contents = [
+        build_bibliography_subsection("論文誌", bibliography, label: "journal", selected: true),
+        build_bibliography_subsection("国際学会", bibliography, label: "international-conference", selected: true),
+        build_bibliography_subsection("国内学会", bibliography, label: "domestic-conference", selected: true),
+        build_bibliography_subsection("テックブログ", bibliography, label: "blog"),
+      ].compact
+
+      return nil if contents.empty?
+
+      {
+        "title" => "論文・発表 (一部のみ抜粋)",
+        "type" => "subsections",
+        "contents" => contents,
+      }
+    end
+
     def build_awards_section(resume_data_dir)
       rows = read_csv(File.join(resume_data_dir, "awards.csv"))
       contents = rows.map do |row|
@@ -145,36 +199,16 @@ module Jekyll
       }
     end
 
-    def build_invited_talks_section(resume_data_dir)
-      bibliography = BibTeX.parse(File.read(File.join(resume_data_dir, "publications.bib")))
-      contents = bibliography.each_with_object([]) do |entry, talks|
-        next unless bibtex_keywords(entry).include?("talk")
+    def build_invited_talks_section(bibliography)
+      build_bibliography_time_table("招待講演", bibliography, label: "invited-talk")
+    end
 
-        talk_title = bibtex_field(entry, :title)
-        talk_venue = bibtex_field(entry, :booktitle)
-        talk_url = bibtex_field(entry, :url)
-        next if talk_title.empty?
+    def build_press_section(bibliography)
+      build_bibliography_time_table("プレスリリース・取材", bibliography, label: "press")
+    end
 
-        talk = {
-          "title" => talk_title,
-          "institution" => talk_venue,
-          "year" => bibtex_field(entry, :year),
-          "normal_weight_title" => true,
-          "normal_weight_institution" => true,
-          "underline_institution" => true,
-        }
-        talk["institution_url"] = talk_url unless talk_url.empty?
-
-        talks << talk
-      end
-
-      return nil if contents.empty?
-
-      {
-        "title" => "招待講演",
-        "type" => "time_table",
-        "contents" => contents,
-      }
+    def build_oss_section(bibliography)
+      build_bibliography_time_table("OSS", bibliography, label: "oss")
     end
 
     def build_academic_service_section(site, resume_data_dir)
@@ -202,6 +236,105 @@ module Jekyll
       }
     end
 
+    def build_bibliography_subsection(title, bibliography, label:, selected: false)
+      contents = build_bibliography_contents(bibliography, label: label, selected: selected)
+      return nil if contents.empty?
+
+      {
+        "title" => title,
+        "type" => "time_table",
+        "contents" => contents,
+      }
+    end
+
+    def build_bibliography_time_table(title, bibliography, label:, selected: false)
+      contents = build_bibliography_contents(bibliography, label: label, selected: selected)
+      return nil if contents.empty?
+
+      {
+        "title" => title,
+        "type" => "time_table",
+        "contents" => contents,
+      }
+    end
+
+    def build_bibliography_contents(bibliography, label:, selected: false)
+      bibliography.each_with_index.filter_map do |entry, index|
+        next unless bibliography_entry_match?(entry, label, selected: selected)
+
+        build_bibliography_content(entry, index)
+      end.sort_by { |content| [-content.delete("_sort_year").to_i, content.delete("_sort_index").to_i] }
+    end
+
+    def build_bibliography_content(entry, index)
+      title = normalize_bibtex_text(bibtex_field(entry, :title))
+      return nil if title.empty?
+
+      institution = normalize_bibtex_text(
+        bibtex_field(entry, :journaltitle, :journal, :booktitle, :publisher, :howpublished, :organization, :abbr)
+      )
+      url = normalize_bibtex_text(bibtex_field(entry, :url))
+
+      description = compact_strings(
+        [
+          normalize_bibtex_text(bibtex_field(entry, :note)),
+          bibliography_acceptance_rate(entry),
+          bibliography_link_item(url, institution.empty?),
+        ]
+      )
+
+      content = {
+        "title" => title,
+        "year" => normalize_bibtex_text(bibtex_field(entry, :year)),
+        "normal_weight_title" => true,
+        "_sort_year" => bibtex_field(entry, :year).to_i,
+        "_sort_index" => index,
+      }
+      content["institution"] = institution unless institution.empty?
+      content["normal_weight_institution"] = true unless institution.empty?
+      content["underline_institution"] = true unless institution.empty?
+      content["institution_url"] = url unless url.empty? || institution.empty?
+      content["description"] = description unless description.empty?
+      content
+    end
+
+    def bibliography_acceptance_rate(entry)
+      acceptance_rate = normalize_bibtex_text(bibtex_field(entry, :acceptance_rate, :usera))
+      return nil if acceptance_rate.empty?
+
+      "採択率: #{acceptance_rate}"
+    end
+
+    def bibliography_link_item(url, include_link)
+      return nil if url.empty? || !include_link
+
+      %(<a href="#{url}">link</a>)
+    end
+
+    def bibliography_entry_match?(entry, label, selected: false)
+      keywords = bibtex_keywords(entry)
+      return false if selected && !keywords.include?("selected")
+
+      case label
+      when "journal"
+        keywords.include?("journal")
+      when "international-conference"
+        keywords.include?("international")
+      when "domestic-conference"
+        keywords.include?("domestic") && !keywords.include?("talk")
+      when "invited-talk"
+        keywords.include?("talk")
+      when "press"
+        keywords.include?("media")
+      when "blog"
+        keywords.include?("blog")
+      when "oss"
+        keywords.include?("oss")
+      else
+        false
+      end
+    end
+
     def bibtex_keywords(entry)
       bibtex_field(entry, :keywords).split(",").map { |keyword| keyword.strip.downcase }.reject(&:empty?)
     end
@@ -213,6 +346,10 @@ module Jekyll
       end
 
       ""
+    end
+
+    def normalize_bibtex_text(value)
+      value.to_s.strip.gsub("\\%", "%")
     end
   end
 end

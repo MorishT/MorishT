@@ -1,0 +1,8 @@
+<div class="cv-subsections">
+  {% for section in include.sections %}
+    <section class="cv-subsection">
+      <h4 class="cv-subsection-title">{{ section.title }}</h4>
+      {% include cv/render_entry.html entry=section %}
+    </section>
+  {% endfor %}
+</div>
