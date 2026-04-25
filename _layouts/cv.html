@@ -21,7 +21,19 @@ layout: default
                   <div class="card mt-3 p-3">
                     <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
                     <div>
-                    {% include cv/render_entry.html entry=entry %}
+                    {% if entry.type == "list" %}
+                      {% include cv/list.html entry=entry %}
+                    {% elsif entry.type == "map" %}
+                      {% include cv/map.html entry=entry %}
+                    {% elsif entry.type == "nested_list" %}
+                      {% include cv/nested_list.html entry=entry %}
+                    {% elsif entry.type == "time_table" %}
+                      {% include cv/time_table.html entry=entry %}
+                    {% elsif entry.type == "subsections" %}
+                      {% include cv/subsections.html sections=entry.contents %}
+                    {% else %}
+                      {{ entry.contents }}
+                    {% endif %}
                     </div>
                   </div>
                   {% endunless %}
@@ -33,7 +45,19 @@ layout: default
                   <div class="card mt-3 p-3">
                     <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
                     <div>
-                    {% include cv/render_entry.html entry=entry %}
+                    {% if entry.type == "list" %}
+                      {% include cv/list.html entry=entry %}
+                    {% elsif entry.type == "map" %}
+                      {% include cv/map.html entry=entry %}
+                    {% elsif entry.type == "nested_list" %}
+                      {% include cv/nested_list.html entry=entry %}
+                    {% elsif entry.type == "time_table" %}
+                      {% include cv/time_table.html entry=entry %}
+                    {% elsif entry.type == "subsections" %}
+                      {% include cv/subsections.html sections=entry.contents %}
+                    {% else %}
+                      {{ entry.contents }}
+                    {% endif %}
                     </div>
                   </div>
                   {% endunless %}
