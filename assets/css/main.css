@@ -426,6 +426,20 @@ footer.sticky-bottom {
   background-color: var(--global-card-bg-color);
   border: 1px solid var(--global-divider-color);
 }
+.cv .card .cv-subsections {
+  display: grid;
+  gap: 1.25rem;
+}
+.cv .card .cv-subsection {
+  padding-top: 0.25rem;
+}
+.cv .card .cv-subsection-title {
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid var(--global-divider-color);
+  font-size: 1rem;
+  font-weight: 600;
+}
 .cv .card .list-group-item {
   background-color: inherit;
   border-color: var(--global-divider-color);
