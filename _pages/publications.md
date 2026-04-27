@@ -15,7 +15,7 @@ nav_order: 1
 {% assign cv_ja_entries = site.data.resume.cv_ja | default: site.data.cv_ja %}
 {% assign publication_section_titles = "論文・発表|招待講演|受賞|プレスリリース・取材|OSS" | split: "|" %}
 
-<div class="publications">
+<div class="publications cv">
   <div class="lang-ja">
     {% for section_title in publication_section_titles %}
       {% for entry in cv_ja_entries %}
