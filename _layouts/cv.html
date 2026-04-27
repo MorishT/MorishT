@@ -18,48 +18,18 @@ layout: default
                 {% assign cv_ja_entries = site.data.resume.cv_ja | default: site.data.cv_ja %}
                 {% for entry in cv_ja_entries %}
                   {% unless entry.hide %}
-                  <div class="card mt-3 p-3">
-                    <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
-                    <div>
-                    {% if entry.type == "list" %}
-                      {% include cv/list.html entry=entry %}
-                    {% elsif entry.type == "map" %}
-                      {% include cv/map.html entry=entry %}
-                    {% elsif entry.type == "nested_list" %}
-                      {% include cv/nested_list.html entry=entry %}
-                    {% elsif entry.type == "time_table" %}
-                      {% include cv/time_table.html entry=entry %}
-                    {% elsif entry.type == "subsections" %}
-                      {% include cv/subsections.html sections=entry.contents %}
-                    {% else %}
-                      {{ entry.contents }}
+                    {% if entry.title == "学歴" or entry.title == "職歴" %}
+                      {% include cv/render_section.html entry=entry %}
                     {% endif %}
-                    </div>
-                  </div>
                   {% endunless %}
                 {% endfor %}
               </div>
               <div class="lang-en">
                 {% for entry in site.data.cv %}
                   {% unless entry.hide %}
-                  <div class="card mt-3 p-3">
-                    <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
-                    <div>
-                    {% if entry.type == "list" %}
-                      {% include cv/list.html entry=entry %}
-                    {% elsif entry.type == "map" %}
-                      {% include cv/map.html entry=entry %}
-                    {% elsif entry.type == "nested_list" %}
-                      {% include cv/nested_list.html entry=entry %}
-                    {% elsif entry.type == "time_table" %}
-                      {% include cv/time_table.html entry=entry %}
-                    {% elsif entry.type == "subsections" %}
-                      {% include cv/subsections.html sections=entry.contents %}
-                    {% else %}
-                      {{ entry.contents }}
+                    {% if entry.title == "Education" or entry.title == "Work Experience" %}
+                      {% include cv/render_section.html entry=entry %}
                     {% endif %}
-                    </div>
-                  </div>
                   {% endunless %}
                 {% endfor %}
               </div>

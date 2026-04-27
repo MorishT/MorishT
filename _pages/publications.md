@@ -14,6 +14,17 @@ nav_order: 1
 <!-- _pages/publications.md -->
 <div class="publications">
 
+{% assign cv_ja_entries = site.data.resume.cv_ja | default: site.data.cv_ja %}
+<div class="lang-ja">
+  {% for entry in cv_ja_entries %}
+    {% unless entry.hide %}
+      {% if entry.title == "研究分野" %}
+        {% include cv/render_section.html entry=entry %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+</div>
+
 <h1><span class="lang-ja">著作・発表</span><span class="lang-en">publications</span></h1>
 {%- for y in page.years %}
   <h2 class="year">{{y}}</h2>
@@ -34,5 +45,24 @@ nav_order: 1
   {% bibliography -f oss -q @*[year={{y}}]* %}
 {% endfor %}
 
+<div class="lang-ja">
+  {% for entry in cv_ja_entries %}
+    {% unless entry.hide %}
+      {% if entry.title == "招待講演" or entry.title == "受賞" %}
+        {% include cv/render_section.html entry=entry %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+</div>
+
+<div class="lang-en">
+  {% for entry in site.data.cv %}
+    {% unless entry.hide %}
+      {% if entry.title == "Invited Talks" or entry.title == "Honors and Awards" %}
+        {% include cv/render_section.html entry=entry %}
+      {% endif %}
+    {% endunless %}
+  {% endfor %}
+</div>
 
 </div>
