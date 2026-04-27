@@ -163,16 +163,16 @@ module Jekyll
 
     def build_publications_section(bibliography)
       contents = [
-        build_bibliography_subsection("論文誌", bibliography, label: "journal", selected: true),
-        build_bibliography_subsection("国際学会", bibliography, label: "international-conference", selected: true),
-        build_bibliography_subsection("国内学会", bibliography, label: "domestic-conference", selected: true),
-        build_bibliography_subsection("テックブログ", bibliography, label: "blog"),
+        build_bibliography_subsection("論文誌", bibliography, label: "journal", selected: true, badge_fields: %i[tag abbr]),
+        build_bibliography_subsection("国際学会", bibliography, label: "international-conference", selected: true, badge_fields: %i[tag abbr]),
+        build_bibliography_subsection("国内学会", bibliography, label: "domestic-conference", selected: true, badge_fields: %i[tag abbr]),
+        build_bibliography_subsection("テックブログ", bibliography, label: "blog", badge_fields: %i[tag abbr], fallback_badge: "ブログ"),
       ].compact
 
       return nil if contents.empty?
 
       {
-        "title" => "論文・発表 (一部のみ抜粋)",
+        "title" => "論文・発表",
         "type" => "subsections",
         "contents" => contents,
       }
@@ -182,10 +182,13 @@ module Jekyll
       rows = read_csv(File.join(resume_data_dir, "awards.csv"))
       contents = rows.map do |row|
         award_title = row["award"].to_s.strip
+        award_tag = row["tag"].to_s.strip
         {
           "title" => row["event"].to_s.strip,
           "institution" => award_title,
           "year" => row["year"].to_s.strip,
+          "badge" => award_tag.empty? ? nil : award_tag,
+          "badge_theme" => award_tag.empty? ? nil : "purple",
           "emphasize_institution" => award_title.include?("(主著)"),
           "normal_weight_institution" => true,
           "normal_weight_title" => true,
@@ -200,15 +203,15 @@ module Jekyll
     end
 
     def build_invited_talks_section(bibliography)
-      build_bibliography_time_table("招待講演", bibliography, label: "invited-talk")
+      build_bibliography_time_table("招待講演", bibliography, label: "invited-talk", badge_fields: %i[tag abbr], badge_theme: "purple")
     end
 
     def build_press_section(bibliography)
-      build_bibliography_time_table("プレスリリース・取材", bibliography, label: "press")
+      build_bibliography_time_table("プレスリリース・取材", bibliography, label: "press", badge_fields: %i[tag abbr], fallback_badge: "プレス")
     end
 
     def build_oss_section(bibliography)
-      build_bibliography_time_table("OSS", bibliography, label: "oss")
+      build_bibliography_time_table("OSS", bibliography, label: "oss", badge_fields: %i[tag abbr], fallback_badge: "OSS")
     end
 
     def build_academic_service_section(site, resume_data_dir)
@@ -236,8 +239,15 @@ module Jekyll
       }
     end
 
-    def build_bibliography_subsection(title, bibliography, label:, selected: false)
-      contents = build_bibliography_contents(bibliography, label: label, selected: selected)
+    def build_bibliography_subsection(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil)
+      contents = build_bibliography_contents(
+        bibliography,
+        label: label,
+        selected: selected,
+        badge_fields: badge_fields,
+        fallback_badge: fallback_badge,
+        badge_theme: badge_theme
+      )
       return nil if contents.empty?
 
       {
@@ -247,8 +257,15 @@ module Jekyll
       }
     end
 
-    def build_bibliography_time_table(title, bibliography, label:, selected: false)
-      contents = build_bibliography_contents(bibliography, label: label, selected: selected)
+    def build_bibliography_time_table(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil)
+      contents = build_bibliography_contents(
+        bibliography,
+        label: label,
+        selected: selected,
+        badge_fields: badge_fields,
+        fallback_badge: fallback_badge,
+        badge_theme: badge_theme
+      )
       return nil if contents.empty?
 
       {
@@ -258,21 +275,31 @@ module Jekyll
       }
     end
 
-    def build_bibliography_contents(bibliography, label:, selected: false)
+    def build_bibliography_contents(bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil)
       bibliography.each_with_index.filter_map do |entry, index|
         next unless bibliography_entry_match?(entry, label, selected: selected)
 
-        build_bibliography_content(entry, index)
+        build_bibliography_content(
+          entry,
+          index,
+          badge_fields: badge_fields,
+          fallback_badge: fallback_badge,
+          badge_theme: badge_theme
+        )
       end.sort_by { |content| [-content.delete("_sort_year").to_i, content.delete("_sort_index").to_i] }
     end
 
-    def build_bibliography_content(entry, index)
+    def build_bibliography_content(entry, index, badge_fields: [], fallback_badge: nil, badge_theme: nil)
       title = normalize_bibtex_text(bibtex_field(entry, :title))
       return nil if title.empty?
+
+      badge = normalize_bibtex_text(bibtex_field(entry, *badge_fields))
+      badge = fallback_badge.to_s.strip if badge.empty? && fallback_badge
 
       institution = normalize_bibtex_text(
         bibtex_field(entry, :journaltitle, :journal, :booktitle, :publisher, :howpublished, :organization, :abbr)
       )
+      institution = "" if !badge.empty? && institution == badge
       url = normalize_bibtex_text(bibtex_field(entry, :url))
 
       description = compact_strings(
@@ -290,6 +317,8 @@ module Jekyll
         "_sort_year" => bibtex_field(entry, :year).to_i,
         "_sort_index" => index,
       }
+      content["badge"] = badge unless badge.empty?
+      content["badge_theme"] = badge_theme unless badge.empty? || badge_theme.to_s.strip.empty?
       content["institution"] = institution unless institution.empty?
       content["normal_weight_institution"] = true unless institution.empty?
       content["underline_institution"] = true unless institution.empty?

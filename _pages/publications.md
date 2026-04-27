@@ -12,57 +12,47 @@ nav: true
 nav_order: 1
 ---
 <!-- _pages/publications.md -->
-<div class="publications">
-
 {% assign cv_ja_entries = site.data.resume.cv_ja | default: site.data.cv_ja %}
-<div class="lang-ja">
-  {% for entry in cv_ja_entries %}
-    {% unless entry.hide %}
-      {% if entry.title == "研究分野" %}
-        {% include cv/render_section.html entry=entry %}
-      {% endif %}
-    {% endunless %}
-  {% endfor %}
-</div>
+{% assign publication_section_titles = "論文・発表|招待講演|受賞|プレスリリース・取材|OSS" | split: "|" %}
 
-<h1><span class="lang-ja">著作・発表</span><span class="lang-en">publications</span></h1>
-{%- for y in page.years %}
-  <h2 class="year">{{y}}</h2>
-  {% bibliography -f publications -q @article[year={{y}}], @inproceedings[year={{y}}], @misc[year={{y}}] %}
-{% endfor %}
+<div class="publications">
+  <div class="lang-ja">
+    {% for section_title in publication_section_titles %}
+      {% for entry in cv_ja_entries %}
+        {% unless entry.hide %}
+          {% if entry.title == section_title %}
+            {% include cv/render_section.html entry=entry %}
+          {% endif %}
+        {% endunless %}
+      {% endfor %}
+    {% endfor %}
+  </div>
 
+  <div class="lang-en">
+    <h1>Publications</h1>
+    {%- for y in page.years %}
+      <h2 class="year">{{y}}</h2>
+      {% bibliography -f publications -q @article[year={{y}}], @inproceedings[year={{y}}], @misc[year={{y}}] %}
+    {% endfor %}
 
-<h1><span class="lang-ja">メディア</span><span class="lang-en">media</span></h1>
-{%- for y in page.years_media %}
-  <h2 class="year">{{y}}</h2>
-  {% bibliography -f media -q @*[year={{y}}]* %}
-{% endfor %}
+    <h1>Media</h1>
+    {%- for y in page.years_media %}
+      <h2 class="year">{{y}}</h2>
+      {% bibliography -f media -q @*[year={{y}}]* %}
+    {% endfor %}
 
+    <h1>OSS</h1>
+    {%- for y in page.years_oss %}
+      <h2 class="year">{{y}}</h2>
+      {% bibliography -f oss -q @*[year={{y}}]* %}
+    {% endfor %}
 
-<h1><span class="lang-ja">OSS</span><span class="lang-en">oss</span></h1>
-{%- for y in page.years_oss %}
-  <h2 class="year">{{y}}</h2>
-  {% bibliography -f oss -q @*[year={{y}}]* %}
-{% endfor %}
-
-<div class="lang-ja">
-  {% for entry in cv_ja_entries %}
-    {% unless entry.hide %}
-      {% if entry.title == "招待講演" or entry.title == "受賞" %}
-        {% include cv/render_section.html entry=entry %}
-      {% endif %}
-    {% endunless %}
-  {% endfor %}
-</div>
-
-<div class="lang-en">
-  {% for entry in site.data.cv %}
-    {% unless entry.hide %}
-      {% if entry.title == "Invited Talks" or entry.title == "Honors and Awards" %}
-        {% include cv/render_section.html entry=entry %}
-      {% endif %}
-    {% endunless %}
-  {% endfor %}
-</div>
-
+    {% for entry in site.data.cv %}
+      {% unless entry.hide %}
+        {% if entry.title == "Invited Talks" or entry.title == "Honors and Awards" %}
+          {% include cv/render_section.html entry=entry %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  </div>
 </div>
