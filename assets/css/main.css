@@ -453,12 +453,38 @@ footer.sticky-bottom {
   background-color: inherit;
   border-color: var(--global-divider-color);
 }
+.cv .card .list-group-item .cv-time-badge {
+  width: 96px;
+}
+.cv .card .list-group-item .cv-time-badge .badge {
+  display: inline-block;
+  min-width: 75px;
+  padding: 0.4rem 0.55rem;
+  line-height: 1.2;
+  white-space: normal;
+}
 .cv .card .list-group-item .cv-time-content {
   padding-left: 2rem;
+}
+.cv .card .list-group-item .cv-time-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem 1rem;
+}
+.cv .card .list-group-item .cv-time-meta {
+  color: var(--global-text-color-light);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  white-space: nowrap;
 }
 .cv .card .list-group-item .badge {
   color: var(--global-card-bg-color) !important;
   background-color: var(--global-theme-color) !important;
+}
+.cv .card .list-group-item .cv-badge-purple {
+  background-color: #B509AC !important;
 }
 
 @media (min-width: 768px) {
