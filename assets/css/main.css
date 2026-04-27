@@ -230,6 +230,15 @@ blockquote {
   text-decoration: none;
 }
 
+.about-content p,
+.about-content li {
+  font-weight: 400;
+  color: var(--global-text-color);
+}
+.about-content strong {
+  font-weight: 600;
+}
+
 html[data-site-lang=ja] .lang-en,
 html[data-site-lang=en] .lang-ja {
   display: none !important;
