@@ -64,6 +64,8 @@
 
 
 \usepackage{standalone}
+\usepackage{wrapfig}
+\usepackage{indentfirst}
 \moderncvstyle{classic} % CV theme - options include: 'casual' (default), 'classic', 'oldstyle' and 'banking'
 \moderncvcolor{blue} % CV color - options include: 'blue' (default), 'orange', 'green', 'red', 'purple', 'grey' and 'black'
 
@@ -675,6 +677,21 @@
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cvawardrow}%
 }
 
+\newenvironment{cvnarrative}{%
+  \begingroup
+  \setlength{\parindent}{1zw}%
+  \setlength{\parskip}{0pt}%
+}{%
+  \par
+  \endgroup
+}
+
+\newcommand{\cvnarrativeinput}[1]{%
+  \begin{cvnarrative}%
+    \input{#1}%
+  \end{cvnarrative}%
+}
+
 
 % \newcommand{\cvreference}[7]{%
 %     \textbf{#1}\newline% Name
@@ -696,19 +713,22 @@
 % \vspace{-5mm}
 \section{\textbf{研究分野}}
 
-\input{data/about.tex}
+\cvnarrativeinput{data/about.tex}
 \fi
 
 
 
 
 
+\ifispublicationlist
+\else
+% \vspace{-5mm}
+\section{\textbf{研究紹介 -- LLMに推論を教えるための論理推論コーパス自動生成}}
+\cvnarrativeinput{data/research.FLD.tex}
+\fi
 
 
 
-%----------------------------------------------------------------------------------------
-%	EDUCATION SECTION
-%----------------------------------------------------------------------------------------
 
 \section{\textbf{学歴}}
 
@@ -723,11 +743,6 @@
 
 
 
-%----------------------------------------------------------------------------------------
-%	WORK EXPERIENCE SECTION
-%----------------------------------------------------------------------------------------
-
-
 \ifispublicationlist
 \else
 \section{\textbf{職歴}}
@@ -737,9 +752,7 @@
 
 
 
-%----------------------------------------------------------------------------------------
-%	PUBLICATION SECTION
-%----------------------------------------------------------------------------------------
+
 
 
 \section{\textbf{\cvpublicationsectiontitle}}
@@ -785,6 +798,13 @@
 
 
 
+
+\section{\textbf{受賞}}
+\cvrenderawards{data/awards.csv}
+
+
+
+
 \section{\textbf{プレスリリース・取材}}
 \printpublicationbibliography[labels={press}]
 
@@ -796,21 +816,6 @@
 
 
 
-
-
-
-%----------------------------------------------------------------------------------------
-%	AWARDS
-%----------------------------------------------------------------------------------------
-
-\section{\textbf{受賞}}
-
-\cvrenderawards{data/awards.csv}
-
-
-%----------------------------------------------------------------------------------------
-%	Academic achievements
-%----------------------------------------------------------------------------------------
 
 
 
