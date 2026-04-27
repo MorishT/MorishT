@@ -40,7 +40,7 @@ layout: default
           </div>
           {%- endif %}
 
-          <div class="clearfix">
+          <div class="clearfix about-content">
             {% assign about_ja_override = nil %}
             {% if page.resume_about_ja and site.data.resume.about_ja %}
               {% assign about_ja_override = site.data.resume.about_ja | markdownify %}
