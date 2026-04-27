@@ -1,4 +1,4 @@
-{% assign entry = include.entry %}
+{% assign entry = include.section | default: include.entry %}
 <ul class="card-text font-weight-light list-group list-group-flush">
     {% for content in entry.contents %}
       {% assign badge_label = content.badge | default: content.year %}

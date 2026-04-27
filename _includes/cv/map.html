@@ -1,4 +1,4 @@
-{% assign entry = include.entry %}
+{% assign entry = include.section | default: include.entry %}
 <table class="table table-sm table-borderless table-responsive">
     {% for content in entry.contents %}
       <tr>
