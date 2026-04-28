@@ -516,6 +516,11 @@ footer.sticky-bottom {
 .cv .card .list-group-item .subitem {
   font-weight: 400;
 }
+.cv .card .list-group-item .cv-time-note {
+  font-size: 1.3rem;
+  font-weight: 400;
+  line-height: 1.2;
+}
 .cv .card .list-group-item .cv-self-author {
   font-weight: 400;
   text-decoration: underline;
