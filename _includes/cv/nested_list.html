@@ -1,4 +1,4 @@
-{% assign entry = include.section | default: include.entry %}
+{% assign entry = include.section %}
 <ul class="card-text font-weight-light list-group list-group-flush">
     {% for content in entry.contents %}
       <li class="list-group-item">
