@@ -466,15 +466,16 @@ footer.sticky-bottom {
   white-space: normal;
 }
 .cv .card .list-group-item .cv-time-content {
+  min-width: 0;
   padding-left: 2rem;
+  padding-right: 1.25rem;
 }
-.cv .card .list-group-item .cv-time-header {
-  display: flex;
-  flex-wrap: wrap;
+.cv .card .list-group-item .cv-time-row {
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 0.25rem 1rem;
-  margin-bottom: 0;
+}
+.cv .card .list-group-item .cv-time-year {
+  min-width: 4.5rem;
+  padding-top: 0.05rem;
 }
 .cv .card .list-group-item .cv-time-title {
   margin-bottom: 0;
