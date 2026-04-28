@@ -21,7 +21,14 @@ nav_order: 1
       {% for entry in cv_ja_entries %}
         {% unless entry.hide %}
           {% if entry.title == section_title %}
-            {% include cv/render_section.html entry=entry %}
+            {% if entry.type == "subsections" %}
+              <h2 class="cv-group-title">{{ entry.title }}</h2>
+              {% for subsection in entry.contents %}
+                {% include cv/render_section.html entry=subsection %}
+              {% endfor %}
+            {% else %}
+              {% include cv/render_section.html entry=entry %}
+            {% endif %}
           {% endif %}
         {% endunless %}
       {% endfor %}

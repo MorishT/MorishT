@@ -1,16 +1,16 @@
-{% assign sections = include.sections %}
+{% assign sections = include.sections | default: include.entry.contents %}
 <div class="cv-subsections">
   {% for section in sections %}
     <section class="cv-subsection">
       <h4 class="cv-subsection-title">{{ section.title }}</h4>
       {% if section.type == "list" %}
-        {% include cv/list.html section=section %}
+        {% include cv/list.html entry=section %}
       {% elsif section.type == "map" %}
-        {% include cv/map.html section=section %}
+        {% include cv/map.html entry=section %}
       {% elsif section.type == "nested_list" %}
-        {% include cv/nested_list.html section=section %}
+        {% include cv/nested_list.html entry=section %}
       {% elsif section.type == "time_table" %}
-        {% include cv/time_table.html section=section %}
+        {% include cv/time_table.html entry=section %}
       {% else %}
         {{ section.contents }}
       {% endif %}
