@@ -457,11 +457,11 @@ footer.sticky-bottom {
   align-self: center;
   display: flex;
   align-items: center;
-  width: 168px;
+  width: 218px;
 }
 .cv .card .list-group-item .cv-time-badge .badge {
   display: inline-block;
-  min-width: 142px;
+  min-width: 185px;
   padding: 0.4rem 0.55rem;
   font-size: 1.04rem;
   font-weight: 400 !important;
