@@ -529,7 +529,7 @@ footer.sticky-bottom {
   text-decoration: underline;
 }
 .cv .card .list-group-item .cv-time-inline-note {
-  color: #c00;
+  color: #f00;
   font-weight: 700;
 }
 .cv .card .list-group-item .cv-time-inline-acceptance {
@@ -775,7 +775,7 @@ footer.sticky-bottom {
   border-color: var(--global-theme-color);
 }
 .publications ol.bibliography > li .periodical .note-award {
-  color: #c00;
+  color: #f00;
 }
 .publications ol.bibliography > li .badges span {
   display: inline-block;
