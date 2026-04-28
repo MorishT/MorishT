@@ -38,8 +38,9 @@ nav_order: 1
                             <div class="row">
                               {% if badge_label %}
                                 <div class="col-auto text-center cv-time-badge">
+                                  {% assign badge_label_html = badge_label | replace: ' ', '<br>' %}
                                   <span class="badge font-weight-bold align-middle{% if content.badge_theme %} cv-badge-{{ content.badge_theme }}{% endif %}">
-                                    {{ badge_label }}
+                                    {{ badge_label_html }}
                                   </span>
                                 </div>
                               {% endif %}
@@ -47,15 +48,18 @@ nav_order: 1
                                 {% if content.title or show_year_as_meta %}
                                   <div class="cv-time-header">
                                     {% if content.title %}
-                                      <h6 class="title ml-1 mb-0" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
+                                      <h6 class="title ml-1 mb-0 cv-time-title" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
                                     {% endif %}
                                     {% if show_year_as_meta %}
                                       <span class="cv-time-meta">{{ content.year }}</span>
                                     {% endif %}
                                   </div>
                                 {% endif %}
+                                {% if content.authors_html %}
+                                  <div class="cv-time-authors ml-1">{{ content.authors_html }}</div>
+                                {% endif %}
                                 {% if content.institution %}
-                                  <h6 class="ml-1" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution or content.underline_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}</h6>
+                                  <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution or content.underline_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}</h6>
                                 {% endif %}
                                 {% if content.description %}
                                   <ul class="items">

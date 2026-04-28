@@ -4,6 +4,9 @@ require "fileutils"
 
 module Jekyll
   class ResumeDataGenerator < Generator
+    SELF_AUTHOR_NAMES = ["森下 皓文", "Terufumi Morishita"].freeze
+    CJK_REGEX = /[\p{Han}\p{Hiragana}\p{Katakana}]/
+
     safe true
     priority :highest
 
@@ -163,10 +166,10 @@ module Jekyll
 
     def build_publications_section(bibliography)
       contents = [
-        build_bibliography_subsection("論文誌", bibliography, label: "journal", badge_fields: %i[tag abbr]),
-        build_bibliography_subsection("国際学会", bibliography, label: "international-conference", badge_fields: %i[tag abbr]),
-        build_bibliography_subsection("国内学会", bibliography, label: "domestic-conference", badge_fields: %i[tag abbr]),
-        build_bibliography_subsection("テックブログ", bibliography, label: "blog", badge_fields: %i[tag abbr], fallback_badge: "ブログ", fallback_institution: "blog"),
+        build_bibliography_subsection("論文誌", bibliography, label: "journal", badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_subsection("国際学会", bibliography, label: "international-conference", badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_subsection("国内学会", bibliography, label: "domestic-conference", badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_subsection("テックブログ", bibliography, label: "blog", badge_fields: %i[tag abbr], fallback_badge: "ブログ", fallback_institution: "blog", include_authors: true),
       ].compact
 
       return nil if contents.empty?
@@ -239,7 +242,7 @@ module Jekyll
       }
     end
 
-    def build_bibliography_subsection(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil)
+    def build_bibliography_subsection(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil, include_authors: false)
       contents = build_bibliography_contents(
         bibliography,
         label: label,
@@ -247,7 +250,8 @@ module Jekyll
         badge_fields: badge_fields,
         fallback_badge: fallback_badge,
         badge_theme: badge_theme,
-        fallback_institution: fallback_institution
+        fallback_institution: fallback_institution,
+        include_authors: include_authors
       )
       return nil if contents.empty?
 
@@ -276,7 +280,7 @@ module Jekyll
       }
     end
 
-    def build_bibliography_contents(bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil)
+    def build_bibliography_contents(bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil, include_authors: false)
       bibliography.each_with_index.filter_map do |entry, index|
         next unless bibliography_entry_match?(entry, label, selected: selected)
 
@@ -286,12 +290,13 @@ module Jekyll
           badge_fields: badge_fields,
           fallback_badge: fallback_badge,
           badge_theme: badge_theme,
-          fallback_institution: fallback_institution
+          fallback_institution: fallback_institution,
+          include_authors: include_authors
         )
       end.sort_by { |content| [-content.delete("_sort_year").to_i, content.delete("_sort_index").to_i] }
     end
 
-    def build_bibliography_content(entry, index, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil)
+    def build_bibliography_content(entry, index, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil, include_authors: false)
       title = normalize_bibtex_text(bibtex_field(entry, :title))
       return nil if title.empty?
 
@@ -326,8 +331,47 @@ module Jekyll
       content["normal_weight_institution"] = true unless institution.empty?
       content["underline_institution"] = true unless institution.empty?
       content["institution_url"] = url unless url.empty? || institution.empty?
+      authors = bibliography_authors_html(entry)
+      content["authors_html"] = authors if include_authors && !authors.empty?
       content["description"] = description unless description.empty?
       content
+    end
+
+    def bibliography_authors_html(entry)
+      author_field = bibtex_field(entry, :author)
+      return "" if author_field.empty?
+
+      author_field
+        .split(/\s+and\s+/)
+        .map { |author| format_bibliography_author(author) }
+        .reject(&:empty?)
+        .join(", ")
+    end
+
+    def format_bibliography_author(author)
+      stripped = normalize_bibtex_text(author).gsub(/[{}]/, "").strip
+      return "" if stripped.empty?
+
+      if stripped.include?(",")
+        last, first = stripped.split(",", 2).map(&:strip)
+        display = if first.empty?
+                    last
+                  elsif cjk_name?(first) || cjk_name?(last)
+                    "#{last} #{first}"
+                  else
+                    "#{first} #{last}"
+                  end
+      else
+        display = stripped
+      end
+
+      return %(<span class="cv-self-author">#{display}</span>) if SELF_AUTHOR_NAMES.include?(display)
+
+      display
+    end
+
+    def cjk_name?(name)
+      CJK_REGEX.match?(name.to_s)
     end
 
     def bibliography_acceptance_rate(entry)
