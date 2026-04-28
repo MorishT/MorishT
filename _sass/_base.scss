@@ -451,13 +451,16 @@ footer.sticky-bottom {
       border-color: var(--global-divider-color);
 
       .cv-time-badge {
-        width: 234px;
+        align-self: center;
+        display: flex;
+        align-items: center;
+        width: 176px;
 
         .badge {
           display: inline-block;
-          min-width: 195px;
+          min-width: 150px;
           padding: 0.4rem 0.55rem;
-          font-size: 1.3rem;
+          font-size: 1.04rem;
           font-weight: 400 !important;
           line-height: 1.2;
           white-space: normal;
@@ -466,17 +469,19 @@ footer.sticky-bottom {
 
       .cv-time-content {
         min-width: 0;
-        padding-left: 2rem;
-        padding-right: 1.25rem;
+        padding-left: 0.9rem;
+        padding-right: 0.4rem;
       }
 
       .cv-time-row {
-        align-items: flex-start;
+        align-items: center;
       }
 
       .cv-time-year {
-        min-width: 4.5rem;
-        padding-top: 0.05rem;
+        align-self: center;
+        display: flex;
+        align-items: center;
+        min-width: 3.7rem;
       }
 
       .cv-time-title {
@@ -490,7 +495,7 @@ footer.sticky-bottom {
         margin-top: -0.1rem;
         margin-bottom: 0.1rem;
         font-size: 1.3rem;
-        font-weight: 400;
+        font-weight: 300;
         line-height: 1.2;
       }
 
@@ -519,6 +524,7 @@ footer.sticky-bottom {
       }
 
       .cv-self-author {
+        font-weight: 400;
         text-decoration: underline;
       }
 
