@@ -52,7 +52,7 @@ nav_order: 1
                                   <div class="cv-time-authors ml-1">{{ content.authors_html }}</div>
                                 {% endif %}
                                 {% if content.institution %}
-                                  <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution or content.underline_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}</h6>
+                                  <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}</h6>
                                 {% endif %}
                                 {% if content.description %}
                                   <ul class="items">
