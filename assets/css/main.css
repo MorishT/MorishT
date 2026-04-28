@@ -431,14 +431,6 @@ footer.sticky-bottom {
 .cv {
   margin-bottom: 40px;
 }
-.cv .cv-group-title {
-  margin: 1.5rem 0 1rem;
-  font-size: 1.35rem;
-  font-weight: 500;
-}
-.cv .cv-group-title:first-child {
-  margin-top: 0;
-}
 .cv .card {
   background-color: var(--global-card-bg-color);
   border: 1px solid var(--global-divider-color);
@@ -462,11 +454,11 @@ footer.sticky-bottom {
   border-color: var(--global-divider-color);
 }
 .cv .card .list-group-item .cv-time-badge {
-  width: 96px;
+  width: 180px;
 }
 .cv .card .list-group-item .cv-time-badge .badge {
   display: inline-block;
-  min-width: 75px;
+  min-width: 150px;
   padding: 0.4rem 0.55rem;
   line-height: 1.2;
   white-space: normal;
@@ -483,9 +475,16 @@ footer.sticky-bottom {
 }
 .cv .card .list-group-item .cv-time-meta {
   color: var(--global-text-color-light);
-  font-size: 0.95rem;
-  line-height: 1.5;
+  font-size: 1.9rem;
+  font-weight: 500;
+  line-height: 1.2;
   white-space: nowrap;
+}
+.cv .card .list-group-item .items,
+.cv .card .list-group-item .item,
+.cv .card .list-group-item .item-title,
+.cv .card .list-group-item .subitem {
+  font-weight: 400;
 }
 .cv .card .list-group-item .badge {
   color: var(--global-card-bg-color) !important;
