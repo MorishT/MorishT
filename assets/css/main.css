@@ -457,11 +457,11 @@ footer.sticky-bottom {
   align-self: center;
   display: flex;
   align-items: center;
-  width: 176px;
+  width: 128px;
 }
 .cv .card .list-group-item .cv-time-badge .badge {
   display: inline-block;
-  min-width: 150px;
+  min-width: 108px;
   padding: 0.4rem 0.55rem;
   font-size: 1.04rem;
   font-weight: 400 !important;
@@ -470,8 +470,8 @@ footer.sticky-bottom {
 }
 .cv .card .list-group-item .cv-time-content {
   min-width: 0;
-  padding-left: 0.9rem;
-  padding-right: 0.4rem;
+  padding-left: 0.45rem;
+  padding-right: 0.15rem;
 }
 .cv .card .list-group-item .cv-time-row {
   align-items: center;
@@ -480,7 +480,7 @@ footer.sticky-bottom {
   align-self: center;
   display: flex;
   align-items: center;
-  min-width: 3.7rem;
+  min-width: 3.1rem;
 }
 .cv .card .list-group-item .cv-time-title {
   margin-bottom: 0;
@@ -499,7 +499,7 @@ footer.sticky-bottom {
   margin-top: 0;
   margin-bottom: 0.2rem;
   font-size: 1.3rem !important;
-  font-weight: 400 !important;
+  font-weight: 300 !important;
   line-height: 1.2;
 }
 .cv .card .list-group-item .cv-time-meta {
@@ -516,10 +516,14 @@ footer.sticky-bottom {
 .cv .card .list-group-item .subitem {
   font-weight: 400;
 }
-.cv .card .list-group-item .cv-time-note {
+.cv .card .list-group-item .cv-time-inline-meta-group {
+  margin-left: 0.65rem;
+}
+.cv .card .list-group-item .cv-time-inline-meta {
   font-size: 1.3rem;
   font-weight: 400;
   line-height: 1.2;
+  text-decoration: underline;
 }
 .cv .card .list-group-item .cv-self-author {
   font-weight: 400;
