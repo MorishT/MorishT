@@ -431,6 +431,14 @@ footer.sticky-bottom {
 .cv {
   margin-bottom: 40px;
 }
+.cv .cv-group-title {
+  margin: 1.5rem 0 1rem;
+  font-size: 1.35rem;
+  font-weight: 500;
+}
+.cv .cv-group-title:first-child {
+  margin-top: 0;
+}
 .cv .card {
   background-color: var(--global-card-bg-color);
   border: 1px solid var(--global-divider-color);
