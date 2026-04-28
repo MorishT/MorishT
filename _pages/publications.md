@@ -35,7 +35,7 @@ nav_order: 1
                             {% assign show_year_as_meta = true %}
                           {% endif %}
                           <li class="list-group-item">
-                            <div class="row">
+                            <div class="row cv-time-row">
                               {% if badge_label %}
                                 <div class="col-auto text-center cv-time-badge">
                                   {% assign badge_label_html = badge_label | replace_first: ' ', '<br>' %}
@@ -45,15 +45,8 @@ nav_order: 1
                                 </div>
                               {% endif %}
                               <div class="col mt-2 mt-md-0 cv-time-content">
-                                {% if content.title or show_year_as_meta %}
-                                  <div class="cv-time-header">
-                                    {% if content.title %}
-                                      <h6 class="title ml-1 mb-0 cv-time-title" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
-                                    {% endif %}
-                                    {% if show_year_as_meta %}
-                                      <span class="cv-time-meta">{{ content.year }}</span>
-                                    {% endif %}
-                                  </div>
+                                {% if content.title %}
+                                  <h6 class="title ml-1 mb-0 cv-time-title" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
                                 {% endif %}
                                 {% if content.authors_html %}
                                   <div class="cv-time-authors ml-1">{{ content.authors_html }}</div>
@@ -98,6 +91,11 @@ nav_order: 1
                                   </ul>
                                 {% endif %}
                               </div>
+                              {% if show_year_as_meta %}
+                                <div class="col-auto mt-2 mt-md-0 text-right cv-time-year">
+                                  <span class="cv-time-meta">{{ content.year }}</span>
+                                </div>
+                              {% endif %}
                             </div>
                           </li>
                         {% endfor %}

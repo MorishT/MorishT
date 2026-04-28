@@ -465,16 +465,18 @@ footer.sticky-bottom {
       }
 
       .cv-time-content {
+        min-width: 0;
         padding-left: 2rem;
+        padding-right: 1.25rem;
       }
 
-      .cv-time-header {
-        display: flex;
-        flex-wrap: wrap;
+      .cv-time-row {
         align-items: flex-start;
-        justify-content: space-between;
-        gap: 0.25rem 1rem;
-        margin-bottom: 0;
+      }
+
+      .cv-time-year {
+        min-width: 4.5rem;
+        padding-top: 0.05rem;
       }
 
       .cv-time-title {
