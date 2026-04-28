@@ -192,6 +192,7 @@ module Jekyll
           "year" => row["year"].to_s.strip,
           "badge" => award_tag.empty? ? nil : award_tag,
           "badge_theme" => award_tag.empty? ? nil : "purple",
+          "match_title_weight" => true,
           "emphasize_institution" => award_title.include?("(主著)"),
           "normal_weight_institution" => true,
           "normal_weight_title" => true,
@@ -214,7 +215,26 @@ module Jekyll
     end
 
     def build_oss_section(bibliography)
-      build_bibliography_time_table("OSS", bibliography, label: "oss", badge_fields: %i[tag abbr], fallback_badge: "OSS")
+      contents = build_bibliography_contents(
+        bibliography,
+        label: "oss",
+        badge_fields: %i[tag abbr],
+        fallback_badge: "OSS"
+      ).map do |content|
+        next content unless content["institution"] == "HuggingFace Hub"
+
+        updated_content = content.dup
+        updated_content.delete("institution")
+        updated_content.delete("underline_institution")
+        updated_content
+      end
+      return nil if contents.empty?
+
+      {
+        "title" => "OSS",
+        "type" => "time_table",
+        "contents" => contents,
+      }
     end
 
     def build_academic_service_section(site, resume_data_dir)

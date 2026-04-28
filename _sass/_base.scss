@@ -547,6 +547,17 @@ footer.sticky-bottom {
         font-weight: 400;
       }
 
+      .cv-time-match-title-weight {
+        .badge,
+        .cv-time-meta {
+          font-weight: 400 !important;
+        }
+      }
+
+      .cv-time-underlined-emphasis {
+        font-weight: 800;
+      }
+
       .cv-self-author {
         font-weight: 400;
         text-decoration: underline;
