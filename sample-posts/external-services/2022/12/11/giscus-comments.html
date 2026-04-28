@@ -17,9 +17,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>a post with disqus comments | Terufumi Morishita (森下 皓文)</title>
+    <title>a post with giscus comments | Terufumi Morishita (森下 皓文)</title>
     <meta name="author" content="Terufumi  Morishita">
-    <meta name="description" content="an example of a blog post with disqus comments">
+    <meta name="description" content="an example of a blog post with giscus comments">
     <meta name="keywords" content="Terufumi Morishita, natural language processing, NLP, machine learning, ensemble learning">
 
 
@@ -56,7 +56,7 @@
     <!-- Styles -->
     
     <link rel="stylesheet" href="/MorishT/assets/css/main.css">
-    <link rel="canonical" href="https://morisht.github.io/MorishT/sample-posts/external-services/2015/10/20/disqus-comments.html">
+    <link rel="canonical" href="https://morisht.github.io/MorishT/sample-posts/external-services/2022/12/11/giscus-comments.html">
     
     <!-- Dark Mode -->
     
@@ -64,7 +64,7 @@
   </head>
 
   <!-- Body -->
-  <body class="fixed-top-nav sticky-bottom-footer" data-is-home="false" data-page-title-ja="a post with disqus comments" data-page-title-en="a post with disqus comments" data-site-title-ja="森下 皓文" data-site-title-en="Terufumi Morishita">
+  <body class="fixed-top-nav sticky-bottom-footer" data-is-home="false" data-page-title-ja="a post with giscus comments" data-page-title-en="a post with giscus comments" data-site-title-ja="森下 皓文" data-site-title-en="Terufumi Morishita">
 
     <!-- Header -->
     <header>
@@ -129,10 +129,10 @@
 <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">a post with disqus comments</h1>
-    <p class="post-meta">October 20, 2015</p>
+    <h1 class="post-title">a post with giscus comments</h1>
+    <p class="post-meta">December 11, 2022</p>
     <p class="post-tags">
-      <a href="/MorishT/blog/2015"> <i class="fas fa-calendar fa-sm"></i> 2015 </a>
+      <a href="/MorishT/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
         ·  
         <a href="/MorishT/blog/category/sample-posts">
           <i class="fas fa-tag fa-sm"></i> sample-posts</a>  
@@ -144,20 +144,34 @@
   </header>
 
   <article class="post-content">
-    <p>This post shows how to add DISQUS comments.</p>
+    <p>This post shows how to add GISCUS comments.</p>
 
-  </article><div id="disqus_thread" style="max-width: 1200px; margin: 0 auto;">
-    <script type="text/javascript">
-        var disqus_shortname  = 'al-folio';
-        var disqus_identifier = '/sample-posts/external-services/2015/10/20/disqus-comments';
-        var disqus_title      = "a post with disqus comments";
-        (function() {
-        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-        })();
-    </script>
-    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript" rel="external nofollow noopener" target="_blank">comments powered by Disqus.</a>
+  </article><div id="giscus_thread" style="max-width: 1200px; margin: 0 auto;">
+  <script>
+    let giscusTheme = localStorage.getItem("theme");
+    let giscusAttributes = {
+        "src": "https://giscus.app/client.js",
+        "data-repo": "alshedivat/al-folio",
+        "data-repo-id": "MDEwOlJlcG9zaXRvcnk2MDAyNDM2NQ==",
+        "data-category": "Comments",
+        "data-category-id": "DIC_kwDOA5PmLc4CTBt6",
+        "data-mapping": "title",
+        "data-strict": "1",
+        "data-reactions-enabled": "1",
+        "data-emit-metadata": "0",
+        "data-input-position": "bottom",
+        "data-theme": giscusTheme,
+        "data-lang": "ja",
+        "crossorigin": "anonymous",
+        "async": "",
+    };
+
+
+    let giscusScript = document.createElement("script");
+    Object.entries(giscusAttributes).forEach(([key, value]) => giscusScript.setAttribute(key, value));
+    document.getElementById("giscus_thread").appendChild(giscusScript);
+  </script>
+  <noscript>Please enable JavaScript to view the <a href="http://giscus.app/?ref_noscript" rel="external nofollow noopener" target="_blank">comments powered by giscus.</a>
 </noscript>
 </div>
 </div>
@@ -170,8 +184,8 @@
         <span class="lang-ja"><a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> と <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> テーマを使って構築しています。
 </span>
         <span class="lang-en">Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-</span><span class="lang-ja">最終更新: 2026年04月28日.</span>
-        <span class="lang-en">Last updated: April 28, 2026.</span>
+</span><span class="lang-ja">最終更新: 2026年04月28日 20:59 JST.</span>
+        <span class="lang-en">Last updated: April 28, 2026 20:59 JST.</span>
       </div>
     </footer>
 
