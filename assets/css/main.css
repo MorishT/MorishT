@@ -535,6 +535,13 @@ footer.sticky-bottom {
 .cv .card .list-group-item .cv-time-inline-acceptance {
   font-weight: 400;
 }
+.cv .card .list-group-item .cv-time-match-title-weight .badge,
+.cv .card .list-group-item .cv-time-match-title-weight .cv-time-meta {
+  font-weight: 400 !important;
+}
+.cv .card .list-group-item .cv-time-underlined-emphasis {
+  font-weight: 800;
+}
 .cv .card .list-group-item .cv-self-author {
   font-weight: 400;
   text-decoration: underline;
