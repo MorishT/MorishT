@@ -454,11 +454,11 @@ footer.sticky-bottom {
   border-color: var(--global-divider-color);
 }
 .cv .card .list-group-item .cv-time-badge {
-  width: 180px;
+  width: 234px;
 }
 .cv .card .list-group-item .cv-time-badge .badge {
   display: inline-block;
-  min-width: 150px;
+  min-width: 195px;
   padding: 0.4rem 0.55rem;
   line-height: 1.2;
   white-space: normal;
@@ -471,10 +471,23 @@ footer.sticky-bottom {
   flex-wrap: wrap;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 0.5rem 1rem;
+  gap: 0.25rem 1rem;
+  margin-bottom: 0.15rem;
+}
+.cv .card .list-group-item .cv-time-title {
+  margin-bottom: 0;
+}
+.cv .card .list-group-item .cv-time-authors {
+  margin-bottom: 0.2rem;
+  font-size: 1.05rem;
+}
+.cv .card .list-group-item .cv-time-institution {
+  margin-top: 0;
+  margin-bottom: 0.35rem;
 }
 .cv .card .list-group-item .cv-time-meta {
   color: var(--global-text-color-light);
+  opacity: 0.72;
   font-size: 1.9rem;
   font-weight: 500;
   line-height: 1.2;
@@ -484,7 +497,11 @@ footer.sticky-bottom {
 .cv .card .list-group-item .item,
 .cv .card .list-group-item .item-title,
 .cv .card .list-group-item .subitem {
+  font-size: 1.3rem;
   font-weight: 400;
+}
+.cv .card .list-group-item .cv-self-author {
+  text-decoration: underline;
 }
 .cv .card .list-group-item .badge {
   color: var(--global-card-bg-color) !important;
