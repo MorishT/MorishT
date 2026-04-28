@@ -312,7 +312,7 @@ module Jekyll
 
       description = compact_strings(
         [
-          normalize_bibtex_text(bibtex_field(entry, :note)),
+          bibliography_note_item(entry),
           bibliography_acceptance_rate(entry),
           bibliography_link_item(url, institution.empty?),
         ]
@@ -379,6 +379,13 @@ module Jekyll
       return nil if acceptance_rate.empty?
 
       "採択率: #{acceptance_rate}"
+    end
+
+    def bibliography_note_item(entry)
+      note = normalize_bibtex_text(bibtex_field(entry, :note))
+      return nil if note.empty?
+
+      %(<span class="cv-time-note">#{note}</span>)
     end
 
     def bibliography_link_item(url, include_link)
