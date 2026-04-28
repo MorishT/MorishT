@@ -24,7 +24,7 @@ nav_order: 1
             {% if entry.type == "subsections" %}
               {% for subsection in entry.contents %}
                 <div class="card mt-3 p-3">
-                  <h3 class="card-title font-weight-medium">{{ subsection.title }}</h3>
+                  <h3 class="card-title font-weight-bold">{{ subsection.title }}</h3>
                   <div>
                     {% if subsection.type == "time_table" %}
                       <ul class="card-text font-weight-light list-group list-group-flush">
@@ -52,7 +52,7 @@ nav_order: 1
                                   <div class="cv-time-authors ml-1">{{ content.authors_html }}</div>
                                 {% endif %}
                                 {% if content.institution or content.institution_meta_html %}
-                                  <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.institution %}{% if content.emphasize_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}{% endif %}{% if content.institution_meta_html %}<span class="cv-time-inline-meta-group">{{ content.institution_meta_html }}</span>{% endif %}</h6>
+                                  <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.institution %}{% if content.emphasize_institution %}<span class="cv-time-institution-name" style="text-decoration: underline;">{{ content.institution }}</span>{% else %}<span class="cv-time-institution-name">{{ content.institution }}</span>{% endif %}{% endif %}{% if content.institution_meta_html %}<span class="cv-time-inline-meta-group">{{ content.institution_meta_html }}</span>{% endif %}</h6>
                                 {% endif %}
                                 {% if content.description %}
                                   <ul class="items">

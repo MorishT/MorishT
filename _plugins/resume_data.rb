@@ -310,12 +310,6 @@ module Jekyll
       institution = "" if !badge.empty? && institution == badge
       url = normalize_bibtex_text(bibtex_field(entry, :url))
 
-      description = compact_strings(
-        [
-          bibliography_link_item(url, institution.empty?),
-        ]
-      )
-
       content = {
         "title" => title,
         "year" => normalize_bibtex_text(bibtex_field(entry, :year)),
@@ -327,12 +321,11 @@ module Jekyll
       content["badge_theme"] = badge_theme unless badge.empty? || badge_theme.to_s.strip.empty?
       content["institution"] = institution unless institution.empty?
       content["underline_institution"] = true unless institution.empty?
-      content["institution_url"] = url unless url.empty? || institution.empty?
+      content["institution_url"] = url unless url.empty?
       institution_meta_html = bibliography_institution_meta_html(entry)
       content["institution_meta_html"] = institution_meta_html unless institution_meta_html.empty?
       authors = bibliography_authors_html(entry)
       content["authors_html"] = authors if include_authors && !authors.empty?
-      content["description"] = description unless description.empty?
       content
     end
 
@@ -397,12 +390,6 @@ module Jekyll
       return "" if fragments.empty?
 
       fragments.join(" ")
-    end
-
-    def bibliography_link_item(url, include_link)
-      return nil if url.empty? || !include_link
-
-      %(<a href="#{url}">link</a>)
     end
 
     def bibliography_entry_match?(entry, label, selected: false)

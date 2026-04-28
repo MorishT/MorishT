@@ -443,7 +443,7 @@ footer.sticky-bottom {
       padding-bottom: 0.35rem;
       border-bottom: 1px solid var(--global-divider-color);
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 700;
     }
 
     .list-group-item {
@@ -469,7 +469,7 @@ footer.sticky-bottom {
 
       .cv-time-content {
         min-width: 0;
-        padding-left: 0.45rem;
+        padding-left: 0.9rem;
         padding-right: 0.15rem;
       }
 
@@ -507,6 +507,10 @@ footer.sticky-bottom {
         line-height: 1.3;
       }
 
+      .cv-time-institution-name {
+        font-style: italic;
+      }
+
       .cv-time-meta {
         color: var(--global-text-color-light);
         opacity: 0.72;
@@ -536,6 +540,11 @@ footer.sticky-bottom {
 
       .cv-time-inline-note {
         color: #c00;
+        font-weight: 700;
+      }
+
+      .cv-time-inline-acceptance {
+        font-weight: 400;
       }
 
       .cv-self-author {
