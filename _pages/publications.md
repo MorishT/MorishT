@@ -27,16 +27,111 @@ nav_order: 1
                 <div class="card mt-3 p-3">
                   <h3 class="card-title font-weight-medium">{{ subsection.title }}</h3>
                   <div>
-                    {% if subsection.type == "list" %}
-                      {% include cv/list.html entry=subsection %}
-                    {% elsif subsection.type == "map" %}
-                      {% include cv/map.html entry=subsection %}
+                    {% if subsection.type == "time_table" %}
+                      <ul class="card-text font-weight-light list-group list-group-flush">
+                        {% for content in subsection.contents %}
+                          {% assign badge_label = content.badge | default: content.year %}
+                          {% assign show_year_as_meta = false %}
+                          {% if content.badge and content.year %}
+                            {% assign show_year_as_meta = true %}
+                          {% endif %}
+                          <li class="list-group-item">
+                            <div class="row">
+                              {% if badge_label %}
+                                <div class="col-auto text-center cv-time-badge">
+                                  <span class="badge font-weight-bold align-middle{% if content.badge_theme %} cv-badge-{{ content.badge_theme }}{% endif %}">
+                                    {{ badge_label }}
+                                  </span>
+                                </div>
+                              {% endif %}
+                              <div class="col mt-2 mt-md-0 cv-time-content">
+                                {% if content.title or show_year_as_meta %}
+                                  <div class="cv-time-header">
+                                    {% if content.title %}
+                                      <h6 class="title ml-1 mb-0" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}</h6>
+                                    {% endif %}
+                                    {% if show_year_as_meta %}
+                                      <span class="cv-time-meta">{{ content.year }}</span>
+                                    {% endif %}
+                                  </div>
+                                {% endif %}
+                                {% if content.institution %}
+                                  <h6 class="ml-1" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution or content.underline_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
+                                {% endif %}
+                                {% if content.description %}
+                                  <ul class="items">
+                                    {% for item in content.description %}
+                                      <li>
+                                        {% if item.contents %}
+                                          <span class="item-title">{{ item.title }}</span>
+                                          <ul class="subitems">
+                                            {% for subitem in item.contents %}
+                                              <li><span class="subitem">{{ subitem }}</span></li>
+                                            {% endfor %}
+                                          </ul>
+                                        {% else %}
+                                          <span class="item">{{ item }}</span>
+                                        {% endif %}
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+                                {% if content.items %}
+                                  <ul class="items">
+                                    {% for item in content.items %}
+                                      <li>
+                                        {% if item.contents %}
+                                          <span class="item-title">{{ item.title }}</span>
+                                          <ul class="subitems">
+                                            {% for subitem in item.contents %}
+                                              <li><span class="subitem">{{ subitem }}</span></li>
+                                            {% endfor %}
+                                          </ul>
+                                        {% else %}
+                                          <span class="item">{{ item }}</span>
+                                        {% endif %}
+                                      </li>
+                                    {% endfor %}
+                                  </ul>
+                                {% endif %}
+                              </div>
+                            </div>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% elsif subsection.type == "list" %}
+                      <ul class="card-text font-weight-light list-group list-group-flush">
+                        {% for content in subsection.contents %}
+                          <li class="list-group-item">{{ content }}</li>
+                        {% endfor %}
+                      </ul>
                     {% elsif subsection.type == "nested_list" %}
-                      {% include cv/nested_list.html entry=subsection %}
-                    {% elsif subsection.type == "time_table" %}
-                      {% include cv/time_table.html entry=subsection %}
-                    {% elsif subsection.type == "subsections" %}
-                      {% include cv/subsections.html entry=subsection %}
+                      <ul class="card-text font-weight-light list-group list-group-flush">
+                        {% for content in subsection.contents %}
+                          <li class="list-group-item">
+                            <h5 class="font-italic">{{ content.title }}</h5>
+                            {% if content.text %}
+                              <div class="subitems">{{ content.text }}</div>
+                            {% endif %}
+                            {% if content.items %}
+                              <ul class="subitems">
+                                {% for subitem in content.items %}
+                                  <li><span class="subitem">{{ subitem }}</span></li>
+                                {% endfor %}
+                              </ul>
+                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% elsif subsection.type == "map" %}
+                      <table class="table table-sm table-borderless table-responsive">
+                        {% for content in subsection.contents %}
+                          <tr>
+                            <td class="p-1 pr-2 font-weight-bold"><b>{{ content.name }}</b></td>
+                            <td class="p-1 pl-2 font-weight-light text">{{ content.value }}</td>
+                          </tr>
+                        {% endfor %}
+                      </table>
                     {% else %}
                       {{ subsection.contents }}
                     {% endif %}
