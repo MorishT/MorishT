@@ -8,8 +8,8 @@
         <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
         {%- endif -%}
         {%- if site.last_updated -%}
-        <span class="lang-ja">最終更新: {{ "now" | date: '%Y年%m月%d日' }}.</span>
-        <span class="lang-en">Last updated: {{ "now" | date: '%B %d, %Y' }}.</span>
+        <span class="lang-ja">最終更新: {{ site.time | date: '%Y年%m月%d日 %H:%M JST' }}.</span>
+        <span class="lang-en">Last updated: {{ site.time | date: '%B %d, %Y %H:%M JST' }}.</span>
         {%- endif %}
       </div>
     </footer>
@@ -23,9 +23,9 @@
         <a href="{{ site.url }}{{ site.baseurl }}{{ site.impressum_path }}">Impressum</a>.
         {%- endif -%}
         {%- if site.last_updated -%}
-        <span class="lang-ja">最終更新: {{ "now" | date: '%Y年%m月%d日' }}.</span>
-        <span class="lang-en">Last updated: {{ "now" | date: '%B %d, %Y' }}.</span>
-        {%- endif %}
+        <span class="lang-ja">最終更新: {{ site.time | date: '%Y年%m月%d日 %H:%M JST' }}.</span>
+        <span class="lang-en">Last updated: {{ site.time | date: '%B %d, %Y %H:%M JST' }}.</span>
+      {%- endif %}
       </div>
     </footer>
     {%- endif %}

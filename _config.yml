@@ -20,6 +20,7 @@ footer_text_en: >
 keywords: Terufumi Morishita, natural language processing, NLP, machine learning, ensemble learning  # add your own keywords or leave empty
 
 lang: ja # the language of your site (for example: en, fr, cn, ru, etc.)
+timezone: Asia/Tokyo
 icon: # the emoji used as the favicon (alternatively, provide image name in /assets/img/)
 
 # url: https://alshedivat.github.io # the base hostname & protocol for your site

@@ -24,7 +24,24 @@ nav_order: 1
             {% if entry.type == "subsections" %}
               <h2 class="cv-group-title">{{ entry.title }}</h2>
               {% for subsection in entry.contents %}
-                {% include cv/render_section.html entry=subsection %}
+                <div class="card mt-3 p-3">
+                  <h3 class="card-title font-weight-medium">{{ subsection.title }}</h3>
+                  <div>
+                    {% if subsection.type == "list" %}
+                      {% include cv/list.html entry=subsection %}
+                    {% elsif subsection.type == "map" %}
+                      {% include cv/map.html entry=subsection %}
+                    {% elsif subsection.type == "nested_list" %}
+                      {% include cv/nested_list.html entry=subsection %}
+                    {% elsif subsection.type == "time_table" %}
+                      {% include cv/time_table.html entry=subsection %}
+                    {% elsif subsection.type == "subsections" %}
+                      {% include cv/subsections.html entry=subsection %}
+                    {% else %}
+                      {{ subsection.contents }}
+                    {% endif %}
+                  </div>
+                </div>
               {% endfor %}
             {% else %}
               {% include cv/render_section.html entry=entry %}
