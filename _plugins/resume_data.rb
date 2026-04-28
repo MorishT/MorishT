@@ -163,10 +163,10 @@ module Jekyll
 
     def build_publications_section(bibliography)
       contents = [
-        build_bibliography_subsection("論文誌", bibliography, label: "journal", selected: true, badge_fields: %i[tag abbr]),
-        build_bibliography_subsection("国際学会", bibliography, label: "international-conference", selected: true, badge_fields: %i[tag abbr]),
-        build_bibliography_subsection("国内学会", bibliography, label: "domestic-conference", selected: true, badge_fields: %i[tag abbr]),
-        build_bibliography_subsection("テックブログ", bibliography, label: "blog", badge_fields: %i[tag abbr], fallback_badge: "ブログ"),
+        build_bibliography_subsection("論文誌", bibliography, label: "journal", badge_fields: %i[tag abbr]),
+        build_bibliography_subsection("国際学会", bibliography, label: "international-conference", badge_fields: %i[tag abbr]),
+        build_bibliography_subsection("国内学会", bibliography, label: "domestic-conference", badge_fields: %i[tag abbr]),
+        build_bibliography_subsection("テックブログ", bibliography, label: "blog", badge_fields: %i[tag abbr], fallback_badge: "ブログ", fallback_institution: "blog"),
       ].compact
 
       return nil if contents.empty?
@@ -239,14 +239,15 @@ module Jekyll
       }
     end
 
-    def build_bibliography_subsection(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil)
+    def build_bibliography_subsection(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil)
       contents = build_bibliography_contents(
         bibliography,
         label: label,
         selected: selected,
         badge_fields: badge_fields,
         fallback_badge: fallback_badge,
-        badge_theme: badge_theme
+        badge_theme: badge_theme,
+        fallback_institution: fallback_institution
       )
       return nil if contents.empty?
 
@@ -275,7 +276,7 @@ module Jekyll
       }
     end
 
-    def build_bibliography_contents(bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil)
+    def build_bibliography_contents(bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil)
       bibliography.each_with_index.filter_map do |entry, index|
         next unless bibliography_entry_match?(entry, label, selected: selected)
 
@@ -284,12 +285,13 @@ module Jekyll
           index,
           badge_fields: badge_fields,
           fallback_badge: fallback_badge,
-          badge_theme: badge_theme
+          badge_theme: badge_theme,
+          fallback_institution: fallback_institution
         )
       end.sort_by { |content| [-content.delete("_sort_year").to_i, content.delete("_sort_index").to_i] }
     end
 
-    def build_bibliography_content(entry, index, badge_fields: [], fallback_badge: nil, badge_theme: nil)
+    def build_bibliography_content(entry, index, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil)
       title = normalize_bibtex_text(bibtex_field(entry, :title))
       return nil if title.empty?
 
@@ -299,6 +301,7 @@ module Jekyll
       institution = normalize_bibtex_text(
         bibtex_field(entry, :journaltitle, :journal, :booktitle, :publisher, :howpublished, :organization, :abbr)
       )
+      institution = fallback_institution.to_s.strip if institution.empty? && fallback_institution
       institution = "" if !badge.empty? && institution == badge
       url = normalize_bibtex_text(bibtex_field(entry, :url))
 

@@ -22,7 +22,6 @@ nav_order: 1
         {% unless entry.hide %}
           {% if entry.title == section_title %}
             {% if entry.type == "subsections" %}
-              <h2 class="cv-group-title">{{ entry.title }}</h2>
               {% for subsection in entry.contents %}
                 <div class="card mt-3 p-3">
                   <h3 class="card-title font-weight-medium">{{ subsection.title }}</h3>
@@ -48,7 +47,7 @@ nav_order: 1
                                 {% if content.title or show_year_as_meta %}
                                   <div class="cv-time-header">
                                     {% if content.title %}
-                                      <h6 class="title ml-1 mb-0" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}</h6>
+                                      <h6 class="title ml-1 mb-0" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
                                     {% endif %}
                                     {% if show_year_as_meta %}
                                       <span class="cv-time-meta">{{ content.year }}</span>
@@ -56,7 +55,7 @@ nav_order: 1
                                   </div>
                                 {% endif %}
                                 {% if content.institution %}
-                                  <h6 class="ml-1" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution or content.underline_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
+                                  <h6 class="ml-1" style="font-size: 0.95rem; font-weight: {% if content.emphasize_institution %}700{% elsif content.normal_weight_institution %}400{% else %}300{% endif %};">{% if content.emphasize_institution or content.underline_institution %}<span style="text-decoration: underline;">{{ content.institution }}</span>{% else %}{{ content.institution }}{% endif %}</h6>
                                 {% endif %}
                                 {% if content.description %}
                                   <ul class="items">
