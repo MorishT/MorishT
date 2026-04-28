@@ -38,7 +38,7 @@ nav_order: 1
                             <div class="row">
                               {% if badge_label %}
                                 <div class="col-auto text-center cv-time-badge">
-                                  {% assign badge_label_html = badge_label | replace: ' ', '<br>' %}
+                                  {% assign badge_label_html = badge_label | replace_first: ' ', '<br>' %}
                                   <span class="badge font-weight-bold align-middle{% if content.badge_theme %} cv-badge-{{ content.badge_theme }}{% endif %}">
                                     {{ badge_label_html }}
                                   </span>
