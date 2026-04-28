@@ -388,10 +388,15 @@ module Jekyll
     end
 
     def bibliography_institution_meta_html(entry)
-      fragments = [bibliography_note_item(entry), bibliography_acceptance_rate(entry)].compact
+      fragments = []
+      note = bibliography_note_item(entry)
+      acceptance_rate = bibliography_acceptance_rate(entry)
+
+      fragments << %(<span class="cv-time-inline-meta cv-time-inline-note">#{note}</span>) unless note.nil?
+      fragments << %(<span class="cv-time-inline-meta cv-time-inline-acceptance">#{acceptance_rate}</span>) unless acceptance_rate.nil?
       return "" if fragments.empty?
 
-      fragments.map { |fragment| %(<span class="cv-time-inline-meta">#{fragment}</span>) }.join(" ")
+      fragments.join(" ")
     end
 
     def bibliography_link_item(url, include_link)
