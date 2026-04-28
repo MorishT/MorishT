@@ -457,11 +457,11 @@ footer.sticky-bottom {
   align-self: center;
   display: flex;
   align-items: center;
-  width: 128px;
+  width: 168px;
 }
 .cv .card .list-group-item .cv-time-badge .badge {
   display: inline-block;
-  min-width: 108px;
+  min-width: 142px;
   padding: 0.4rem 0.55rem;
   font-size: 1.04rem;
   font-weight: 400 !important;
@@ -483,24 +483,24 @@ footer.sticky-bottom {
   min-width: 3.1rem;
 }
 .cv .card .list-group-item .cv-time-title {
-  margin-bottom: 0;
+  margin-bottom: 0.08rem;
   font-size: 1.3rem;
   font-weight: 400 !important;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 .cv .card .list-group-item .cv-time-authors {
-  margin-top: -0.1rem;
-  margin-bottom: 0.1rem;
+  margin-top: 0;
+  margin-bottom: 0.14rem;
   font-size: 1.3rem;
   font-weight: 300;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 .cv .card .list-group-item .cv-time-institution {
   margin-top: 0;
-  margin-bottom: 0.2rem;
+  margin-bottom: 0.22rem;
   font-size: 1.3rem !important;
   font-weight: 300 !important;
-  line-height: 1.2;
+  line-height: 1.3;
 }
 .cv .card .list-group-item .cv-time-meta {
   color: var(--global-text-color-light);
@@ -524,6 +524,9 @@ footer.sticky-bottom {
   font-weight: 400;
   line-height: 1.2;
   text-decoration: underline;
+}
+.cv .card .list-group-item .cv-time-inline-note {
+  color: #c00;
 }
 .cv .card .list-group-item .cv-self-author {
   font-weight: 400;
