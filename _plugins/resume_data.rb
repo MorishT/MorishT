@@ -312,8 +312,6 @@ module Jekyll
 
       description = compact_strings(
         [
-          bibliography_note_item(entry),
-          bibliography_acceptance_rate(entry),
           bibliography_link_item(url, institution.empty?),
         ]
       )
@@ -328,9 +326,10 @@ module Jekyll
       content["badge"] = badge unless badge.empty?
       content["badge_theme"] = badge_theme unless badge.empty? || badge_theme.to_s.strip.empty?
       content["institution"] = institution unless institution.empty?
-      content["normal_weight_institution"] = true unless institution.empty?
       content["underline_institution"] = true unless institution.empty?
       content["institution_url"] = url unless url.empty? || institution.empty?
+      institution_meta_html = bibliography_institution_meta_html(entry)
+      content["institution_meta_html"] = institution_meta_html unless institution_meta_html.empty?
       authors = bibliography_authors_html(entry)
       content["authors_html"] = authors if include_authors && !authors.empty?
       content["description"] = description unless description.empty?
@@ -385,7 +384,14 @@ module Jekyll
       note = normalize_bibtex_text(bibtex_field(entry, :note))
       return nil if note.empty?
 
-      %(<span class="cv-time-note">#{note}</span>)
+      note
+    end
+
+    def bibliography_institution_meta_html(entry)
+      fragments = [bibliography_note_item(entry), bibliography_acceptance_rate(entry)].compact
+      return "" if fragments.empty?
+
+      fragments.map { |fragment| %(<span class="cv-time-inline-meta">#{fragment}</span>) }.join(" ")
     end
 
     def bibliography_link_item(url, include_link)
