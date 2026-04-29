@@ -9,10 +9,10 @@
         {% if entry.title == section_title %}
           {% if entry.type == "subsections" %}
             {% for subsection in entry.contents %}
-              {% include cv/render_section.html entry=subsection %}
+              {% include publications_ja_card.html section=subsection %}
             {% endfor %}
           {% else %}
-            {% include cv/render_section.html entry=entry %}
+            {% include publications_ja_card.html section=entry %}
           {% endif %}
         {% endif %}
       {% endunless %}
@@ -21,7 +21,7 @@
 {% else %}
   {% for entry in publication_entries %}
     {% unless entry.hide %}
-      {% include cv/render_section.html entry=entry %}
+      {% include publications_ja_card.html section=entry %}
     {% endunless %}
   {% endfor %}
 {% endif %}
