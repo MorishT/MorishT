@@ -1,0 +1,27 @@
+{% assign publication_entries = include.entries | default: site.data.resume.cv_ja | default: site.data.cv_ja %}
+{% assign publication_section_titles = include.section_titles %}
+
+{% if publication_section_titles %}
+  {% assign titles = publication_section_titles | split: "|" %}
+  {% for section_title in titles %}
+    {% for entry in publication_entries %}
+      {% unless entry.hide %}
+        {% if entry.title == section_title %}
+          {% if entry.type == "subsections" %}
+            {% for subsection in entry.contents %}
+              {% include cv/render_section.html entry=subsection %}
+            {% endfor %}
+          {% else %}
+            {% include cv/render_section.html entry=entry %}
+          {% endif %}
+        {% endif %}
+      {% endunless %}
+    {% endfor %}
+  {% endfor %}
+{% else %}
+  {% for entry in publication_entries %}
+    {% unless entry.hide %}
+      {% include cv/render_section.html entry=entry %}
+    {% endunless %}
+  {% endfor %}
+{% endif %}
