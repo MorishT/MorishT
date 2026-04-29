@@ -1,0 +1,6 @@
+{% assign selected_achievements = site.data.resume.selected_achievements_ja | default: empty %}
+<div class="cv">
+  {% for entry in selected_achievements %}
+    {% include cv/render_section.html entry=entry %}
+  {% endfor %}
+</div>

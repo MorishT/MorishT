@@ -13,10 +13,12 @@ module Jekyll
     def generate(site)
       resume_data_dir = File.join(site.source, "resume", "data")
       ensure_resume_data_dir!(resume_data_dir)
+      bibliography = load_bibliography(resume_data_dir)
 
       site.data["resume"] ||= {}
       site.data["resume"]["about_ja"] = read_optional_file(File.join(resume_data_dir, "about.md"))
-      site.data["resume"]["cv_ja"] = build_cv_ja(site, resume_data_dir)
+      site.data["resume"]["cv_ja"] = build_cv_ja(site, resume_data_dir, bibliography)
+      site.data["resume"]["selected_achievements_ja"] = build_selected_achievements_ja(resume_data_dir, bibliography)
 
       sync_publications_bib!(site, resume_data_dir)
     end
@@ -51,8 +53,7 @@ module Jekyll
       File.write(dest_path, source_content)
     end
 
-    def build_cv_ja(site, resume_data_dir)
-      bibliography = load_bibliography(resume_data_dir)
+    def build_cv_ja(site, resume_data_dir, bibliography)
       sections = [
         build_research_section(resume_data_dir),
         build_education_section(resume_data_dir),
@@ -90,6 +91,10 @@ module Jekyll
 
     def compact_strings(values)
       values.map { |value| value.to_s.strip }.reject(&:empty?)
+    end
+
+    def csv_truthy?(value)
+      %w[1 true yes y].include?(value.to_s.strip.downcase)
     end
 
     def build_education_section(resume_data_dir)
@@ -181,9 +186,21 @@ module Jekyll
       }
     end
 
-    def build_awards_section(resume_data_dir)
+    def build_selected_achievements_ja(resume_data_dir, bibliography)
+      [
+        build_bibliography_time_table("論文誌", bibliography, label: "journal", selected: true, badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_time_table("国際学会", bibliography, label: "international-conference", selected: true, badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_time_table("国内学会", bibliography, label: "domestic-conference", selected: true, badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_time_table("招待講演", bibliography, label: "invited-talk", selected: true, badge_fields: %i[tag abbr], badge_theme: "purple"),
+        build_awards_section(resume_data_dir, selected: true),
+      ].compact
+    end
+
+    def build_awards_section(resume_data_dir, selected: false)
       rows = read_csv(File.join(resume_data_dir, "awards.csv"))
-      contents = rows.map do |row|
+      contents = rows.filter_map do |row|
+        next if selected && !csv_truthy?(row["selected"])
+
         award_title = row["award"].to_s.strip
         award_tag = row["tag"].to_s.strip
         {
@@ -198,6 +215,8 @@ module Jekyll
           "normal_weight_title" => true,
         }
       end
+
+      return nil if contents.empty?
 
       {
         "title" => "受賞",
@@ -282,14 +301,16 @@ module Jekyll
       }
     end
 
-    def build_bibliography_time_table(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil)
+    def build_bibliography_time_table(title, bibliography, label:, selected: false, badge_fields: [], fallback_badge: nil, badge_theme: nil, fallback_institution: nil, include_authors: false)
       contents = build_bibliography_contents(
         bibliography,
         label: label,
         selected: selected,
         badge_fields: badge_fields,
         fallback_badge: fallback_badge,
-        badge_theme: badge_theme
+        badge_theme: badge_theme,
+        fallback_institution: fallback_institution,
+        include_authors: include_authors
       )
       return nil if contents.empty?
 

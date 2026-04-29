@@ -54,10 +54,15 @@ layout: default
             {%- include news.html %}
           {%- endif %}
 
-          <!-- Selected papers -->
+          <!-- Selected achievements -->
           {% if page.selected_papers -%}
-            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;"><span class="lang-ja">主な研究・発表</span><span class="lang-en">selected work</span></a></h2>
-            {%- include selected_papers.html %}
+            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;"><span class="lang-ja">主な研究業績</span><span class="lang-en">selected achievements</span></a></h2>
+            <div class="lang-ja">
+              {%- include selected_achievements.html %}
+            </div>
+            <div class="lang-en">
+              {%- include selected_papers.html %}
+            </div>
           {%- endif %}
 
           <!-- Social -->
