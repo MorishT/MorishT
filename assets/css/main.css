@@ -546,6 +546,7 @@ footer.sticky-bottom {
   font-weight: inherit;
 }
 .cv .card .list-group-item .cv-time-underlined-emphasis {
+  color: #f00 !important;
   font-weight: 900 !important;
 }
 .cv .card .list-group-item .cv-self-author {
