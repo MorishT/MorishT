@@ -542,7 +542,7 @@ footer.sticky-bottom {
       }
 
       .cv-time-inline-note {
-        color: #f00;
+        color: $cv-emphasis-red;
         font-weight: 700;
       }
 
@@ -564,7 +564,7 @@ footer.sticky-bottom {
       }
 
       .cv-time-underlined-emphasis {
-        color: #f00 !important;
+        color: $cv-emphasis-red !important;
         font-weight: 900 !important;
       }
 
@@ -575,11 +575,11 @@ footer.sticky-bottom {
 
       .badge {
         color: var(--global-card-bg-color) !important;
-        background-color: var(--global-theme-color) !important;
+        background-color: $cv-tag-color !important;
       }
 
       .cv-badge-purple {
-        background-color: $purple-color !important;
+        background-color: $cv-tag-color !important;
       }
     }
   }
@@ -895,7 +895,7 @@ footer.sticky-bottom {
       }
 
       .periodical .note-award {
-        color: #f00;
+        color: $cv-emphasis-red;
       }
 
       .badges {
