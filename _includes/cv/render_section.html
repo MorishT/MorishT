@@ -1,6 +1,6 @@
 {% assign entry = include.entry %}
 <div class="card mt-3 p-3">
-  <h3 class="card-title font-weight-medium">{{ entry.title }}</h3>
+  <h3 class="card-title font-weight-bold">{{ entry.title }}</h3>
   <div>
   {% if entry.type == "list" %}
     {% include cv/list.html entry=entry %}

@@ -734,6 +734,15 @@ footer.sticky-bottom {
   }
 }
 
+@media (min-width: 1200px) {
+  body[data-page-title-ja="研究業績"] .container.mt-5,
+  body[data-page-title-en="publications"] .container.mt-5,
+  body[data-page-title-ja="経歴"] .container.mt-5,
+  body[data-page-title-en="CV"] .container.mt-5 {
+    max-width: 1440px;
+  }
+}
+
 
 // Publications
 
