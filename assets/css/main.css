@@ -231,6 +231,10 @@ blockquote {
   text-decoration: none;
 }
 
+.about-content {
+  font-size: 1.3rem;
+  line-height: 1.4;
+}
 .about-content p,
 .about-content li {
   font-weight: 400;
