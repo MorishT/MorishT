@@ -534,7 +534,7 @@ footer.sticky-bottom {
   text-decoration: underline;
 }
 .cv .card .list-group-item .cv-time-inline-note {
-  color: #E35656;
+  color: #E34444;
   font-weight: 700;
 }
 .cv .card .list-group-item .cv-time-inline-acceptance {
@@ -550,19 +550,22 @@ footer.sticky-bottom {
   font-weight: inherit;
 }
 .cv .card .list-group-item .cv-time-underlined-emphasis {
-  color: #E35656 !important;
+  color: #E34444 !important;
   font-weight: 900 !important;
 }
 .cv .card .list-group-item .cv-self-author {
   font-weight: 400;
   text-decoration: underline;
 }
+.cv .card .list-group-item .cv-link-label {
+  text-decoration: underline;
+}
 .cv .card .list-group-item .badge {
   color: var(--global-card-bg-color) !important;
-  background-color: #6A9BD9 !important;
+  background-color: #749FD6 !important;
 }
 .cv .card .list-group-item .cv-badge-purple {
-  background-color: #6A9BD9 !important;
+  background-color: #749FD6 !important;
 }
 
 @media (min-width: 768px) {
@@ -681,6 +684,8 @@ footer.sticky-bottom {
 @media (min-width: 1200px) {
   body[data-page-title-ja=研究業績] .container.mt-5,
   body[data-page-title-en=publications] .container.mt-5,
+  body[data-page-title-ja=プロフィール] .container.mt-5,
+  body[data-page-title-en=Profile] .container.mt-5,
   body[data-page-title-ja=経歴] .container.mt-5,
   body[data-page-title-en=CV] .container.mt-5 {
     max-width: 1440px;
@@ -801,7 +806,7 @@ footer.sticky-bottom {
   border-color: var(--global-theme-color);
 }
 .publications ol.bibliography > li .periodical .note-award {
-  color: #E35656;
+  color: #E34444;
 }
 .publications ol.bibliography > li .badges span {
   display: inline-block;
