@@ -573,6 +573,10 @@ footer.sticky-bottom {
         text-decoration: underline;
       }
 
+      .cv-link-label {
+        text-decoration: underline;
+      }
+
       .badge {
         color: var(--global-card-bg-color) !important;
         background-color: $cv-tag-color !important;
@@ -741,6 +745,8 @@ footer.sticky-bottom {
 @media (min-width: 1200px) {
   body[data-page-title-ja="研究業績"] .container.mt-5,
   body[data-page-title-en="publications"] .container.mt-5,
+  body[data-page-title-ja="プロフィール"] .container.mt-5,
+  body[data-page-title-en="Profile"] .container.mt-5,
   body[data-page-title-ja="経歴"] .container.mt-5,
   body[data-page-title-en="CV"] .container.mt-5 {
     max-width: 1440px;

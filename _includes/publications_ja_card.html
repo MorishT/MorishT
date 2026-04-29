@@ -22,7 +22,7 @@
               {% endif %}
               <div class="col cv-time-content">
                 {% if content.title %}
-                  <h6 class="title ml-1 mb-0 cv-time-title" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span class="cv-time-underlined-emphasis" style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}{% if content.institution_url %} <a href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">[link]</a>{% endif %}</h6>
+                  <h6 class="title ml-1 mb-0 cv-time-title" style="font-weight: {% if content.emphasize_title %}700{% elsif content.normal_weight_title %}400{% else %}700{% endif %};">{% if content.emphasize_title %}<span class="cv-time-underlined-emphasis" style="text-decoration: underline;">{{ content.title }}</span>{% else %}{{ content.title }}{% endif %}{% if content.institution_url %} <a class="cv-link-label" href="{{ content.institution_url | escape }}" target="_blank" rel="noopener noreferrer">link</a>{% endif %}</h6>
                 {% endif %}
                 {% if content.authors_html %}
                   <div class="cv-time-authors ml-1">{{ content.authors_html }}</div>
