@@ -201,12 +201,12 @@ module Jekyll
       contents = rows.filter_map do |row|
         next if selected && !csv_truthy?(row["selected"])
 
-        award_title = row["award"].to_s.strip
-        award_tag = row["tag"].to_s.strip
+        award_title = row["award"].to_s.strip.gsub("\\%", "%")
+        award_tag = row["tag"].to_s.strip.gsub("\\%", "%")
         {
-          "title" => row["event"].to_s.strip,
+          "title" => row["event"].to_s.strip.gsub("\\%", "%"),
           "institution" => award_title,
-          "year" => row["year"].to_s.strip,
+          "year" => row["year"].to_s.strip.gsub("\\%", "%"),
           "badge" => award_tag.empty? ? nil : award_tag,
           "badge_theme" => award_tag.empty? ? nil : "purple",
           "match_title_weight" => true,
