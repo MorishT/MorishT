@@ -557,8 +557,11 @@ footer.sticky-bottom {
   font-weight: 400;
   text-decoration: underline;
 }
-.cv .card .list-group-item .cv-link-label {
-  text-decoration: underline;
+.cv .card .list-group-item .cv-link-label,
+.cv .card .list-group-item .cv-link-label:hover,
+.cv .card .list-group-item .cv-link-label:focus,
+.cv .card .list-group-item .cv-link-label:visited {
+  text-decoration: underline !important;
 }
 .cv .card .list-group-item .badge {
   color: var(--global-card-bg-color) !important;
