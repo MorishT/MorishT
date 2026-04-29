@@ -31,8 +31,33 @@ jobs:
       run: |
         npm install -g mermaid.cli
         bundle exec jekyll build
-    - name: Deploy 🚀
+    - name: Deploy 🚀 (Attempt 1)
+      id: deploy_attempt_1
       if: github.event_name != 'pull_request'
+      continue-on-error: true
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: _site
+
+    - name: Wait Before Retry
+      if: github.event_name != 'pull_request' && steps.deploy_attempt_1.outcome == 'failure'
+      run: sleep 15
+
+    # GitHub occasionally returns transient 500s while updating the gh-pages ref.
+    - name: Deploy 🚀 (Attempt 2)
+      id: deploy_attempt_2
+      if: github.event_name != 'pull_request' && steps.deploy_attempt_1.outcome == 'failure'
+      continue-on-error: true
+      uses: JamesIves/github-pages-deploy-action@v4
+      with:
+        folder: _site
+
+    - name: Wait Before Final Retry
+      if: github.event_name != 'pull_request' && steps.deploy_attempt_2.outcome == 'failure'
+      run: sleep 15
+
+    - name: Deploy 🚀 (Attempt 3)
+      if: github.event_name != 'pull_request' && steps.deploy_attempt_2.outcome == 'failure'
       uses: JamesIves/github-pages-deploy-action@v4
       with:
         folder: _site
