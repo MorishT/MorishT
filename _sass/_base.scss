@@ -547,15 +547,16 @@ footer.sticky-bottom {
         font-weight: 400;
       }
 
-      .cv-time-match-title-weight {
+      &.cv-time-match-title-weight {
         .badge,
-        .cv-time-meta {
+        .cv-time-meta,
+        .cv-time-institution {
           font-weight: 400 !important;
         }
 
         .cv-time-institution-name {
-          font-style: normal;
-          font-weight: 400;
+          font-style: normal !important;
+          font-weight: inherit;
         }
       }
 
