@@ -573,8 +573,11 @@ footer.sticky-bottom {
         text-decoration: underline;
       }
 
-      .cv-link-label {
-        text-decoration: underline;
+      .cv-link-label,
+      .cv-link-label:hover,
+      .cv-link-label:focus,
+      .cv-link-label:visited {
+        text-decoration: underline !important;
       }
 
       .badge {
