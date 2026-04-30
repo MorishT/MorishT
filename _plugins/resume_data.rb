@@ -112,6 +112,7 @@ module Jekyll
           "title" => row["degree"],
           "institution" => row["institution"],
           "year" => normalize_period(row["period"]),
+          "match_title_weight_institution" => csv_truthy?(row["match_title_weight_institution"]),
           "description" => description.empty? ? nil : description,
         }
       end
