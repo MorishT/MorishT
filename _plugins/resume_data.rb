@@ -240,8 +240,25 @@ module Jekyll
     end
 
     def build_research_topics_ja(resume_data_dir, bibliography)
-      RESEARCH_TOPIC_ORDER.filter_map do |topic_id|
+      research_topic_ids_with_body(resume_data_dir).filter_map do |topic_id|
         build_research_topic_ja(resume_data_dir, bibliography, topic_id)
+      end
+    end
+
+    def research_topic_ids_with_body(resume_data_dir)
+      research_topics_dir = resolve_resume_data_file(resume_data_dir, "research_topics", "research")
+      return [] if research_topics_dir.nil? || !Dir.exist?(research_topics_dir)
+
+      topic_ids = Dir.children(research_topics_dir).sort.select do |topic_id|
+        topic_dir = File.join(research_topics_dir, topic_id)
+        next false unless Dir.exist?(topic_dir)
+
+        File.exist?(File.join(topic_dir, "body.md")) || File.exist?(File.join(topic_dir, "body.tex"))
+      end
+
+      topic_ids.sort_by do |topic_id|
+        preferred_index = RESEARCH_TOPIC_ORDER.index(topic_id)
+        [preferred_index || RESEARCH_TOPIC_ORDER.length, topic_id]
       end
     end
 
