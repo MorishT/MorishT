@@ -22,6 +22,7 @@ module Jekyll
 
       site.data["resume"] ||= {}
       site.data["resume"]["about_ja"] = read_optional_resume_data_file(resume_data_dir, "about/about.md", "about.md")
+      site.data["resume"]["about_ja_subtitle"] = extract_first_resume_markdown_line(resume_data_dir, "about/about.md", "about.md")
       site.data["resume"]["cv_ja"] = build_cv_ja(site, resume_data_dir, bibliography)
       site.data["resume"]["selected_achievements_ja"] = build_selected_achievements_ja(resume_data_dir, bibliography)
       site.data["resume"]["research_topics_ja"] = build_research_topics_ja(resume_data_dir, bibliography)
@@ -65,6 +66,21 @@ module Jekyll
       File.foreach(path) do |line|
         stripped = line.strip
         return stripped unless stripped.empty?
+      end
+
+      nil
+    end
+
+    def extract_first_resume_markdown_line(resume_data_dir, *relative_paths)
+      content = read_optional_resume_data_file(resume_data_dir, *relative_paths)
+      return nil if content.nil?
+
+      content.each_line do |line|
+        stripped = line.strip
+        next if stripped.empty?
+        next if stripped.start_with?("* ", "- ")
+
+        return stripped
       end
 
       nil

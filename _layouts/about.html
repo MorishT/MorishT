@@ -4,13 +4,17 @@ layout: default
 
 <!-- about.html -->
       <div class="post">
+        {% assign about_ja_subtitle = page.subtitle %}
+        {% if page.resume_about_ja and site.data.resume.about_ja_subtitle %}
+          {% assign about_ja_subtitle = site.data.resume.about_ja_subtitle | markdownify | remove: '<p>' | remove: '</p>' | strip %}
+        {% endif %}
         <header class="post-header">
-          <h1 class="post-title">
+          <h1 class="post-title about-page-title">
             <span class="lang-ja">{{ page.header_title_ja | default: site.title }}</span>
             <span class="lang-en">{{ page.header_title_en | default: site.title }}</span>
           </h1>
           <p class="desc">
-            <span class="lang-ja">{{ page.subtitle }}</span>
+            <span class="lang-ja">{{ about_ja_subtitle }}</span>
             <span class="lang-en">{{ page.subtitle_en | default: page.subtitle }}</span>
           </p>
         </header>
