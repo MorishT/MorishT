@@ -4,44 +4,48 @@ layout: default
 
 <!-- about.html -->
       <div class="post">
-        <header class="post-header">
-          <h1 class="post-title about-page-title">
-            <strong class="lang-ja">{{ page.header_title_ja | default: site.title }}</strong>
-            <strong class="lang-en">{{ page.header_title_en | default: site.title }}</strong>
-          </h1>
-        </header>
-
         <article>
-          {% if page.profile -%}
-          <div class="profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
-            {%- if page.profile.image %}
-              {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+          <div class="about-hero">
+            <div class="about-hero__text">
+              <header class="post-header">
+                <h1 class="post-title about-page-title">
+                  <strong class="lang-ja">{{ page.header_title_ja | default: site.title }}</strong>
+                  <strong class="lang-en">{{ page.header_title_en | default: site.title }}</strong>
+                </h1>
+              </header>
 
-              {% if page.profile.image_circular %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
-              {% else %}
-                {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
-              {% endif %}
+              <div class="clearfix about-content">
+                {% assign about_ja_override = nil %}
+                {% if page.resume_about_ja and site.data.resume.about_ja %}
+                  {% assign about_ja_override = site.data.resume.about_ja | markdownify %}
+                {% endif %}
+                {% include render_bilingual_content.html rendered_content=content ja_content_override=about_ja_override %}
+              </div>
+            </div>
 
-              {% include figure.html 
-              path=profile_image_path 
-              class=profile_image_class
-              alt=page.profile.image -%}
-            {% endif -%}
-            {%- if page.profile.address %}
-            <div class="address">
-              {{ page.profile.address }}
+            {% if page.profile -%}
+            <div class="profile about-hero__profile float-{%- if page.profile.align == 'left' -%}left{%- else -%}right{%- endif -%}">
+              {%- if page.profile.image %}
+                {%- assign profile_image_path = page.profile.image | prepend: 'assets/img/' -%}
+
+                {% if page.profile.image_circular %}
+                  {%- assign profile_image_class = "img-fluid z-depth-1 rounded-circle" -%}
+                {% else %}
+                  {%- assign profile_image_class = "img-fluid z-depth-1 rounded" -%}
+                {% endif %}
+
+                {% include figure.html
+                path=profile_image_path
+                class=profile_image_class
+                alt=page.profile.image -%}
+              {% endif -%}
+              {%- if page.profile.address %}
+              <div class="address">
+                {{ page.profile.address }}
+              </div>
+              {%- endif %}
             </div>
             {%- endif %}
-          </div>
-          {%- endif %}
-
-          <div class="clearfix about-content">
-            {% assign about_ja_override = nil %}
-            {% if page.resume_about_ja and site.data.resume.about_ja %}
-              {% assign about_ja_override = site.data.resume.about_ja | markdownify %}
-            {% endif %}
-            {% include render_bilingual_content.html rendered_content=content ja_content_override=about_ja_override %}
           </div>
 
           <!-- News -->
