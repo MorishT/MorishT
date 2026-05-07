@@ -313,6 +313,8 @@ html[data-site-lang=en] .lang-ja {
 }
 .navbar.navbar-light .navbar-nav .nav-item .nav-link {
   color: var(--global-text-color);
+  font-size: 1.3rem;
+  font-weight: 700;
 }
 .navbar.navbar-light .navbar-nav .nav-item .nav-link:hover {
   color: var(--global-hover-color);
@@ -320,16 +322,16 @@ html[data-site-lang=en] .lang-ja {
 .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
   background-color: inherit;
   font-weight: 700;
-  color: rgb(90.5, 4.5, 86);
+  color: #B509AC;
 }
 .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
-  color: rgb(76.02, 3.78, 72.24);
+  color: rgb(219.8673684211, 10.9326315789, 208.9347368421);
 }
 html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgb(243.7073684211, 27.8926315789, 232.4147368421);
 }
 html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
-  color: #ffffff;
+  color: rgb(245.64, 66.76, 236.28);
 }
 .navbar.navbar-light .navbar-brand.social {
   padding-bottom: 0;
@@ -690,11 +692,68 @@ footer.sticky-bottom {
 @media (min-width: 1200px) {
   body[data-page-title-ja=研究業績] .container.mt-5,
   body[data-page-title-en=publications] .container.mt-5,
+  body[data-page-title-ja=研究トピック] .container.mt-5,
+  body[data-page-title-en="Research Topics"] .container.mt-5,
   body[data-page-title-ja=プロフィール] .container.mt-5,
   body[data-page-title-en=Profile] .container.mt-5,
   body[data-page-title-ja=経歴] .container.mt-5,
   body[data-page-title-en=CV] .container.mt-5 {
     max-width: 1440px;
+  }
+}
+.research-topics .research-topic-card {
+  padding: 2rem !important;
+}
+.research-topics .card-title {
+  font-size: 2rem;
+  line-height: 1.35;
+  margin-bottom: 1rem;
+}
+.research-topics .research-topic-summary {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+.research-topics .research-topic-body {
+  font-size: 1.15rem;
+  line-height: 1.8;
+}
+.research-topics .research-topic-body p:last-child {
+  margin-bottom: 0;
+}
+.research-topics .research-topic-body strong {
+  font-weight: 700;
+}
+.research-topics .research-topic-figure-wrap {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--global-divider-color);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background-color: var(--global-card-bg-color);
+}
+.research-topics .research-topic-figure {
+  display: block;
+  width: 100%;
+  height: 640px;
+  border: 0;
+}
+.research-topics .research-topic-publications {
+  margin-top: 1.5rem;
+}
+.research-topics .research-topic-publications-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+@media (max-width: 767.98px) {
+  .research-topics .research-topic-card {
+    padding: 1.35rem !important;
+  }
+  .research-topics .research-topic-figure {
+    height: 420px;
   }
 }
 .publications {
