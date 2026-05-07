@@ -19,10 +19,11 @@ module Jekyll
       resume_data_dir = File.join(site.source, "resume", "data")
       ensure_resume_data_dir!(resume_data_dir)
       bibliography = load_bibliography(resume_data_dir)
+      about_ja_markdown = read_optional_resume_data_file(resume_data_dir, "about/about.md", "about.md")
 
       site.data["resume"] ||= {}
-      site.data["resume"]["about_ja"] = read_optional_resume_data_file(resume_data_dir, "about/about.md", "about.md")
-      site.data["resume"]["about_ja_subtitle"] = extract_first_resume_markdown_line(resume_data_dir, "about/about.md", "about.md")
+      site.data["resume"]["about_ja"] = strip_first_markdown_prose_line(about_ja_markdown)
+      site.data["resume"]["about_ja_subtitle"] = extract_first_markdown_prose_line(about_ja_markdown)
       site.data["resume"]["cv_ja"] = build_cv_ja(site, resume_data_dir, bibliography)
       site.data["resume"]["selected_achievements_ja"] = build_selected_achievements_ja(resume_data_dir, bibliography)
       site.data["resume"]["research_topics_ja"] = build_research_topics_ja(resume_data_dir, bibliography)
@@ -71,8 +72,7 @@ module Jekyll
       nil
     end
 
-    def extract_first_resume_markdown_line(resume_data_dir, *relative_paths)
-      content = read_optional_resume_data_file(resume_data_dir, *relative_paths)
+    def extract_first_markdown_prose_line(content)
       return nil if content.nil?
 
       content.each_line do |line|
@@ -84,6 +84,23 @@ module Jekyll
       end
 
       nil
+    end
+
+    def strip_first_markdown_prose_line(content)
+      return nil if content.nil?
+
+      removed = false
+      filtered_lines = content.each_line.reject do |line|
+        stripped = line.strip
+        next false if removed
+        next false if stripped.empty?
+        next false if stripped.start_with?("* ", "- ")
+
+        removed = true
+        true
+      end
+
+      filtered_lines.join.lstrip
     end
 
     def resume_data_web_path(resume_data_dir, path)
