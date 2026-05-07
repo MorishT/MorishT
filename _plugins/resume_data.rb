@@ -6,6 +6,10 @@ module Jekyll
   class ResumeDataGenerator < Generator
     SELF_AUTHOR_NAMES = ["森下 皓文", "Terufumi Morishita"].freeze
     CJK_REGEX = /[\p{Han}\p{Hiragana}\p{Katakana}]/
+    WORK_RESEARCH_TOPICS_BY_POSITION = {
+      "hitachi" => %w[FLD ensemble economic_simulation competition debate NLP_applications],
+      "toshiba" => %w[speech_recognition],
+    }.freeze
 
     safe true
     priority :highest
@@ -16,7 +20,7 @@ module Jekyll
       bibliography = load_bibliography(resume_data_dir)
 
       site.data["resume"] ||= {}
-      site.data["resume"]["about_ja"] = read_optional_file(File.join(resume_data_dir, "about.md"))
+      site.data["resume"]["about_ja"] = read_optional_resume_data_file(resume_data_dir, "about/about.md", "about.md")
       site.data["resume"]["cv_ja"] = build_cv_ja(site, resume_data_dir, bibliography)
       site.data["resume"]["selected_achievements_ja"] = build_selected_achievements_ja(resume_data_dir, bibliography)
 
@@ -35,6 +39,33 @@ module Jekyll
       return nil unless File.exist?(path)
 
       File.read(path)
+    end
+
+    def resolve_resume_data_file(resume_data_dir, *relative_paths)
+      relative_paths.each do |relative_path|
+        path = File.join(resume_data_dir, relative_path)
+        return path if File.exist?(path)
+      end
+
+      nil
+    end
+
+    def read_optional_resume_data_file(resume_data_dir, *relative_paths)
+      path = resolve_resume_data_file(resume_data_dir, *relative_paths)
+      return nil if path.nil?
+
+      read_optional_file(path)
+    end
+
+    def read_single_value_file(path)
+      return nil unless path && File.exist?(path)
+
+      File.foreach(path) do |line|
+        stripped = line.strip
+        return stripped unless stripped.empty?
+      end
+
+      nil
     end
 
     def sync_publications_bib!(site, resume_data_dir)
@@ -125,14 +156,15 @@ module Jekyll
     end
 
     def build_research_section(resume_data_dir)
-      about_path = File.join(resume_data_dir, "about.md")
-      return nil unless File.exist?(about_path)
+      about_path = resolve_resume_data_file(resume_data_dir, "about/about.md", "about.md")
+      return nil if about_path.nil? || !File.exist?(about_path)
 
       contents = File.readlines(about_path, chomp: true).filter_map do |line|
         stripped = line.strip
-        next unless stripped.start_with?("- ")
+        match = stripped.match(/\A[-*]\s+(.+)\z/)
+        next if match.nil?
 
-        stripped.sub(/\A-\s+/, "")
+        match[1]
       end
 
       return nil if contents.empty?
@@ -146,15 +178,10 @@ module Jekyll
 
     def build_work_section(resume_data_dir)
       positions = read_csv(File.join(resume_data_dir, "work_positions.csv"))
-      projects = read_csv(File.join(resume_data_dir, "work_projects.csv"))
-      projects_by_position = projects.group_by { |row| row["position_id"] }
+      projects_by_position = build_work_projects_by_position(resume_data_dir)
 
       contents = positions.sort_by { |row| row["order"].to_i }.map do |row|
-        project_lines = Array(projects_by_position[row["id"]])
-          .sort_by { |project| project["order"].to_i }
-          .map do |project|
-            project["title"].to_s.strip
-          end
+        project_lines = Array(projects_by_position[row["id"]]).reject(&:empty?)
 
         {
           "title" => row["organization"],
@@ -168,6 +195,39 @@ module Jekyll
         "type" => "time_table",
         "contents" => contents,
       }
+    end
+
+    def build_work_projects_by_position(resume_data_dir)
+      work_projects_path = File.join(resume_data_dir, "work_projects.csv")
+      return build_work_projects_by_position_from_csv(work_projects_path) if File.exist?(work_projects_path)
+
+      build_work_projects_by_position_from_research_topics(resume_data_dir)
+    end
+
+    def build_work_projects_by_position_from_csv(work_projects_path)
+      read_csv(work_projects_path)
+        .group_by { |row| row["position_id"] }
+        .transform_values do |projects|
+          projects
+            .sort_by { |project| project["order"].to_i }
+            .map { |project| project["title"].to_s.strip }
+            .reject(&:empty?)
+        end
+    end
+
+    def build_work_projects_by_position_from_research_topics(resume_data_dir)
+      WORK_RESEARCH_TOPICS_BY_POSITION.transform_values do |topic_ids|
+        topic_ids.filter_map do |topic_id|
+          read_single_value_file(
+            resolve_resume_data_file(
+              resume_data_dir,
+              "research_topics/#{topic_id}/title.txt",
+              "research/#{topic_id}/title.txt",
+              "research/#{topic_id}/title.csv"
+            )
+          )
+        end
+      end
     end
 
     def build_publications_section(bibliography)
