@@ -799,9 +799,18 @@
   \printresearchpublicationbibliography{#1}%
 }
 
+\newcommand{\cvrenderresearchtldr}[1]{%
+  \IfFileExists{data/research_topics/#1/tldr.txt}{%
+    \cvreadsinglevalue{data/research_topics/#1/tldr.txt}{\cvresearchsummaryvalue}%
+    {\bfseries \cvresearchsummaryvalue\par}%
+    \vspace{3mm}%
+  }{}%
+}
+
 \newcommand{\cvrenderresearchsection}[1]{%
   \cvrendersectiontitle{data/research_topics/#1/title.txt}%
   \vspace{1mm}%
+  \cvrenderresearchtldr{#1}%
   \cvnarrativeinput{data/research_topics/#1/body.tex}%
   \cvresearchfigure{data/research_topics/#1/main.pdf}%
   \cvrenderresearchpublications{#1}%
@@ -978,8 +987,8 @@
 \cvrenderresearchsectionifbody{ensemble}
 \cvrenderresearchsectionifbody{competition}
 \cvrenderresearchsectionifbody{economic_simulation}
-\cvrenderresearchsectionifbody{NLP_applications}
-\cvrenderresearchsectionifbody{speech_recognition}
+% \cvrenderresearchsectionifbody{NLP_applications}
+% \cvrenderresearchsectionifbody{speech_recognition}
 % \cvrenderresearchsectionifbody{debate}
 \cvrenderresearchsectionifbody{dark_matter}
 \fi
