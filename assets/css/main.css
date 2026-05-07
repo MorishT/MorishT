@@ -248,6 +248,41 @@ blockquote {
   font-weight: 700;
 }
 
+.about-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.about-hero__text {
+  min-width: 0;
+}
+
+.about-hero__profile {
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+  float: none !important;
+}
+
+@media (min-width: 992px) {
+  .about-hero {
+    align-items: flex-start;
+    flex-direction: row;
+    gap: 3rem;
+  }
+  .about-hero__text {
+    flex: 1 1 0;
+    padding-top: clamp(4rem, 8vw, 6rem);
+  }
+  .about-hero__profile {
+    flex: 0 0 36%;
+    max-width: none;
+    width: 36%;
+    margin: 0;
+  }
+}
 html[data-site-lang=ja] .lang-en,
 html[data-site-lang=en] .lang-ja {
   display: none !important;
