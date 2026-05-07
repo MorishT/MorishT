@@ -258,7 +258,7 @@ module Jekyll
 
       topic_ids.sort_by do |topic_id|
         preferred_index = RESEARCH_TOPIC_ORDER.index(topic_id)
-        [preferred_index || RESEARCH_TOPIC_ORDER.length, topic_id]
+        [topic_id == "dark_matter" ? 1 : 0, preferred_index || RESEARCH_TOPIC_ORDER.length, topic_id]
       end
     end
 
