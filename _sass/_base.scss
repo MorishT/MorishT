@@ -191,8 +191,8 @@ blockquote {
 }
 
 .about-hero__profile {
-  width: min(100%, 280px);
-  max-width: 280px;
+  width: min(100%, 360px);
+  max-width: 360px;
   margin: 0 auto;
   flex: 0 0 auto;
   float: none !important;
@@ -215,12 +215,12 @@ blockquote {
 
   .about-hero__text {
     flex: 1 1 0;
-    padding-top: clamp(4rem, 8vw, 6rem);
+    padding-top: 0;
   }
 
   .about-hero__profile {
-    width: 260px;
-    max-width: 260px;
+    width: 340px;
+    max-width: 340px;
     margin: 0;
   }
 }
