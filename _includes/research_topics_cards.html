@@ -13,12 +13,14 @@
     </div>
 
     {% if topic.figure_url %}
-      <iframe
-        class="research-topic-figure"
-        src="{{ topic.figure_url | relative_url }}#toolbar=0&navpanes=0&scrollbar=0&view=FitH"
-        title="{{ topic.title | escape }}"
-        loading="lazy"
-      ></iframe>
+      <a class="research-topic-figure-link" href="{{ topic.figure_url | relative_url }}" target="_blank" rel="noopener noreferrer">
+        <img
+          class="research-topic-figure"
+          src="{{ '/assets/img/research_topics/' | append: topic.id | append: '.png' | relative_url }}"
+          alt="{{ topic.title | escape }}"
+          loading="lazy"
+        >
+      </a>
     {% endif %}
 
     {% if topic.publications and topic.publications.contents and topic.publications.contents != empty %}

@@ -800,13 +800,16 @@ footer.sticky-bottom {
     }
   }
 
-  .research-topic-figure {
+  .research-topic-figure-link {
     display: block;
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
+  }
+
+  .research-topic-figure {
+    display: block;
     width: 100%;
-    min-height: 640px;
-    aspect-ratio: 1.55 / 1;
+    height: auto;
     border: 0;
     background: transparent;
   }
@@ -828,9 +831,6 @@ footer.sticky-bottom {
       padding: 1.35rem !important;
     }
 
-    .research-topic-figure {
-      min-height: 420px;
-    }
   }
 }
 
