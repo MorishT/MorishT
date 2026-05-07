@@ -244,6 +244,10 @@ blockquote {
   font-weight: 600;
 }
 
+.about-page-title {
+  font-weight: 700;
+}
+
 html[data-site-lang=ja] .lang-en,
 html[data-site-lang=en] .lang-ja {
   display: none !important;
@@ -303,7 +307,7 @@ html[data-site-lang=en] .lang-ja {
   color: var(--global-hover-color);
 }
 .navbar.navbar-light .lang-switcher__button.is-active {
-  color: var(--global-theme-color);
+  color: var(--global-text-color);
   font-weight: 700;
 }
 .navbar.navbar-light .lang-switcher__divider {
