@@ -191,10 +191,19 @@ blockquote {
 }
 
 .about-hero__profile {
-  width: 100%;
-  max-width: 426px;
+  width: min(100%, 280px);
+  max-width: 280px;
   margin: 0 auto;
+  flex: 0 0 auto;
   float: none !important;
+}
+
+.about-hero__profile figure,
+.about-hero__profile picture,
+.about-hero__profile img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
 }
 
 @media (min-width: 992px) {
@@ -210,9 +219,8 @@ blockquote {
   }
 
   .about-hero__profile {
-    flex: 0 0 24%;
-    max-width: none;
-    width: 24%;
+    width: 260px;
+    max-width: 260px;
     margin: 0;
   }
 }
