@@ -1,0 +1,30 @@
+{% assign research_topics = include.topics | default: site.data.resume.research_topics_ja | default: empty %}
+
+{% for topic in research_topics %}
+  <div class="card mt-3 p-3 research-topic-card">
+    <h3 class="card-title font-weight-bold">{{ topic.title }}</h3>
+
+    {% if topic.summary %}
+      <p class="research-topic-summary">{{ topic.summary }}</p>
+    {% endif %}
+
+    <div class="research-topic-body">
+      {{ topic.body_markdown | markdownify }}
+    </div>
+
+    {% if topic.figure_url %}
+      <div class="research-topic-figure-wrap">
+        <object class="research-topic-figure" data="{{ topic.figure_url | relative_url }}" type="application/pdf">
+          <a class="cv-link-label" href="{{ topic.figure_url | relative_url }}" target="_blank" rel="noopener noreferrer">figure</a>
+        </object>
+      </div>
+    {% endif %}
+
+    {% if topic.publications and topic.publications.contents and topic.publications.contents != empty %}
+      <div class="research-topic-publications">
+        <h4 class="research-topic-publications-title">既存発表</h4>
+        {% include cv/time_table.html entry=topic.publications %}
+      </div>
+    {% endif %}
+  </div>
+{% endfor %}

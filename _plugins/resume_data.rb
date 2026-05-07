@@ -6,6 +6,7 @@ module Jekyll
   class ResumeDataGenerator < Generator
     SELF_AUTHOR_NAMES = ["森下 皓文", "Terufumi Morishita"].freeze
     CJK_REGEX = /[\p{Han}\p{Hiragana}\p{Katakana}]/
+    RESEARCH_TOPIC_ORDER = %w[FLD ensemble competition economic_simulation NLP_applications speech_recognition dark_matter].freeze
     WORK_RESEARCH_TOPICS_BY_POSITION = {
       "hitachi" => %w[FLD ensemble economic_simulation competition NLP_applications],
       "toshiba" => %w[speech_recognition],
@@ -23,6 +24,7 @@ module Jekyll
       site.data["resume"]["about_ja"] = read_optional_resume_data_file(resume_data_dir, "about/about.md", "about.md")
       site.data["resume"]["cv_ja"] = build_cv_ja(site, resume_data_dir, bibliography)
       site.data["resume"]["selected_achievements_ja"] = build_selected_achievements_ja(resume_data_dir, bibliography)
+      site.data["resume"]["research_topics_ja"] = build_research_topics_ja(resume_data_dir, bibliography)
 
       sync_publications_bib!(site, resume_data_dir)
     end
@@ -66,6 +68,13 @@ module Jekyll
       end
 
       nil
+    end
+
+    def resume_data_web_path(resume_data_dir, path)
+      return nil if path.nil?
+
+      relative_path = path.delete_prefix(File.join(resume_data_dir, ""))
+      File.join("resume", "data", relative_path)
     end
 
     def sync_publications_bib!(site, resume_data_dir)
@@ -228,6 +237,75 @@ module Jekyll
           )
         end
       end
+    end
+
+    def build_research_topics_ja(resume_data_dir, bibliography)
+      RESEARCH_TOPIC_ORDER.filter_map do |topic_id|
+        build_research_topic_ja(resume_data_dir, bibliography, topic_id)
+      end
+    end
+
+    def build_research_topic_ja(resume_data_dir, bibliography, topic_id)
+      title = read_single_value_file(
+        resolve_resume_data_file(
+          resume_data_dir,
+          "research_topics/#{topic_id}/title.txt",
+          "research/#{topic_id}/title.txt",
+          "research/#{topic_id}/title.csv"
+        )
+      )
+      body_markdown = read_optional_resume_data_file(
+        resume_data_dir,
+        "research_topics/#{topic_id}/body.md",
+        "research/#{topic_id}/body.md"
+      )
+      return nil if title.nil? || body_markdown.nil?
+
+      topic = {
+        "id" => topic_id,
+        "title" => title,
+        "body_markdown" => body_markdown,
+      }
+
+      summary = read_single_value_file(
+        resolve_resume_data_file(
+          resume_data_dir,
+          "research_topics/#{topic_id}/tldr.txt",
+          "research/#{topic_id}/tldr.txt",
+          "research/#{topic_id}/tldr.csv"
+        )
+      )
+      topic["summary"] = summary unless summary.nil? || summary.empty?
+
+      figure_path = resolve_resume_data_file(
+        resume_data_dir,
+        "research_topics/#{topic_id}/main.pdf",
+        "research/#{topic_id}/main.pdf"
+      )
+      topic["figure_url"] = resume_data_web_path(resume_data_dir, figure_path) unless figure_path.nil?
+
+      publications = build_research_topic_publications(bibliography, topic_id)
+      topic["publications"] = publications unless publications.nil?
+
+      topic
+    end
+
+    def build_research_topic_publications(bibliography, topic_id)
+      contents = bibliography.each_with_index.filter_map do |entry, index|
+        next unless normalize_bibtex_text(bibtex_field(entry, :research_topic)) == topic_id
+
+        keywords = bibtex_keywords(entry)
+        next unless keywords.include?("selected")
+        next if keywords.include?("blog") || keywords.include?("oss")
+
+        build_bibliography_content(entry, index)
+      end.sort_by { |content| [-content.delete("_sort_year").to_i, content.delete("_sort_index").to_i] }
+      return nil if contents.empty?
+
+      {
+        "type" => "time_table",
+        "contents" => contents,
+      }
     end
 
     def build_publications_section(bibliography)
