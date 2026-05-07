@@ -7,7 +7,7 @@ module Jekyll
     SELF_AUTHOR_NAMES = ["森下 皓文", "Terufumi Morishita"].freeze
     CJK_REGEX = /[\p{Han}\p{Hiragana}\p{Katakana}]/
     WORK_RESEARCH_TOPICS_BY_POSITION = {
-      "hitachi" => %w[FLD ensemble economic_simulation competition debate NLP_applications],
+      "hitachi" => %w[FLD ensemble economic_simulation competition NLP_applications],
       "toshiba" => %w[speech_recognition],
     }.freeze
 
