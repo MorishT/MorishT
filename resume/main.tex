@@ -37,18 +37,18 @@
 
 
 
-
-
-
-
-
-
-
 \newif\ifispublicationlist
 
 % HONOKA
 \ispublicationlistfalse % resume version
 % \ispublicationlisttrue  % publication list version
+
+
+
+
+
+
+
 
 
 
@@ -90,6 +90,7 @@
 \usepackage{xcolor}
 \usepackage{graphicx}
 \usepackage[
+  datamodel=resume,
   backend=biber,
   sorting=ydnt,
   maxbibnames=99,
@@ -104,6 +105,23 @@
 \DeclareFieldFormat{cvpubplain}{#1}
 \DeclareFieldFormat{usera}{(採択率#1)}
 \newcommand{\cvpubformatnote}[1]{\textcolor{red}{#1}}
+
+\DeclareSortingTemplate{cvresearch}{
+  \sort[direction=descending]{
+    \field{sortyear}
+    \field{year}
+  }
+  \sort{
+    \field{sortname}
+    \field{author}
+    \field{editor}
+    \field{translator}
+  }
+  \sort{
+    \field{sorttitle}
+    \field{title}
+  }
+}
 
 
 
@@ -402,6 +420,9 @@
   \iffieldundef{note}
     {}
     {\space\cvpubformatnote{\printfield{note}}}%
+  \iffieldundef{addendum}
+    {}
+    {\space\printfield{addendum}}%
   \iffieldundef{usera}
     {}
     {\space\printfield{usera}}%
@@ -424,6 +445,9 @@
   \iffieldundef{note}
     {}
     {\space\cvpubformatnote{\printfield[cvpubplain]{note}}}%
+  \iffieldundef{addendum}
+    {}
+    {\space\printfield[cvpubplain]{addendum}}%
   \iffieldundef{usera}
     {}
     {\space\printfield{usera}}%
@@ -454,6 +478,7 @@
 \bool_new:N \l_cvpub_selected_bool
 \bool_new:N \l_cvpub_match_bool
 \bool_new:N \l_cvpub_show_authors_bool
+\tl_new:N \l_cvresearchpub_topic_tl
 
 \msg_new:nnn { cvpub } { unknown-label }
   { Unknown~publication~label~'#1'. }
@@ -482,6 +507,13 @@
     \ifkeyword{#1}
       { \bool_set_false:N \l_cvpub_match_bool }
       {}
+  }
+
+\cs_new_protected:Npn \cvpub_require_research_topic:n #1
+  {
+    \iffieldequalstr{research_topic}{#1}
+      {}
+      { \bool_set_false:N \l_cvpub_match_bool }
   }
 
 \cs_new_protected:Npn \cvpub_apply_label:n #1
@@ -545,6 +577,17 @@
       { \skipentry }
   }
 
+\defbibcheck{cvresearchpubfilter}
+  {
+    \bool_set_true:N \l_cvpub_match_bool
+    \exp_args:NV \cvpub_require_research_topic:n \l_cvresearchpub_topic_tl
+    \cvpub_require_keyword:n {selected}
+    \cvpub_require_not_keyword:n {blog}
+    \cvpub_require_not_keyword:n {oss}
+    \bool_if:NF \l_cvpub_match_bool
+      { \skipentry }
+  }
+
 \NewDocumentCommand{\printpublicationbibliography}{ O{} }
   {
     \group_begin:
@@ -559,6 +602,16 @@
       \keys_set:nn { cvpub } { #1 }
       \newrefcontext[sorting=none]
       \printbibliography[heading=none, env=cvpublist, check=cvpubfilter]
+    \group_end:
+  }
+
+\NewDocumentCommand{\printresearchpublicationbibliography}{ m }
+  {
+    \group_begin:
+      \keys_set:nn { cvpub } { show-authors = false }
+      \tl_set:Nn \l_cvresearchpub_topic_tl {#1}
+      \newrefcontext[sorting=cvresearch]
+      \printbibliography[heading=none, env=cvpublist, check=cvresearchpubfilter]
     \group_end:
   }
 
@@ -595,24 +648,38 @@
 
 \newread\cvprimaryreader
 \newread\cvsecondaryreader
+\newread\cvtertiaryreader
 \newcommand{\cvcsvend}{}
 \newcommand{\cvcurrentline}{}
-\newcommand{\cvworkprojectsfile}{}
-\newcommand{\cvtargetposition}{}
-\newcommand{\cvpositionid}{}
 \newcommand{\cvthesisvalue}{}
+\newcommand{\cvsinglefilevalue}{}
+\newcommand{\cvresearchtitlevalue}{}
+\newcommand{\cvresearchsummaryvalue}{}
+\def\cvpar{\par}
+
+\newcommand{\cvreadcsvrowsloop}[2]{%
+  \ifeof#1
+  \else
+    \read#1 to \cvcurrentline
+    \ifx\cvcurrentline\cvpar
+    \else
+      \expandafter#2\cvcurrentline\cvcsvend
+    \fi
+    \cvreadcsvrowsloop#1{#2}%
+  \fi
+}
 
 \newcommand{\cvreadcsvrows}[3]{%
   \openin#1=#2\relax
-  \read#1 to \cvcurrentline % skip header
-  \loop\unless\ifeof#1
-    \read#1 to \cvcurrentline
-    \expandafter#3\cvcurrentline\cvcsvend
-  \repeat
+  \ifeof#1
+  \else
+    \read#1 to \cvcurrentline % skip header
+    \cvreadcsvrowsloop#1{#3}%
+  \fi
   \closein#1
 }
 
-\def\cveducationrow#1,#2,#3,#4,#5,#6,#7\cvcsvend{%
+\def\cveducationrow#1,#2,#3,#4,#5,#6,#7,#8\cvcsvend{%
   \def\cvthesisvalue{#7}%
   \cventry{#2}{#3}{#4}{}{}{%
     研究分野: #5 \quad 指導教員: #6%
@@ -627,25 +694,53 @@
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cveducationrow}%
 }
 
-\def\cvworkprojectrow#1,#2,#3,#4\cvcsvend{%
-  \def\cvpositionid{#1}%
-  \ifx\cvpositionid\cvtargetposition
-    \cventry{}{#3}{}{}{}{\cvsmallitem{#4}}%
+\newcommand{\cvreadsinglevalue}[2]{%
+  \def#2{}%
+  \openin\cvtertiaryreader=#1\relax
+  \ifeof\cvtertiaryreader
+  \else
+    \read\cvtertiaryreader to \cvcurrentline
+    \edef\cvsinglefilevalue{\cvcurrentline}%
+    \expandafter\def\expandafter#2\expandafter{\cvsinglefilevalue}%
   \fi
+  \closein\cvtertiaryreader
 }
 
-\newcommand{\cvrenderworkprojects}[2]{%
-  \def\cvtargetposition{#2}%
-  \cvreadcsvrows{\cvsecondaryreader}{#1}{\cvworkprojectrow}%
+\newcommand{\cvrenderresearchworkitem}[1]{%
+  \IfFileExists{data/research_topics/#1/tldr.txt}{%
+    \cvreadsinglevalue{data/research_topics/#1/title.txt}{\cvresearchtitlevalue}%
+    \cvreadsinglevalue{data/research_topics/#1/tldr.txt}{\cvresearchsummaryvalue}%
+    \cventry{}{\cvresearchtitlevalue}{}{}{}{\cvsmallitem{\cvresearchsummaryvalue}}%
+  }{}%
+}
+
+\newcommand{\cvrenderworkprojectsforposition}[1]{%
+  \def\cvsinglefilevalue{#1}%
+  \ifx\cvsinglefilevalue\empty
+  \else
+    \def\cvpositionlabel{hitachi}%
+    \ifx\cvsinglefilevalue\cvpositionlabel
+      \cvrenderresearchworkitem{FLD}%
+      \cvrenderresearchworkitem{ensemble}%
+      \cvrenderresearchworkitem{economic_simulation}%
+      \cvrenderresearchworkitem{competition}%
+      \cvrenderresearchworkitem{debate}%
+      \cvrenderresearchworkitem{NLP_applications}%
+    \else
+      \def\cvpositionlabel{toshiba}%
+      \ifx\cvsinglefilevalue\cvpositionlabel
+        \cvrenderresearchworkitem{speech_recognition}%
+      \fi
+    \fi
+  \fi
 }
 
 \def\cvworkpositionrow#1,#2,#3,#4\cvcsvend{%
   \cvsubsection{#3}{#4}%
-  \cvrenderworkprojects{\cvworkprojectsfile}{#1}%
+  \cvrenderworkprojectsforposition{#1}%
 }
 
-\newcommand{\cvrenderworkexperience}[2]{%
-  \def\cvworkprojectsfile{#2}%
+\newcommand{\cvrenderworkexperience}[1]{%
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cvworkpositionrow}%
 }
 
@@ -668,7 +763,7 @@
 }
 \makeatother
 
-\def\cvawardrow#1,#2,#3\cvcsvend{%
+\def\cvawardrow#1,#2,#3,#4,#5\cvcsvend{%
   \cvitem{#1}{%
     #2\space
     \cvawardformat{#3}%
@@ -677,6 +772,51 @@
 
 \newcommand{\cvrenderawards}[1]{%
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cvawardrow}%
+}
+
+\newcommand{\cvrendersectiontitle}[1]{%
+  \cvreadsinglevalue{#1}{\cvresearchtitlevalue}%
+  \section{\textbf{\cvresearchtitlevalue}}%
+}
+
+\newcommand{\cvresearchgrouptitle}{%
+  {\namefont\textcolor{color0}{研究紹介}\par}%
+  \vspace{5mm}%
+}
+
+\newcommand{\cvresearchfigure}[1]{%
+  \IfFileExists{#1}{%
+    \par\vspace{10mm}
+    \noindent\includegraphics[width=\linewidth]{#1}%
+    \par
+  }{}%
+}
+
+\newcommand{\cvrenderresearchpublications}[1]{%
+  \par\vspace{6mm}%
+  {\bfseries 既存発表}\par
+  \vspace{1mm}%
+  \printresearchpublicationbibliography{#1}%
+}
+
+\newcommand{\cvrenderresearchsection}[1]{%
+  \cvrendersectiontitle{data/research_topics/#1/title.txt}%
+  \vspace{1mm}%
+  \cvnarrativeinput{data/research_topics/#1/body.tex}%
+  \cvresearchfigure{data/research_topics/#1/main.pdf}%
+  \cvrenderresearchpublications{#1}%
+}
+
+\newif\ifcvresearchfirstsection
+\newcommand{\cvrenderresearchsectionifbody}[1]{%
+  \IfFileExists{data/research_topics/#1/body.tex}{%
+    \ifcvresearchfirstsection
+      \cvresearchfirstsectionfalse
+    \else
+      \newpage
+    \fi
+    \cvrenderresearchsection{#1}%
+  }{}%
 }
 
 \newenvironment{cvnarrative}{%
@@ -715,8 +855,9 @@
 % \vspace{-5mm}
 \section{\textbf{研究分野}}
 
-\cvnarrativeinput{data/about.tex}
+\cvnarrativeinput{data/about/about.tex}
 \fi
+
 
 
 
@@ -725,16 +866,11 @@
 \ifispublicationlist
 \else
 % \vspace{-5mm}
-\section{\textbf{研究紹介 -- LLMに推論を教えるための論理推論コーパス自動生成}}
-\cvnarrativeinput{data/research.FLD.tex}
+\section{\textbf{学歴}}
+\cvrendereducation{data/education.csv}
 \fi
 
 
-
-
-\section{\textbf{学歴}}
-
-\cvrendereducation{data/education.csv}
 
 
 
@@ -748,7 +884,7 @@
 \ifispublicationlist
 \else
 \section{\textbf{職歴}}
-\cvrenderworkexperience{data/work_positions.csv}{data/work_projects.csv}
+\cvrenderworkexperience{data/work_positions.csv}
 \fi
 
 
@@ -825,6 +961,29 @@
 \section{\textbf{学術貢献活動}}
 \cvrenderacademicservice{data/academic_service.csv}
 \fi
+
+
+
+
+
+
+
+\ifispublicationlist
+\else
+% \vspace{-5mm}
+\cvresearchfirstsectiontrue
+\newpage
+\cvresearchgrouptitle
+\cvrenderresearchsectionifbody{FLD}
+\cvrenderresearchsectionifbody{ensemble}
+\cvrenderresearchsectionifbody{competition}
+\cvrenderresearchsectionifbody{economic_simulation}
+\cvrenderresearchsectionifbody{NLP_applications}
+\cvrenderresearchsectionifbody{speech_recognition}
+% \cvrenderresearchsectionifbody{debate}
+\cvrenderresearchsectionifbody{dark_matter}
+\fi
+
 
 
 

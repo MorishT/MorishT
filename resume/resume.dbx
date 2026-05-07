@@ -1,0 +1,6 @@
+\DeclareDatamodelFields[type=field,datatype=literal]{research_topic}
+\DeclareDatamodelEntryfields{research_topic}
+\DeclareDatamodelFields[type=field,datatype=literal]{research_scope}
+\DeclareDatamodelEntryfields{research_scope}
+\DeclareDatamodelFields[type=field,datatype=literal]{research_kind}
+\DeclareDatamodelEntryfields{research_kind}
