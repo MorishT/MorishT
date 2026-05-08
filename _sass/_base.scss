@@ -176,7 +176,44 @@ blockquote {
 }
 
 .about-page-title {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
   font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.about-page-title__main {
+  min-width: 0;
+}
+
+.about-page-title__x-link {
+  color: var(--global-text-color);
+  display: inline-flex;
+  flex: 0 0 auto;
+  font-size: 0.75em;
+  line-height: 1;
+  text-decoration: none;
+  transition: color 0.2s ease-in-out;
+
+  &:hover {
+    color: var(--global-theme-color);
+  }
+}
+
+.about-page-email {
+  color: var(--global-text-color);
+  font-size: 1rem;
+  line-height: 1.35;
+  margin-bottom: 1rem;
+}
+
+.social-icon-svg {
+  display: block;
+  fill: currentColor;
+  height: 1em;
+  width: 1em;
 }
 
 .about-hero {
@@ -346,15 +383,16 @@ html[data-site-lang="en"] .lang-ja {
     font-size: 1.7rem;
 
     a {
+      color: var(--global-text-color);
+      transition: color 0.2s ease-in-out;
+
       i::before {
-        color: var(--global-text-color);
+        color: currentColor;
         transition-property: all 0.2s ease-in-out;
       }
 
       &:hover {
-        i::before {
-          color: var(--global-theme-color);
-        }
+        color: var(--global-theme-color);
       }
     }
   }
@@ -428,15 +466,16 @@ html[data-site-lang="en"] .lang-ja {
     font-size: 4rem;
 
     a {
+      color: var(--global-text-color);
+      transition: color 0.2s ease-in-out;
+
       i::before {
-        color: var(--global-text-color);
+        color: currentColor;
         transition-property: all 0.2s ease-in-out;
       }
 
       &:hover {
-        i::before {
-          color: var(--global-theme-color);
-        }
+        color: var(--global-theme-color);
       }
     }
   }
