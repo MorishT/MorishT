@@ -15,6 +15,16 @@ layout: default
                 {% if site.email %}
                   <div class="about-page-email">{{ site.email }}</div>
                 {% endif %}
+                {% if site.twitter_username %}
+                  <div class="about-page-contact-note">
+                    <a class="about-page-contact-link" href="https://x.com/{{ site.twitter_username }}" title="X" aria-label="X">
+                      {% include social_x_icon.html %}
+                      <span>X</span>
+                    </a>
+                    <span class="lang-ja">からお気軽にお声がけください</span>
+                    <span class="lang-en">for quick contact.</span>
+                  </div>
+                {% endif %}
               </header>
 
               <div class="clearfix about-content">
