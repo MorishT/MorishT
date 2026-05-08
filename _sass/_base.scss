@@ -204,15 +204,16 @@ blockquote {
 
 .about-page-email {
   color: var(--global-text-color);
-  font-size: 1rem;
+  font-size: 1.3rem;
   line-height: 1.35;
   margin-bottom: 1rem;
 }
 
 .social-icon-svg {
-  display: block;
+  display: inline-block;
   fill: currentColor;
   height: 1em;
+  vertical-align: middle;
   width: 1em;
 }
 
@@ -384,6 +385,8 @@ html[data-site-lang="en"] .lang-ja {
 
     a {
       color: var(--global-text-color);
+      display: inline-flex;
+      align-items: center;
       transition: color 0.2s ease-in-out;
 
       i::before {
@@ -466,7 +469,9 @@ html[data-site-lang="en"] .lang-ja {
     font-size: 4rem;
 
     a {
+      align-items: center;
       color: var(--global-text-color);
+      display: inline-flex;
       transition: color 0.2s ease-in-out;
 
       i::before {
