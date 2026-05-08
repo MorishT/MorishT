@@ -98,20 +98,20 @@ mastodon_username: # your mastodon instance+username in the format instance.tld/
 linkedin_username: # your LinkedIn user name
 telegram_username: # your Telegram user name
 scholar_userid: DBD9bzYAAAAJ # your Google Scholar ID
-semanticscholar_id: # 1379579811 # your Semantic Scholar ID
+semanticscholar_id: https://www.semanticscholar.org/search?q=Terufumi%20Morishita # author ID unavailable; use profile search URL for now
 whatsapp_number: # your WhatsApp number (full phone number in international format. Omit any zeroes, brackets, or dashes when adding the phone number in international format.)
-orcid_id: # your ORCID ID
+orcid_id: 0009-0009-0753-587X # inferred from DBLP metadata
 medium_username: # your Medium username
 quora_username: # your Quora username
 publons_id: # your ID on Publons
 osf_id: # your OSF ID
 research_gate_profile: # your profile on ResearchGate
 blogger_url: # your blogger URL
-work_url: # work page URL
+work_url: https://rd.hitachi.com/_ct/17702735 # official Hitachi R&D article page
 keybase_username: # your keybase user name
 wikidata_id: # your wikidata id
 wikipedia_id: # your wikipedia id (Case sensitive)
-dblp_url: # your DBLP profile url
+dblp_url: https://dblp.org/pid/249/9379 # your DBLP profile url
 stackoverflow_id: # your stackoverflow id
 kaggle_id: # your kaggle id
 lastfm_id: # your lastfm id
