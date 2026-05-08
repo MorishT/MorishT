@@ -81,11 +81,7 @@
         {%- assign sameaslinks = sameaslinks | push: link -%}
     {%- endif -%}
     {%- if site.semanticscholar_id -%}
-        {%- if site.semanticscholar_id contains 'http' -%}
-            {%- assign link = site.semanticscholar_id -%}
-        {%- else -%}
-            {%- capture link -%}https://www.semanticscholar.org/author/{{ site.semanticscholar_id }}{%- endcapture -%}
-        {%- endif -%}
+        {%- capture link -%}https://www.semanticscholar.org/author/{{ site.semanticscholar_id }}{%- endcapture -%}
         {%- assign sameaslinks = sameaslinks | push: link -%}
     {%- endif -%}
     {%- if site.publons_id -%}
