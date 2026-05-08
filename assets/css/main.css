@@ -272,15 +272,16 @@ blockquote {
 
 .about-page-email {
   color: var(--global-text-color);
-  font-size: 1rem;
+  font-size: 1.3rem;
   line-height: 1.35;
   margin-bottom: 1rem;
 }
 
 .social-icon-svg {
-  display: block;
+  display: inline-block;
   fill: currentColor;
   height: 1em;
+  vertical-align: middle;
   width: 1em;
 }
 
@@ -423,6 +424,8 @@ html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-l
 }
 .navbar.navbar-light .navbar-brand.social a {
   color: var(--global-text-color);
+  display: inline-flex;
+  align-items: center;
   transition: color 0.2s ease-in-out;
 }
 .navbar.navbar-light .navbar-brand.social a i::before {
@@ -488,7 +491,9 @@ html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-l
   font-size: 4rem;
 }
 .social .contact-icons a {
+  align-items: center;
   color: var(--global-text-color);
+  display: inline-flex;
   transition: color 0.2s ease-in-out;
 }
 .social .contact-icons a i::before {
