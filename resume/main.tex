@@ -816,14 +816,8 @@
   \cvrenderresearchpublications{#1}%
 }
 
-\newif\ifcvresearchfirstsection
 \newcommand{\cvrenderresearchsectionifbody}[1]{%
   \IfFileExists{data/research_topics/#1/body.tex}{%
-    \ifcvresearchfirstsection
-      \cvresearchfirstsectionfalse
-    \else
-      \newpage
-    \fi
     \cvrenderresearchsection{#1}%
   }{}%
 }
@@ -980,16 +974,18 @@
 \ifispublicationlist
 \else
 % \vspace{-5mm}
-\cvresearchfirstsectiontrue
 \newpage
 \cvresearchgrouptitle
 \cvrenderresearchsectionifbody{FLD}
+\newpage
 \cvrenderresearchsectionifbody{ensemble}
+\newpage
 \cvrenderresearchsectionifbody{competition}
+\newpage
 \cvrenderresearchsectionifbody{economic_simulation}
 % \cvrenderresearchsectionifbody{NLP_applications}
 % \cvrenderresearchsectionifbody{speech_recognition}
-% \cvrenderresearchsectionifbody{debate}
+\cvrenderresearchsectionifbody{debate}
 \cvrenderresearchsectionifbody{dark_matter}
 \fi
 
