@@ -176,32 +176,8 @@ blockquote {
 }
 
 .about-page-title {
-  align-items: flex-end;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
   font-weight: 700;
   margin-bottom: 0.35rem;
-}
-
-.about-page-title__main {
-  min-width: 0;
-}
-
-.about-page-title__x-link {
-  align-self: flex-end;
-  color: var(--global-text-color);
-  display: inline-flex;
-  flex: 0 0 auto;
-  font-size: 0.56em;
-  line-height: 1;
-  text-decoration: none;
-  transform: translateY(0.12em);
-  transition: color 0.2s ease-in-out;
-
-  &:hover {
-    color: var(--global-theme-color);
-  }
 }
 
 .about-page-email {
@@ -214,9 +190,9 @@ blockquote {
 .social-icon-svg {
   display: inline-block;
   fill: currentColor;
-  height: 1em;
+  height: 0.9em;
   vertical-align: -0.08em;
-  width: 1em;
+  width: 0.9em;
 }
 
 .about-hero {
@@ -401,10 +377,6 @@ html[data-site-lang="en"] .lang-ja {
       }
     }
 
-    .social-icon-svg {
-      height: 1.12em;
-      width: 1.12em;
-    }
   }
 }
 
@@ -491,10 +463,6 @@ html[data-site-lang="en"] .lang-ja {
       }
     }
 
-    .social-icon-svg {
-      height: 1.12em;
-      width: 1.12em;
-    }
   }
 
   .contact-note {
