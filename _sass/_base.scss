@@ -176,7 +176,7 @@ blockquote {
 }
 
 .about-page-title {
-  align-items: center;
+  align-items: flex-end;
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
@@ -189,12 +189,14 @@ blockquote {
 }
 
 .about-page-title__x-link {
+  align-self: flex-end;
   color: var(--global-text-color);
   display: inline-flex;
   flex: 0 0 auto;
   font-size: 0.56em;
   line-height: 1;
   text-decoration: none;
+  transform: translateY(0.12em);
   transition: color 0.2s ease-in-out;
 
   &:hover {
@@ -213,7 +215,7 @@ blockquote {
   display: inline-block;
   fill: currentColor;
   height: 1em;
-  vertical-align: middle;
+  vertical-align: -0.08em;
   width: 1em;
 }
 
@@ -398,6 +400,11 @@ html[data-site-lang="en"] .lang-ja {
         color: var(--global-theme-color);
       }
     }
+
+    .social-icon-svg {
+      height: 1.12em;
+      width: 1.12em;
+    }
   }
 }
 
@@ -482,6 +489,11 @@ html[data-site-lang="en"] .lang-ja {
       &:hover {
         color: var(--global-theme-color);
       }
+    }
+
+    .social-icon-svg {
+      height: 1.12em;
+      width: 1.12em;
     }
   }
 
