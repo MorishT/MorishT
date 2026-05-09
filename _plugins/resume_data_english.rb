@@ -225,7 +225,9 @@ module Jekyll
           read_single_value_file(
             resolve_resume_data_file(
               resume_data_dir,
+              "research_topics/#{topic_id}/en/title.txt",
               "research_topics/#{topic_id}/title_en.txt",
+              "research_topics/#{topic_id}/jp/title.txt",
               "research_topics/#{topic_id}/title.txt"
             )
           )
@@ -259,7 +261,8 @@ module Jekyll
         topic_dir = File.join(research_topics_dir, topic_id)
         next false unless Dir.exist?(topic_dir)
 
-        File.exist?(File.join(topic_dir, "body_en.md"))
+        File.exist?(File.join(topic_dir, "en", "body.md")) ||
+          File.exist?(File.join(topic_dir, "body_en.md"))
       end
 
       topic_ids.sort_by do |topic_id|
@@ -270,9 +273,17 @@ module Jekyll
 
     def build_research_topic_en(site, resume_data_dir, bibliography, topic_id)
       title = read_single_value_file(
-        resolve_resume_data_file(resume_data_dir, "research_topics/#{topic_id}/title_en.txt")
+        resolve_resume_data_file(
+          resume_data_dir,
+          "research_topics/#{topic_id}/en/title.txt",
+          "research_topics/#{topic_id}/title_en.txt"
+        )
       )
-      body_markdown = read_optional_resume_data_file(resume_data_dir, "research_topics/#{topic_id}/body_en.md")
+      body_markdown = read_optional_resume_data_file(
+        resume_data_dir,
+        "research_topics/#{topic_id}/en/body.md",
+        "research_topics/#{topic_id}/body_en.md"
+      )
       return nil if title.nil? || body_markdown.nil?
 
       topic = {
@@ -282,20 +293,26 @@ module Jekyll
       }
 
       summary = read_single_value_file(
-        resolve_resume_data_file(resume_data_dir, "research_topics/#{topic_id}/tldr_en.txt")
+        resolve_resume_data_file(
+          resume_data_dir,
+          "research_topics/#{topic_id}/en/tldr.txt",
+          "research_topics/#{topic_id}/tldr_en.txt"
+        )
       )
       topic["summary"] = summary unless summary.nil? || summary.empty?
 
       figure_path = resolve_resume_data_file(
         resume_data_dir,
+        "research_topics/#{topic_id}/en/main.pdf",
         "research_topics/#{topic_id}/main_en.pdf",
+        "research_topics/#{topic_id}/jp/main.pdf",
         "research_topics/#{topic_id}/main.pdf",
         "research/#{topic_id}/main_en.pdf",
         "research/#{topic_id}/main.pdf"
       )
       unless figure_path.nil?
         topic["figure_url"] = resume_data_web_path(resume_data_dir, figure_path)
-        english_preview = File.basename(figure_path) == "main_en.pdf"
+        english_preview = figure_path.include?("/en/")
         topic["figure_preview_image_url"] = research_topic_figure_preview_image_url(site, topic_id, english: english_preview)
       end
 

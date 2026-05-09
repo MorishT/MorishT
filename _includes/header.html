@@ -1,12 +1,9 @@
 
     <header>
-      {% assign current_lang_variant = page.lang_variant | default: '' %}
       {%- for nav_page in site.pages -%}
         {% if nav_page.permalink == '/' %}
           {% assign about_title = nav_page.title %}
           {% assign about_title_en = nav_page.title_en | default: nav_page.title %}
-          {% assign about_url_ja = nav_page.url_ja %}
-          {% assign about_url_en = nav_page.url_en %}
         {% endif %}
       {% endfor %}
 
@@ -14,13 +11,7 @@
       <nav id="navbar" class="navbar navbar-light navbar-expand-sm {% if site.navbar_fixed %}fixed-top{% else %}sticky-top{% endif %}">
         <div class="container">
           {% if page.permalink != '/' -%}
-          {% assign navbar_home_href = '/' %}
-          {% if current_lang_variant == 'ja' and about_url_ja %}
-            {% assign navbar_home_href = about_url_ja %}
-          {% elsif current_lang_variant == 'en' and about_url_en %}
-            {% assign navbar_home_href = about_url_en %}
-          {% endif %}
-          <a class="navbar-brand title font-weight-lighter" href="{{ navbar_home_href | relative_url }}">
+          <a class="navbar-brand title font-weight-lighter" href="{{ site.baseurl }}/">
             {%- if site.title == "blank" -%}
               {%- if site.first_name -%}
                 <span class="font-weight-bold">{{- site.first_name -}}&nbsp;</span>
@@ -53,17 +44,11 @@
             <ul class="navbar-nav ml-auto flex-nowrap">
 
               <!-- About -->
-              {% assign about_href = '/' %}
-              {% if current_lang_variant == 'ja' and about_url_ja %}
-                {% assign about_href = about_url_ja %}
-              {% elsif current_lang_variant == 'en' and about_url_en %}
-                {% assign about_href = about_url_en %}
-              {% endif %}
-              <li class="nav-item {% if page.nav_key == 'about' or page.permalink == '/' %}active{% endif %}">
-                <a class="nav-link" href="{{ about_href | relative_url }}">
+              <li class="nav-item {% if page.permalink == '/' %}active{% endif %}">
+                <a class="nav-link" href="{{ '/' | relative_url }}">
                   <span class="lang-ja">{{ about_title }}</span>
                   <span class="lang-en">{{ about_title_en }}</span>
-                  {%- if page.nav_key == 'about' or page.permalink == '/' -%}
+                  {%- if page.permalink == '/' -%}
                   <span class="sr-only">(current)</span>
                   {%- endif -%}
                 </a>
@@ -83,12 +68,6 @@
               {%- assign sorted_pages = site.pages | sort: "nav_order" -%}
               {%- for p in sorted_pages -%}
               {%- if p.nav and p.autogen == nil -%}
-              {% assign nav_href = p.url %}
-              {% if current_lang_variant == 'ja' and p.url_ja %}
-                {% assign nav_href = p.url_ja %}
-              {% elsif current_lang_variant == 'en' and p.url_en %}
-                {% assign nav_href = p.url_en %}
-              {% endif %}
               {%- if p.dropdown %}
               <li class="nav-item dropdown {% if page.title == p.title %}active{% endif %}">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,7 +92,7 @@
               </li>
               {%- else %}
               <li class="nav-item {% if page.title == p.title %}active{% endif %}">
-                <a class="nav-link" href="{{ nav_href | relative_url }}">
+                <a class="nav-link" href="{{ p.url | relative_url }}">
                   <span class="lang-ja">{{ p.title }}</span>
                   <span class="lang-en">{{ p.title_en | default: p.title }}</span>
                   {%- if page.title == p.title -%}

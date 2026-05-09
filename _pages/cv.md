@@ -3,9 +3,6 @@ layout: cv
 permalink: /cv/
 title: 経歴
 title_en: Career
-nav_key: cv
-url_ja: /jp/cv/
-url_en: /en/cv/
 description: ""
 description_en: ""
 nav: true

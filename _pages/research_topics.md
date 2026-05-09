@@ -3,9 +3,6 @@ layout: page
 permalink: /research-topics/
 title: 研究トピック
 title_en: Research Topics
-nav_key: research-topics
-url_ja: /jp/research-topics/
-url_en: /en/research-topics/
 description: ""
 description_en: ""
 nav: true

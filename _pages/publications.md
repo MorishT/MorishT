@@ -3,9 +3,6 @@ layout: page
 permalink: /publications/
 title: 研究業績
 title_en: Research Achievements
-nav_key: publications
-url_ja: /jp/publications/
-url_en: /en/publications/
 description: ""
 description_en: ""
 nav: true

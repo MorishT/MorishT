@@ -230,6 +230,7 @@ module Jekyll
           read_single_value_file(
             resolve_resume_data_file(
               resume_data_dir,
+              "research_topics/#{topic_id}/jp/title.txt",
               "research_topics/#{topic_id}/title.txt",
               "research/#{topic_id}/title.txt",
               "research/#{topic_id}/title.csv"
@@ -253,7 +254,10 @@ module Jekyll
         topic_dir = File.join(research_topics_dir, topic_id)
         next false unless Dir.exist?(topic_dir)
 
-        File.exist?(File.join(topic_dir, "body.md")) || File.exist?(File.join(topic_dir, "body.tex"))
+        File.exist?(File.join(topic_dir, "jp", "body.md")) ||
+          File.exist?(File.join(topic_dir, "jp", "body.tex")) ||
+          File.exist?(File.join(topic_dir, "body.md")) ||
+          File.exist?(File.join(topic_dir, "body.tex"))
       end
 
       topic_ids.sort_by do |topic_id|
@@ -266,6 +270,7 @@ module Jekyll
       title = read_single_value_file(
         resolve_resume_data_file(
           resume_data_dir,
+          "research_topics/#{topic_id}/jp/title.txt",
           "research_topics/#{topic_id}/title.txt",
           "research/#{topic_id}/title.txt",
           "research/#{topic_id}/title.csv"
@@ -273,6 +278,7 @@ module Jekyll
       )
       body_markdown = read_optional_resume_data_file(
         resume_data_dir,
+        "research_topics/#{topic_id}/jp/body.md",
         "research_topics/#{topic_id}/body.md",
         "research/#{topic_id}/body.md"
       )
@@ -287,6 +293,7 @@ module Jekyll
       summary = read_single_value_file(
         resolve_resume_data_file(
           resume_data_dir,
+          "research_topics/#{topic_id}/jp/tldr.txt",
           "research_topics/#{topic_id}/tldr.txt",
           "research/#{topic_id}/tldr.txt",
           "research/#{topic_id}/tldr.csv"
@@ -296,6 +303,7 @@ module Jekyll
 
       figure_path = resolve_resume_data_file(
         resume_data_dir,
+        "research_topics/#{topic_id}/jp/main.pdf",
         "research_topics/#{topic_id}/main.pdf",
         "research/#{topic_id}/main.pdf"
       )
