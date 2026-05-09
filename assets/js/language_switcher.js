@@ -36,6 +36,26 @@
     document.title = !isHome && pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
   };
 
+  const readForcedLanguage = () => {
+    if (document.body?.dataset.forcedLang) {
+      return VALID_LANGUAGES.has(document.body.dataset.forcedLang) ? document.body.dataset.forcedLang : null;
+    }
+
+    const htmlLanguage = document.documentElement.dataset.siteLang;
+    const htmlForced = document.documentElement.dataset.siteLangForced === 'true';
+    return htmlForced && VALID_LANGUAGES.has(htmlLanguage) ? htmlLanguage : null;
+  };
+
+  const readLanguageUrl = (language) => {
+    if (!document.body) {
+      return null;
+    }
+
+    const attributeName = language === 'en' ? 'langUrlEn' : 'langUrlJa';
+    const url = document.body.dataset[attributeName];
+    return url && url.trim() !== '' ? url : null;
+  };
+
   const applyLanguage = (language, persist) => {
     const nextLanguage = VALID_LANGUAGES.has(language) ? language : DEFAULT_LANGUAGE;
     const html = document.documentElement;
@@ -57,13 +77,23 @@
   };
 
   document.addEventListener('DOMContentLoaded', () => {
-    const initialLanguage = readSavedLanguage() || document.documentElement.dataset.siteLang || DEFAULT_LANGUAGE;
+    const forcedLanguage = readForcedLanguage();
+    const initialLanguage = forcedLanguage || readSavedLanguage() || document.documentElement.dataset.siteLang || DEFAULT_LANGUAGE;
 
     applyLanguage(initialLanguage, false);
 
     document.querySelectorAll('[data-lang-switch]').forEach((button) => {
       button.addEventListener('click', () => {
-        applyLanguage(button.dataset.langSwitch, true);
+        const nextLanguage = button.dataset.langSwitch;
+        writeSavedLanguage(nextLanguage);
+
+        const targetUrl = readLanguageUrl(nextLanguage);
+        if (targetUrl && targetUrl !== window.location.pathname) {
+          window.location.assign(targetUrl);
+          return;
+        }
+
+        applyLanguage(nextLanguage, false);
       });
     });
   });

@@ -1,17 +1,17 @@
 ---
 layout: page
-permalink: /publications/
+permalink: /en/publications/
 title: 研究業績
 title_en: Research Achievements
+nav: false
 nav_key: publications
+lang_variant: en
+forced_lang: en
 url_ja: /jp/publications/
 url_en: /en/publications/
 description: ""
 description_en: ""
-nav: true
-nav_order: 2
 ---
-<!-- _pages/publications.md -->
 {% assign cv_ja_entries = site.data.resume.cv_ja | default: site.data.cv_ja %}
 {% assign cv_en_entries = site.data.resume.cv_en | default: empty %}
 

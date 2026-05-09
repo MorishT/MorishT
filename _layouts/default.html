@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ site.lang }}" data-site-lang="{{ site.lang }}">
+<html lang="{{ page.forced_lang | default: site.lang }}" data-site-lang="{{ page.forced_lang | default: site.lang }}" data-site-lang-forced="{% if page.forced_lang %}true{% else %}false{% endif %}">
 
   <!-- Head -->
   <head>
@@ -10,13 +10,18 @@
   </head>
 
   <!-- Body -->
+  {% capture lang_url_ja_attr %}{% if page.url_ja %}{{ page.url_ja | relative_url }}{% endif %}{% endcapture %}
+  {% capture lang_url_en_attr %}{% if page.url_en %}{{ page.url_en | relative_url }}{% endif %}{% endcapture %}
   <body
     class="{% if site.navbar_fixed %}fixed-top-nav{% endif %} {% unless site.footer_fixed %}sticky-bottom-footer{% endunless %}"
-    data-is-home="{% if page.url == '/' %}true{% else %}false{% endif %}"
+    data-is-home="{% if page.url == '/' or page.nav_key == 'about' %}true{% else %}false{% endif %}"
     data-page-title-ja="{{ page.title | default: '' | escape }}"
     data-page-title-en="{{ page.title_en | default: page.title | default: '' | escape }}"
     data-site-title-ja="{{ page.site_title_ja | default: site.site_title_ja | default: site.title | escape }}"
     data-site-title-en="{{ page.site_title_en | default: site.site_title_en | default: site.title | escape }}"
+    data-forced-lang="{{ page.forced_lang | default: '' | escape }}"
+    data-lang-url-ja="{{ lang_url_ja_attr | strip }}"
+    data-lang-url-en="{{ lang_url_en_attr | strip }}"
   >
 
     <!-- Header -->

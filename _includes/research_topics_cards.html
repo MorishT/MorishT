@@ -14,10 +14,14 @@
     </div>
 
     {% if topic.figure_url %}
+      {% assign figure_preview_image_url = topic.figure_preview_image_url %}
+      {% unless figure_preview_image_url %}
+        {% assign figure_preview_image_url = '/assets/img/research_topics/' | append: topic.id | append: '.png' %}
+      {% endunless %}
       <a class="research-topic-figure-link" href="{{ topic.figure_url | relative_url }}" target="_blank" rel="noopener noreferrer">
         <img
           class="research-topic-figure"
-          src="{{ '/assets/img/research_topics/' | append: topic.id | append: '.png' | relative_url }}"
+          src="{{ figure_preview_image_url | relative_url }}"
           alt="{{ topic.title | escape }}"
           loading="lazy"
         >

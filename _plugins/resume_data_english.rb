@@ -40,7 +40,7 @@ module Jekyll
       site.data["resume"]["about_en"] = read_optional_resume_data_file(resume_data_dir, "about/about_en.md")
       site.data["resume"]["cv_en"] = build_cv_en(resume_data_dir, bibliography)
       site.data["resume"]["selected_achievements_en"] = build_selected_achievements_en(bibliography)
-      site.data["resume"]["research_topics_en"] = build_research_topics_en(resume_data_dir, bibliography)
+      site.data["resume"]["research_topics_en"] = build_research_topics_en(site, resume_data_dir, bibliography)
     end
 
     private
@@ -245,9 +245,9 @@ module Jekyll
       }
     end
 
-    def build_research_topics_en(resume_data_dir, bibliography)
+    def build_research_topics_en(site, resume_data_dir, bibliography)
       research_topic_ids_with_body_en(resume_data_dir).filter_map do |topic_id|
-        build_research_topic_en(resume_data_dir, bibliography, topic_id)
+        build_research_topic_en(site, resume_data_dir, bibliography, topic_id)
       end
     end
 
@@ -268,7 +268,7 @@ module Jekyll
       end
     end
 
-    def build_research_topic_en(resume_data_dir, bibliography, topic_id)
+    def build_research_topic_en(site, resume_data_dir, bibliography, topic_id)
       title = read_single_value_file(
         resolve_resume_data_file(resume_data_dir, "research_topics/#{topic_id}/title_en.txt")
       )
@@ -288,10 +288,16 @@ module Jekyll
 
       figure_path = resolve_resume_data_file(
         resume_data_dir,
+        "research_topics/#{topic_id}/main_en.pdf",
         "research_topics/#{topic_id}/main.pdf",
+        "research/#{topic_id}/main_en.pdf",
         "research/#{topic_id}/main.pdf"
       )
-      topic["figure_url"] = resume_data_web_path(resume_data_dir, figure_path) unless figure_path.nil?
+      unless figure_path.nil?
+        topic["figure_url"] = resume_data_web_path(resume_data_dir, figure_path)
+        english_preview = File.basename(figure_path) == "main_en.pdf"
+        topic["figure_preview_image_url"] = research_topic_figure_preview_image_url(site, topic_id, english: english_preview)
+      end
 
       publications = build_research_topic_publications_en(bibliography, topic_id)
       topic["publications"] = publications unless publications.nil?
@@ -316,6 +322,21 @@ module Jekyll
         "type" => "time_table",
         "contents" => contents,
       }
+    end
+
+    def research_topic_figure_preview_image_url(site, topic_id, english: false)
+      preview_candidates = []
+      preview_candidates << "#{topic_id}_en.png" if english
+      preview_candidates << "#{topic_id}.png"
+
+      preview_candidates.each do |filename|
+        absolute_path = File.join(site.source, "assets", "img", "research_topics", filename)
+        next unless File.exist?(absolute_path)
+
+        return File.join("/assets/img/research_topics", filename)
+      end
+
+      nil
     end
 
     def build_publications_section_en(bibliography)

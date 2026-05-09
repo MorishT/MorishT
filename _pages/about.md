@@ -3,6 +3,9 @@ layout: about
 title: プロフィール
 title_en: Profile
 permalink: /
+nav_key: about
+url_ja: /jp/
+url_en: /en/
 subtitle: ""
 subtitle_en: ""
 header_title_ja: 森下 皓文

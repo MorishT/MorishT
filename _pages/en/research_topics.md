@@ -1,17 +1,17 @@
 ---
 layout: page
-permalink: /research-topics/
+permalink: /en/research-topics/
 title: 研究トピック
 title_en: Research Topics
+nav: false
 nav_key: research-topics
+lang_variant: en
+forced_lang: en
 url_ja: /jp/research-topics/
 url_en: /en/research-topics/
 description: ""
 description_en: ""
-nav: true
-nav_order: 1
 ---
-
 {% assign research_topics_ja = site.data.resume.research_topics_ja | default: empty %}
 {% assign research_topics_en = site.data.resume.research_topics_en | default: empty %}
 

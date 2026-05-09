@@ -5,17 +5,21 @@
       (function() {
         var storageKey = 'preferred-language';
         var defaultLang = '{{ site.lang | default: "ja" }}';
-        var lang = defaultLang;
+        var forcedLang = '{{ page.forced_lang | default: "" }}';
+        var lang = forcedLang || defaultLang;
 
-        try {
-          var savedLang = window.localStorage.getItem(storageKey);
-          if (savedLang === 'ja' || savedLang === 'en') {
-            lang = savedLang;
-          }
-        } catch (error) {}
+        if (!forcedLang) {
+          try {
+            var savedLang = window.localStorage.getItem(storageKey);
+            if (savedLang === 'ja' || savedLang === 'en') {
+              lang = savedLang;
+            }
+          } catch (error) {}
+        }
 
         document.documentElement.lang = lang;
         document.documentElement.dataset.siteLang = lang;
+        document.documentElement.dataset.siteLangForced = forcedLang ? 'true' : 'false';
       })();
     </script>
 
