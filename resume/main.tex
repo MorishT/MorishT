@@ -707,9 +707,9 @@
 }
 
 \newcommand{\cvrenderresearchworkitem}[1]{%
-  \IfFileExists{data/research_topics/#1/tldr.txt}{%
-    \cvreadsinglevalue{data/research_topics/#1/title.txt}{\cvresearchtitlevalue}%
-    \cvreadsinglevalue{data/research_topics/#1/tldr.txt}{\cvresearchsummaryvalue}%
+  \IfFileExists{data/research_topics/#1/jp/tldr.txt}{%
+    \cvreadsinglevalue{data/research_topics/#1/jp/title.txt}{\cvresearchtitlevalue}%
+    \cvreadsinglevalue{data/research_topics/#1/jp/tldr.txt}{\cvresearchsummaryvalue}%
     \cventry{}{\cvresearchtitlevalue}{}{}{}{\cvsmallitem{\cvresearchsummaryvalue}}%
   }{}%
 }
@@ -800,24 +800,24 @@
 }
 
 \newcommand{\cvrenderresearchtldr}[1]{%
-  \IfFileExists{data/research_topics/#1/tldr.txt}{%
-    \cvreadsinglevalue{data/research_topics/#1/tldr.txt}{\cvresearchsummaryvalue}%
+  \IfFileExists{data/research_topics/#1/jp/tldr.txt}{%
+    \cvreadsinglevalue{data/research_topics/#1/jp/tldr.txt}{\cvresearchsummaryvalue}%
     {\bfseries \cvresearchsummaryvalue\par}%
     \vspace{3mm}%
   }{}%
 }
 
 \newcommand{\cvrenderresearchsection}[1]{%
-  \cvrendersectiontitle{data/research_topics/#1/title.txt}%
+  \cvrendersectiontitle{data/research_topics/#1/jp/title.txt}%
   \vspace{1mm}%
   \cvrenderresearchtldr{#1}%
-  \cvnarrativeinput{data/research_topics/#1/body.tex}%
-  \cvresearchfigure{data/research_topics/#1/main.pdf}%
+  \cvnarrativeinput{data/research_topics/#1/jp/body.tex}%
+  \cvresearchfigure{data/research_topics/#1/jp/main.pdf}%
   \cvrenderresearchpublications{#1}%
 }
 
 \newcommand{\cvrenderresearchsectionifbody}[1]{%
-  \IfFileExists{data/research_topics/#1/body.tex}{%
+  \IfFileExists{data/research_topics/#1/jp/body.tex}{%
     \cvrenderresearchsection{#1}%
   }{}%
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" data-site-lang="ja" data-site-lang-forced="false">
+<html lang="ja" data-site-lang="ja">
 
   <!-- Head -->
   <head>
@@ -62,21 +62,17 @@
       (function() {
         var storageKey = 'preferred-language';
         var defaultLang = 'ja';
-        var forcedLang = '';
-        var lang = forcedLang || defaultLang;
+        var lang = defaultLang;
 
-        if (!forcedLang) {
-          try {
-            var savedLang = window.localStorage.getItem(storageKey);
-            if (savedLang === 'ja' || savedLang === 'en') {
-              lang = savedLang;
-            }
-          } catch (error) {}
-        }
+        try {
+          var savedLang = window.localStorage.getItem(storageKey);
+          if (savedLang === 'ja' || savedLang === 'en') {
+            lang = savedLang;
+          }
+        } catch (error) {}
 
         document.documentElement.lang = lang;
         document.documentElement.dataset.siteLang = lang;
-        document.documentElement.dataset.siteLangForced = forcedLang ? 'true' : 'false';
       })();
     </script>
 
@@ -105,19 +101,14 @@
   </head>
 
   <!-- Body -->
-  
-  
-  <body class="fixed-top-nav sticky-bottom-footer" data-is-home="false" data-page-title-ja="Announcement_3" data-page-title-en="Announcement_3" data-site-title-ja="森下 皓文" data-site-title-en="Terufumi Morishita" data-forced-lang="" data-lang-url-ja="" data-lang-url-en="">
+  <body class="fixed-top-nav sticky-bottom-footer" data-is-home="false" data-page-title-ja="Announcement_3" data-page-title-en="Announcement_3" data-site-title-ja="森下 皓文" data-site-title-en="Terufumi Morishita">
 
     <!-- Header -->
     <header>
-      
 
       <!-- Nav Bar -->
       <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
         <div class="container">
-          
-          
           <a class="navbar-brand title font-weight-lighter" href="/MorishT/">森下 皓文</a>
           <!-- Navbar Toggle -->
           <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -131,8 +122,6 @@
             <ul class="navbar-nav ml-auto flex-nowrap">
 
               <!-- About -->
-              
-              
               <li class="nav-item ">
                 <a class="nav-link" href="/MorishT/">
                   <span class="lang-ja">プロフィール</span>
@@ -141,19 +130,16 @@
               
 
               <!-- Other pages -->
-              
               <li class="nav-item ">
                 <a class="nav-link" href="/MorishT/research-topics/">
                   <span class="lang-ja">研究トピック</span>
                   <span class="lang-en">Research Topics</span></a>
               </li>
-              
               <li class="nav-item ">
                 <a class="nav-link" href="/MorishT/publications/">
                   <span class="lang-ja">研究業績</span>
                   <span class="lang-en">Research Achievements</span></a>
               </li>
-              
               <li class="nav-item ">
                 <a class="nav-link" href="/MorishT/cv/">
                   <span class="lang-ja">経歴</span>
@@ -207,8 +193,8 @@
         <span class="lang-ja"><a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> と <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> テーマを使って構築しています。
 </span>
         <span class="lang-en">Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-</span><span class="lang-ja">最終更新: 2026年05月09日 19:29 JST.</span>
-        <span class="lang-en">Last updated: May 09, 2026 19:29 JST.</span>
+</span><span class="lang-ja">最終更新: 2026年05月09日 19:54 JST.</span>
+        <span class="lang-en">Last updated: May 09, 2026 19:54 JST.</span>
       </div>
     </footer>
 
