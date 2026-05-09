@@ -1,3 +1,3 @@
-order,title,summary
-1,学会運営,Area Chair of ACL Rolling Review / 言語処理学会(2026)テーマセッション「大規模言語モデル時代の数式NLP：表現・推論・検証の実務基盤」
-2,査読経験,NeurIPS / ICML / ICLR / ACL / EMNLP / EACL / COLING / LREC
+order,title,title_en,summary,summary_en
+1,学会運営,Organization,"Area Chair of ACL Rolling Review / 言語処理学会(2026)テーマセッション「大規模言語モデル時代の数式NLP：表現・推論・検証の実務基盤」","Area Chair of ACL Rolling Review / Organizer of the NLP 2026 theme session: ""Mathematical NLP in the Era of Large Language Models: Practical Foundations for Representation, Reasoning, and Verification"""
+2,査読経験,Reviewing,NeurIPS / ICML / ICLR / ACL / EMNLP / EACL / COLING / LREC,NeurIPS / ICML / ICLR / ACL / EMNLP / EACL / COLING / LREC

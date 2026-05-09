@@ -1,0 +1,1 @@
+We participated in SemEval and CoNLL, two leading international NLP competitions, and won first place in multiple tasks on intent analysis and semantic parsing.

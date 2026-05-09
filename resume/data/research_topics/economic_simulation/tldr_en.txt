@@ -1,0 +1,1 @@
+We modeled human behavior with 100 LLM agents and simulated 25 years within a dynamic environment grounded in economic theory.
