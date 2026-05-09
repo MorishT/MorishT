@@ -1,1 +1,1 @@
-We clarified the fundamental factors that determine ensemble performance by decomposing the lower bound of ensemble error into three components using information theory.
+Using information theory, we decomposed a lower bound on ensemble error into three components and thereby identified the fundamental factors that determine ensemble performance.

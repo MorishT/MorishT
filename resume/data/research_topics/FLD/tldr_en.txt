@@ -1,1 +1,1 @@
-We proposed design principles for logical reasoning examples based on symbolic logic, developed an automatic generation algorithm, and substantially improved LLM reasoning through large-scale training.
+We proposed design principles for logical-reasoning examples grounded in symbolic logic, developed an automatic generation algorithm, and substantially improved the reasoning capabilities of LLMs through large-scale training.

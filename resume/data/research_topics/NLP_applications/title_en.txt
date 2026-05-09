@@ -1,1 +1,1 @@
-Development of practical systems using natural language processing
+Development of practical natural language processing systems

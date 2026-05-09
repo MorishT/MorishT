@@ -1144,40 +1144,41 @@ Fanoの不等式は、雑音のある情報を復元する際の、誤り率の�
 
 
   <div class="card mt-3 p-3 research-topic-card">
-    <h3 class="card-title font-weight-bold">Automatic generation of logical reasoning corpora for improving LLM reasoning</h3>
+    <h3 class="card-title font-weight-bold">Automatic generation of logical-reasoning corpora for improving LLM reasoning</h3>
 
     
-      <p class="research-topic-summary">We proposed design principles for logical reasoning examples based on symbolic logic, developed an automatic generation algorithm, and substantially improved LLM reasoning through large-scale training.</p>
+      <p class="research-topic-summary">We proposed design principles for logical-reasoning examples grounded in symbolic logic, developed an automatic generation algorithm, and substantially improved the reasoning capabilities of LLMs through large-scale training.</p>
     
 
     <div class="research-topic-body">
       <p>The ability to follow logic step by step is one of the foundations of human intellectual activity.
-Large language models can generate natural text from enormous amounts of knowledge, but are they truly reasoning in a logically correct way?</p>
+Large language models can generate fluent text from vast amounts of knowledge, but can they reason in a logically correct way?</p>
 
 <p>We study how to teach logical reasoning to LLMs.
-As a starting point, we organized the characteristics of logical reasoning by drawing on insights from symbolic logic and related fields.
+As a starting point, we organized the characteristics of logical reasoning by drawing on symbolic logic and related fields.
 In logical reasoning, new facts are derived by applying inference rules, for example deriving <code class="language-plaintext highlighter-rouge">B</code> from the facts <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">if A then B</code>.
-There are many kinds of such rules, but they can be derived from a small set of more fundamental rules.</p>
+There are many such rules, but many can be derived from a small set of more fundamental ones.</p>
 
-<p>Based on this view, we designed <strong>logical reasoning problems for LLMs</strong>.
+<p>Based on this view, we designed <strong>logical-reasoning problems for LLMs</strong>.
 Starting from given facts, the model applies fundamental inference rules one step at a time until it reaches the final answer.
-By instantiating <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> with many different facts, the model can also learn the generality of the rules themselves.
-We then developed an <strong>automatic generation algorithm</strong> that can produce large numbers of such problems.
-It first constructs the skeleton of a problem by stacking inference rules over multiple steps, and then generates concrete facts using vocabularies and natural-language templates.</p>
+By instantiating <code class="language-plaintext highlighter-rouge">A</code> and <code class="language-plaintext highlighter-rouge">B</code> with many different facts, the model can also learn the generality of the rules themselves.</p>
 
-<p>Training LLMs on the generated problems led to large improvements on logical reasoning tasks.
-We also observed gains on broader reasoning tasks such as mathematics, science, and coding.
-We believe this happens because logical reasoning forms a foundation for many kinds of reasoning.</p>
+<p>We then developed an <strong>automatic generation algorithm</strong> that can produce large numbers of such problems.
+It first constructs the skeleton of a problem by stacking inference rules over multiple steps and then generates concrete facts using vocabularies and natural-language templates.</p>
 
-<p>This project has continued from around 2022 to the present.
-In addition to training data, we are also developing benchmarks for evaluating the logical reasoning ability of LLMs.
+<p>Training LLMs on the generated problems led to substantial gains on logical-reasoning tasks.
+We also observed improvements on broader reasoning tasks such as mathematics, science, and coding.
+We believe this is because logical reasoning forms a foundation for many kinds of reasoning.</p>
+
+<p>This project has continued since around 2022.
+In addition to training data, we are also developing benchmarks for evaluating the reasoning capabilities of LLMs.
 Our goal is not merely plausible answers, but genuinely correct reasoning.</p>
 
     </div>
 
     
       <a class="research-topic-figure-link" href="/MorishT/resume/data/research_topics/FLD/main.pdf" target="_blank" rel="noopener noreferrer">
-        <img class="research-topic-figure" src="/MorishT/assets/img/research_topics/FLD.png" alt="Automatic generation of logical reasoning corpora for improving LLM reasoning" loading="lazy">
+        <img class="research-topic-figure" src="/MorishT/assets/img/research_topics/FLD.png" alt="Automatic generation of logical-reasoning corpora for improving LLM reasoning" loading="lazy">
       </a>
     
 
@@ -1186,6 +1187,35 @@ Our goal is not merely plausible answers, but genuinely correct reasoning.</p>
         <h4 class="research-topic-publications-title">Selected Publications</h4>
         
 <ul class="card-text font-weight-light list-group list-group-flush">
+    
+      
+      
+      
+      <li class="list-group-item">
+        <div class="row cv-time-row">
+          
+            <div class="col-auto text-center cv-time-badge">
+              
+              <span class="badge font-weight-bold align-middle">
+                2026
+              </span>
+            </div>
+          
+          <div class="col cv-time-content">
+            
+              <h6 class="title ml-1 mb-0 cv-time-title" style="font-weight: 400;">Can We Teach Logical Reasoning to LLMs? – An Approach Using Synthetic Corpora <a class="cv-link-label" href="https://speakerdeck.com/morishtr/can-we-teach-logical-reasoning-to-llms-an-approach-using-synthetic-corpora" target="_blank" rel="noopener noreferrer">link</a>
+</h6>
+            
+            
+            
+            <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: 300;"><span class="cv-time-institution-name">AAAI Bridge Program "Logical and Symbolic Reasoning in Language Models" keynote speech</span></h6>
+            
+            
+            
+          </div>
+          
+        </div>
+      </li>
     
       
       
@@ -1208,7 +1238,7 @@ Our goal is not merely plausible answers, but genuinely correct reasoning.</p>
             
             
             <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: 300;">
-<span class="cv-time-institution-name">Annual Conference on Neural Information Processing Systems</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-acceptance">Acceptance rate: 25.8%</span></span>
+<span class="cv-time-institution-name">Annual Conference on Neural Information Processing Systems</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-acceptance">; acceptance rate: 25.8%</span></span>
 </h6>
             
             
@@ -1239,7 +1269,7 @@ Our goal is not merely plausible answers, but genuinely correct reasoning.</p>
             
             
             <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: 300;">
-<span class="cv-time-institution-name">International Conference on Machine Learning</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-acceptance">Acceptance rate: 27.9%</span></span>
+<span class="cv-time-institution-name">International Conference on Machine Learning</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-acceptance">; acceptance rate: 27.9%</span></span>
 </h6>
             
             
@@ -1259,33 +1289,32 @@ Our goal is not merely plausible answers, but genuinely correct reasoning.</p>
     <h3 class="card-title font-weight-bold">A fundamental theory of ensemble learning</h3>
 
     
-      <p class="research-topic-summary">We clarified the fundamental factors that determine ensemble performance by decomposing the lower bound of ensemble error into three components using information theory.</p>
+      <p class="research-topic-summary">Using information theory, we decomposed a lower bound on ensemble error into three components and thereby identified the fundamental factors that determine ensemble performance.</p>
     
 
     <div class="research-topic-body">
       <p>Ensemble learning combines the predictions of multiple models to achieve higher accuracy.
-Because it is simple and powerful, it has become one of the most popular techniques in machine learning.
-A large number of methods have been proposed over the years.</p>
+Because it is simple and powerful, it has become one of the most popular techniques in machine learning, and many methods have been proposed over the years.</p>
 
-<p>Even so, ensemble learning has long contained a fundamental mystery:
+<p>Even so, ensemble learning has long contained a fundamental question:
 <strong>what determines the performance of an ensemble?</strong>
 Answering this question is essential for designing better methods.</p>
 
-<p>We succeeded in clarifying this mystery.
+<p>We approached this question through theoretical analysis.
 We showed that ensemble performance is determined by three elements:
 <strong>the accuracy of each individual model, the diversity among models, and the information loss that occurs when combining their predictions (fusion loss).</strong></p>
 
 <p>High individual accuracy is of course important.
 Diversity among models is also valuable because one model can correct the mistakes of another.
 Yet when multiple predictions are combined, correct signals can be buried under incorrect ones.
-In such cases the information loss becomes large, and the full potential of the ensemble cannot be realized.</p>
+In such cases, information loss becomes large, and the full potential of the ensemble cannot be realized.</p>
 
 <p>To analyze this problem, we focused on <strong>Fano’s inequality</strong> from information theory.
 Fano’s inequality provides a lower bound on the error rate when reconstructing information from noisy observations.
-In the ensemble setting, it can be interpreted as a lower bound on the error rate of an ensemble method, that is, a barometer of ensemble performance.
+In the ensemble setting, it can be interpreted as a lower bound on ensemble error and thus as a barometer of ensemble performance.
 We proved mathematically that this lower bound can be decomposed into the three factors above.</p>
 
-<p>We are further computing these factors for a range of ensemble methods in order to analyze which methods improve which components.</p>
+<p>We are now computing these factors for a range of ensemble methods to analyze which methods improve which components.</p>
 
 <p>This project was motivated by our experience of achieving strong results with ensemble methods in international NLP competitions such as SemEval and CoNLL.</p>
 
@@ -1324,7 +1353,7 @@ We proved mathematically that this lower bound can be decomposed into the three 
             
             
             <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: 300;">
-<span class="cv-time-institution-name">International Conference on Machine Learning</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">Spotlight (top 5%)</span> <span class="cv-time-inline-meta cv-time-inline-acceptance">Acceptance rate: 21.9%</span></span>
+<span class="cv-time-institution-name">International Conference on Machine Learning</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">; Spotlight</span> <span class="cv-time-inline-meta cv-time-inline-acceptance">; acceptance rate: 21.9%</span></span>
 </h6>
             
             
@@ -1348,19 +1377,19 @@ We proved mathematically that this lower bound can be decomposed into the three 
     
 
     <div class="research-topic-body">
-      <p>With the rise of social media, the internet is now filled with posts written with a wide range of intentions.
-Technologies for analyzing the intentions embedded in such posts are increasingly important for building healthy and safe online spaces.</p>
+      <p>With the rise of social media, the internet is now filled with posts written with many different intents.
+Technologies for analyzing those intents are increasingly important for building healthy and safe online spaces.</p>
 
-<p>We participated in multiple tasks in the international competition <strong>SemEval 2020</strong>, which featured problems on intention analysis.
-One example was a task where a language model had to assess how funny an edited news headline was.</p>
+<p>We participated in multiple tasks at the international competition <strong>SemEval 2020</strong>, including tasks on intent analysis.
+One example asked a language model to assess how funny an edited news headline was.</p>
 
 <p>Our approach started by extending state-of-the-art language models with task-specific architectures.
-For the humor task above, we fed both the original and edited sentences into the model and let an added cross-attention layer compare and analyze them.
+For the humor task, we fed both the original and edited sentences into the model and used an added cross-attention layer to compare them.
 We then built ensembles of multiple models according to our own recipe and achieved high accuracy.
 As a result, we won <strong>first place in multiple tasks</strong>.</p>
 
-<p>Accurate intention analysis also requires understanding the semantic structure of sentences.
-We therefore participated in <strong>CoNLL 2020 Shared Task</strong>, which focused on semantic structure parsing, and won first place there as well.</p>
+<p>Accurate intent analysis also requires understanding the semantic structure of sentences.
+We therefore participated in the <strong>CoNLL 2020 Shared Task</strong>, which focused on semantic parsing, and won first place there as well.</p>
 
 <p>These experiences later deepened our interest in ensemble learning and led to one of our subsequent research themes.</p>
 
@@ -1399,7 +1428,7 @@ We therefore participated in <strong>CoNLL 2020 Shared Task</strong>, which focu
             
             
             <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: 300;">
-<span class="cv-time-institution-name">Proceedings of the Fourteenth Workshop on Semantic Evaluation</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">1st place</span></span>
+<span class="cv-time-institution-name">Proceedings of the Fourteenth Workshop on Semantic Evaluation</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">; 1st place</span></span>
 </h6>
             
             
@@ -1430,7 +1459,7 @@ We therefore participated in <strong>CoNLL 2020 Shared Task</strong>, which focu
             
             
             <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: 300;">
-<span class="cv-time-institution-name">Proceedings of the Fourteenth Workshop on Semantic Evaluation</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">Oral, 1st place</span></span>
+<span class="cv-time-institution-name">Proceedings of the Fourteenth Workshop on Semantic Evaluation</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">; oral presentation, 1st place</span></span>
 </h6>
             
             
@@ -1461,7 +1490,7 @@ We therefore participated in <strong>CoNLL 2020 Shared Task</strong>, which focu
             
             
             <h6 class="ml-1 cv-time-institution" style="font-size: 0.95rem; font-weight: 300;">
-<span class="cv-time-institution-name">Proceedings of the Fourteenth Workshop on Semantic Evaluation</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">2nd place</span></span>
+<span class="cv-time-institution-name">Proceedings of the Fourteenth Workshop on Semantic Evaluation</span><span class="cv-time-inline-meta-group"><span class="cv-time-inline-meta cv-time-inline-note">; 2nd place</span></span>
 </h6>
             
             
@@ -1485,21 +1514,21 @@ We therefore participated in <strong>CoNLL 2020 Shared Task</strong>, which focu
     
 
     <div class="research-topic-body">
-      <p>In recent years, AI has advanced rapidly and has been widely adopted in natural sciences such as physics and mathematics.
-In the social sciences, however, the use of AI is still at an early stage.</p>
+      <p>In recent years, AI has advanced rapidly and has been widely adopted in the natural sciences, including physics and mathematics.
+In the social sciences, however, its use is still at an early stage.</p>
 
 <p><strong>Economics</strong> is one of the most influential fields in the social sciences.
-It has sought to explain economic phenomena in order to make human society more prosperous.
-Traditionally, it has relied mainly on theoretical approaches: one introduces mathematical assumptions about human behavior and then deduces the consequences.</p>
+It seeks to explain economic phenomena in order to make human society more prosperous.
+Traditionally, it has relied mainly on theoretical approaches: researchers introduce mathematical assumptions about human behavior and then deduce their consequences.</p>
 
 <p>To understand economic phenomena more deeply, experiments are also important.
 Yet experimenting on real human society faces ethical constraints and high costs.
 For this reason, economics has often been regarded as a field where experimentation is difficult.</p>
 
 <p>We aim to overcome this limitation by <strong>simulating economic phenomena on computers</strong>.
-Using large language models, we model the behavior of individual people and firms, and analyze the economic phenomena that emerge from their interactions.
-Concretely, we modeled consumers and firms with 100 LLM agents and let them interact within a dynamic environment based on an economic theory that we designed.
-We confirmed that well-known economic phenomena such as <strong>economic growth</strong> and <strong>international trade</strong> emerged from the simulation.</p>
+Using large language models, we model the behavior of individual people and firms and analyze the economic phenomena that emerge from their interactions.
+Specifically, we modeled consumers and firms with 100 LLM agents and let them interact within a dynamic environment grounded in economic theory.
+We observed well-known economic phenomena such as <strong>economic growth</strong> and <strong>international trade</strong> emerging from the simulation.</p>
 
 <p>We also tested a scenario in which <strong>a civilization-ending asteroid approaches Earth</strong>.
 In that setting, people abandoned work to spend their final days with loved ones, while firms gave up long-term strategies such as investment and R&amp;D.
@@ -1517,7 +1546,7 @@ As a result, we observed the collapse of the economy as a whole.</p>
   </div>
 
   <div class="card mt-3 p-3 research-topic-card">
-    <h3 class="card-title font-weight-bold">A decision-support application for collecting and organizing information from business perspectives</h3>
+    <h3 class="card-title font-weight-bold">A decision-support application for collecting and organizing information from business-relevant perspectives</h3>
 
     
 
@@ -1526,10 +1555,10 @@ As a result, we observed the collapse of the economy as a whole.</p>
 Sound business decisions require collecting and organizing information from perspectives that directly matter to the decision itself.
 Examples include questions such as “Is there demand for thermal power in Africa?” and “Have competitors already entered that market?”</p>
 
-<p>We developed a decision-support application that helps users collect and organize information along such decision-oriented perspectives.
+<p>We developed a decision-support application that helps users collect and organize information along such business-relevant perspectives.
 The core technology of the system is <strong>relation extraction</strong>, which identifies important relations expressed in text.
-Concretely, it analyzes business-relevant relations such as “A has demand for B” or “A enters B” by using syntactic analysis.
-By applying this technology to large amounts of text data, the system makes it possible to gather and organize information from business perspectives and use it for decision making.</p>
+Specifically, it analyzes relations such as “A has demand for B” or “A enters B” by using syntactic analysis.
+By applying this technology to large amounts of text data, the system makes it possible to gather and organize information from business-relevant perspectives and use it for decision making.</p>
 
     </div>
 
@@ -1539,20 +1568,20 @@ By applying this technology to large amounts of text data, the system makes it p
   </div>
 
   <div class="card mt-3 p-3 research-topic-card">
-    <h3 class="card-title font-weight-bold">Exploring the origin of dark matter with the wino predicted by supersymmetry</h3>
+    <h3 class="card-title font-weight-bold">Exploring the nature of dark matter through the supersymmetric wino</h3>
 
     
 
     <div class="research-topic-body">
-      <p>The universe is believed to contain a large amount of <strong>dark matter</strong>, which cannot be seen directly with light.
-Its true nature is still unknown, making it one of the biggest mysteries in modern physics.</p>
+      <p>The universe is thought to contain a large amount of <strong>dark matter</strong>, which cannot be observed directly through light.
+Its nature remains unknown, making it one of the biggest mysteries in modern physics.</p>
 
 <p>In this work, we focused on the <strong>wino</strong>, a particle predicted by <strong>supersymmetry</strong>, as a candidate for dark matter.
-If the wino constitutes dark matter, wino pairs near the center of the Milky Way may annihilate and emit gamma rays, which are high-energy electromagnetic waves.</p>
+If the wino constitutes dark matter, pairs of winos near the center of the Milky Way may annihilate and emit gamma rays, which are high-energy electromagnetic radiation.</p>
 
-<p>The strength and spatial distribution of such gamma rays depend strongly on how dark matter itself is distributed near the Galactic center.</p>
+<p>The strength and spatial distribution of those gamma rays depend strongly on how dark matter itself is distributed near the Galactic center.</p>
 
-<p>We therefore estimated that spatial distribution using a range of astrophysical observations.
+<p>We therefore estimated that distribution using a range of astrophysical observations.
 By combining the inferred distribution with gamma-ray observations, we examined whether the wino is a plausible dark-matter candidate.</p>
 
 <p>We found that, within the range allowed by currently available observations, <strong>the wino remains a viable dark-matter candidate</strong>.</p>
@@ -1561,7 +1590,7 @@ By combining the inferred distribution with gamma-ray observations, we examined 
 
     
       <a class="research-topic-figure-link" href="/MorishT/resume/data/research_topics/dark_matter/main.pdf" target="_blank" rel="noopener noreferrer">
-        <img class="research-topic-figure" src="/MorishT/assets/img/research_topics/dark_matter.png" alt="Exploring the origin of dark matter with the wino predicted by supersymmetry" loading="lazy">
+        <img class="research-topic-figure" src="/MorishT/assets/img/research_topics/dark_matter.png" alt="Exploring the nature of dark matter through the supersymmetric wino" loading="lazy">
       </a>
     
 
@@ -1584,8 +1613,8 @@ By combining the inferred distribution with gamma-ray observations, we examined 
         <span class="lang-ja"><a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> と <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> テーマを使って構築しています。
 </span>
         <span class="lang-en">Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a> with the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme.
-</span><span class="lang-ja">最終更新: 2026年05月09日 17:21 JST.</span>
-        <span class="lang-en">Last updated: May 09, 2026 17:21 JST.</span>
+</span><span class="lang-ja">最終更新: 2026年05月09日 18:49 JST.</span>
+        <span class="lang-en">Last updated: May 09, 2026 18:49 JST.</span>
       </div>
     </footer>
 

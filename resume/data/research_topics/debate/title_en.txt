@@ -1,1 +1,1 @@
-A decision-support application for collecting and organizing information from business perspectives
+A decision-support application for collecting and organizing information from business-relevant perspectives

@@ -1,1 +1,1 @@
-Practical deployment of speech recognition engines with deep learning
+Practical deployment of deep-learning-based speech recognition engines
