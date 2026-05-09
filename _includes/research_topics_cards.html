@@ -1,4 +1,5 @@
 {% assign research_topics = include.topics | default: site.data.resume.research_topics_ja | default: empty %}
+{% assign publications_title = include.publications_title | default: "既存発表" %}
 
 {% for topic in research_topics %}
   <div class="card mt-3 p-3 research-topic-card">
@@ -25,7 +26,7 @@
 
     {% if topic.publications and topic.publications.contents and topic.publications.contents != empty %}
       <div class="research-topic-publications">
-        <h4 class="research-topic-publications-title">既存発表</h4>
+        <h4 class="research-topic-publications-title">{{ publications_title }}</h4>
         {% include cv/time_table.html entry=topic.publications %}
       </div>
     {% endif %}

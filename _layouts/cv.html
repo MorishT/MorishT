@@ -25,7 +25,8 @@ layout: default
                 {% endfor %}
               </div>
               <div class="lang-en">
-                {% for entry in site.data.cv %}
+                {% assign cv_en_entries = site.data.resume.cv_en | default: empty %}
+                {% for entry in cv_en_entries %}
                   {% unless entry.hide %}
                     {% if entry.title == "Education" or entry.title == "Work Experience" %}
                       {% include cv/render_section.html entry=entry %}

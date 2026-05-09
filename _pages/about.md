@@ -27,11 +27,3 @@ resume_about_ja: true
 ---
 
 <!--lang:en-->
-
-**A researcher in AI** at Hitachi's Central Research Laboratory.
-
-I mainly work on **natural language processing**, including reasoning-capable large language models that help people make better decisions. I also study **LLM-agent-based simulations of economic phenomena**, such as economic growth and international trade. More broadly, I am interested in **general machine learning methods**, including ensemble learning.
-
-Earlier, at the University of Tokyo, I studied particle and astroparticle physics at the [Kavli Institute for the Physics and Mathematics of the Universe](https://www.ipmu.jp/ja) under the supervision of Prof. [Hitoshi Murayama](https://www.ipmu.jp/ja/hitoshi-murayama).
-
-I enjoy formal academic disciplines such as physics, mathematics, economics, and symbolic logic.

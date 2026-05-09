@@ -28,10 +28,14 @@ layout: default
 
               <div class="clearfix about-content">
                 {% assign about_ja_override = nil %}
+                {% assign about_en_override = nil %}
                 {% if page.resume_about_ja and site.data.resume.about_ja %}
                   {% assign about_ja_override = site.data.resume.about_ja | markdownify %}
                 {% endif %}
-                {% include render_bilingual_content.html rendered_content=content ja_content_override=about_ja_override %}
+                {% if site.data.resume.about_en %}
+                  {% assign about_en_override = site.data.resume.about_en | markdownify %}
+                {% endif %}
+                {% include render_bilingual_content.html rendered_content=content ja_content_override=about_ja_override en_content_override=about_en_override %}
               </div>
             </div>
 
@@ -68,12 +72,12 @@ layout: default
 
           <!-- Selected achievements -->
           {% if page.selected_papers -%}
-            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;"><span class="lang-ja">主な研究業績</span><span class="lang-en">selected achievements</span></a></h2>
+            <h2><a href="{{ '/publications/' | relative_url }}" style="color: inherit;"><span class="lang-ja">主な研究業績</span><span class="lang-en">Selected Research Achievements</span></a></h2>
             <div class="lang-ja">
               {%- include selected_achievements.html %}
             </div>
             <div class="lang-en">
-              {%- include selected_papers.html %}
+              {%- include selected_achievements.html entries=site.data.resume.selected_achievements_en %}
             </div>
           {%- endif %}
 

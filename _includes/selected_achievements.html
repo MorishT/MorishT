@@ -1,4 +1,4 @@
-{% assign selected_achievements = site.data.resume.selected_achievements_ja | default: empty %}
+{% assign selected_achievements = include.entries | default: site.data.resume.selected_achievements_ja | default: empty %}
 <div class="publications cv">
   {% include publications_ja_cards.html entries=selected_achievements %}
 </div>

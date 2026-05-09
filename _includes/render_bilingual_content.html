@@ -10,6 +10,10 @@
   {% assign en_content = language_sections[1] | strip %}
 {% endif %}
 
+{% if include.en_content_override %}
+  {% assign en_content = include.en_content_override | strip %}
+{% endif %}
+
 {% if en_content == '' %}
   {% assign en_content = ja_content %}
 {% endif %}
