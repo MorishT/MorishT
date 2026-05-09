@@ -18,6 +18,6 @@ nav_order: 2
   </div>
 
   <div class="lang-en">
-    {% include publications_ja_cards.html entries=cv_en_entries section_titles="Publications and Presentations|Invited Talks|Awards|Press Releases and Media|OSS" %}
+    {% include publications_ja_cards.html entries=cv_en_entries section_titles="Publications and Presentations" %}
   </div>
 </div>
