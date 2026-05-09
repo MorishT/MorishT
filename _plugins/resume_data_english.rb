@@ -14,17 +14,17 @@ module Jekyll
       "toshiba" => %w[speech_recognition],
     }.freeze
     BIB_BADGE_EN = {
-      "ICML (Spotlight=上位5%)" => "ICML (Spotlight)",
-      "SemEval (1位)" => "SemEval (1st)",
-      "SemEval (1位, Oral)" => "SemEval (1st, Oral)",
-      "SemEval (2位)" => "SemEval (2nd)",
-      "CoNLL (1位)" => "CoNLL (1st)",
+      "ICML (Spotlight=上位5%)" => "ICML",
+      "SemEval (1位)" => "SemEval",
+      "SemEval (1位, Oral)" => "SemEval",
+      "SemEval (2位)" => "SemEval",
+      "CoNLL (1位)" => "CoNLL",
     }.freeze
     NOTE_EN = {
-      "Spotlight (上位5%)" => "Spotlight (top 5%)",
+      "Spotlight (上位5%)" => "Spotlight",
       "1位" => "1st place",
       "2位" => "2nd place",
-      "Oral, 1位" => "Oral, 1st place",
+      "Oral, 1位" => "oral presentation, 1st place",
     }.freeze
 
     def generate(site)
@@ -93,6 +93,13 @@ module Jekyll
 
     def compact_strings(values)
       values.map { |value| value.to_s.strip }.reject(&:empty?)
+    end
+
+    def international_entry?(entry)
+      keywords = bibtex_keywords(entry)
+      return true if keywords.include?("international")
+
+      normalize_bibtex_text(bibtex_field(entry, :research_scope)).downcase == "international"
     end
 
     def bibtex_field(entry, *fields)
@@ -185,9 +192,11 @@ module Jekyll
         field = row["field_en"].to_s.strip
         advisor = row["advisor_en"].to_s.strip
         thesis = row["thesis_en"].to_s.strip
+        institution_note = row["institution_note_en"].to_s.strip
         description = compact_strings(
           [
-            ("Research theme: #{field}" unless field.empty?),
+            institution_note,
+            ("Research Theme: #{field}" unless field.empty?),
             thesis,
             ("Supervisor: #{advisor}" unless advisor.empty?),
           ]
@@ -296,7 +305,7 @@ module Jekyll
 
         keywords = bibtex_keywords(entry)
         next unless keywords.include?("selected")
-        next unless keywords.include?("international")
+        next unless international_entry?(entry)
         next if keywords.include?("blog") || keywords.include?("oss")
 
         build_bibliography_content_en(entry, index)
@@ -312,7 +321,7 @@ module Jekyll
     def build_publications_section_en(bibliography)
       contents = [
         build_bibliography_subsection_en("Journal Articles", bibliography, label: "journal", international_only: true, badge_fields: %i[tag abbr], include_authors: true),
-        build_bibliography_subsection_en("International Conferences", bibliography, label: "international-conference", badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_subsection_en("International Conferences", bibliography, label: "international-conference", international_only: true, badge_fields: %i[tag abbr], include_authors: true),
       ].compact
       return nil if contents.empty?
 
@@ -326,7 +335,7 @@ module Jekyll
     def build_selected_achievements_en(bibliography)
       [
         build_bibliography_time_table_en("Journal Articles", bibliography, label: "journal", selected: true, international_only: true, badge_fields: %i[tag abbr], include_authors: true),
-        build_bibliography_time_table_en("International Conferences", bibliography, label: "international-conference", selected: true, badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_time_table_en("International Conferences", bibliography, label: "international-conference", selected: true, international_only: true, badge_fields: %i[tag abbr], include_authors: true),
       ].compact
     end
 
@@ -427,21 +436,21 @@ module Jekyll
       note = translate_note_en(normalize_bibtex_text(bibtex_field(entry, :note)))
       acceptance_rate = normalize_bibtex_text(bibtex_field(entry, :acceptance_rate, :usera))
 
-      fragments << %(<span class="cv-time-inline-meta cv-time-inline-note">#{note}</span>) unless note.empty?
-      fragments << %(<span class="cv-time-inline-meta cv-time-inline-acceptance">Acceptance rate: #{acceptance_rate}</span>) unless acceptance_rate.empty?
+      fragments << %(<span class="cv-time-inline-meta cv-time-inline-note">; #{note}</span>) unless note.empty?
+      fragments << %(<span class="cv-time-inline-meta cv-time-inline-acceptance">; acceptance rate: #{acceptance_rate}</span>) unless acceptance_rate.empty?
       fragments.join(" ")
     end
 
     def bibliography_entry_match?(entry, label, selected: false, international_only: false)
       keywords = bibtex_keywords(entry)
       return false if selected && !keywords.include?("selected")
-      return false if international_only && !keywords.include?("international")
+      return false if international_only && !international_entry?(entry)
 
       case label
       when "journal"
         keywords.include?("journal")
       when "international-conference"
-        keywords.include?("international") && !keywords.include?("journal")
+        international_entry?(entry) && !keywords.include?("journal") && !keywords.include?("talk")
       when "invited-talk"
         keywords.include?("talk")
       else
