@@ -18,6 +18,6 @@ nav_order: 1
   </div>
 
   <div class="lang-en">
-    {% include research_topics_cards.html topics=research_topics_en publications_title="Selected Publications" %}
+    {% include research_topics_cards.html topics=research_topics_en publications_title="Related Publications" %}
   </div>
 </div>

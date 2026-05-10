@@ -327,7 +327,6 @@ module Jekyll
         next unless normalize_bibtex_text(bibtex_field(entry, :research_topic)) == topic_id
 
         keywords = bibtex_keywords(entry)
-        next unless keywords.include?("selected")
         next unless international_entry?(entry)
         next if keywords.include?("blog") || keywords.include?("oss")
 
