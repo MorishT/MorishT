@@ -289,6 +289,7 @@
 \cs_generate_variant:Nn \str_if_eq:nnTF { ee }
 \cs_generate_variant:Nn \str_if_eq:nnTF { Vn }
 \cs_generate_variant:Nn \seq_set_split:Nnn { NnV }
+\cs_generate_variant:Nn \seq_item:Nn { NV }
 \bool_new:N \l_cvpub_japanese_entry_bool
 \bool_new:N \l_cvdata_seen_header_bool
 \ior_new:N \g_cvdata_primary_ior
@@ -297,6 +298,23 @@
 \seq_new:N \l_cvdata_row_seq
 \tl_new:N \l_cvdata_line_tl
 \tl_new:N \l_cvdata_current_position_tl
+
+\cs_new_protected:Npn \cvdata_parse_csv_line:NV #1#2
+  {
+    \seq_clear:N #1
+    \regex_extract_all:nnN
+      { (?:^|,)("(?:[^"]|"")*"|[^,]*) }
+      {#2}
+      \l_tmpa_seq
+    \seq_map_inline:Nn \l_tmpa_seq
+      {
+        \tl_set:Nn \l_tmpa_tl {##1}
+        \regex_replace_once:nnN { \A, } {} \l_tmpa_tl
+        \regex_replace_once:nnN { \A"(.*)"\Z } { \1 } \l_tmpa_tl
+        \regex_replace_all:nnN { "" } { " } \l_tmpa_tl
+        \seq_put_right:NV #1 \l_tmpa_tl
+      }
+  }
 
 \cs_new_protected:Npn \cvpub_set_entry_script:
   {
@@ -627,7 +645,7 @@
           {
             \bool_if:NTF \l_cvdata_seen_header_bool
               {
-                \seq_set_split:NnV \l_cvdata_row_seq { , } \l_cvdata_line_tl
+                \cvdata_parse_csv_line:NV \l_cvdata_row_seq \l_cvdata_line_tl
                 #3
               }
               { \bool_set_true:N \l_cvdata_seen_header_bool }
@@ -639,6 +657,46 @@
 \cs_new_protected:Npn \cvdata_map_csv_rows:nn #1#2
   {
     \cvdata_map_csv_rows:Nnn \g_cvdata_primary_ior {#1} {#2}
+  }
+
+\cs_new_protected:Npn \cvdata_render_education:n #1
+  {
+    \cvdata_map_csv_rows:nn {#1}
+      {
+        \tl_set:Ne \l_tmpa_tl { \seq_item:Nn \l_cvdata_row_seq { 2 } }
+        \tl_set:Ne \l_tmpb_tl { \seq_item:Nn \l_cvdata_row_seq { 4 } }
+        \tl_set:Ne \l_tmpc_tl { \seq_item:Nn \l_cvdata_row_seq { 6 } }
+        \tl_set:Ne \l_tmpd_tl { \seq_item:Nn \l_cvdata_row_seq { 9 } }
+        \tl_set:Ne \l_tmpe_tl { \seq_item:Nn \l_cvdata_row_seq { 11 } }
+        \tl_set:Ne \l_tmpf_tl { \seq_item:Nn \l_cvdata_row_seq { 13 } }
+        \cventry{\l_tmpa_tl}{\l_tmpb_tl}{\l_tmpc_tl}{}{}{%
+          研究分野: \l_tmpd_tl \quad 指導教員: \l_tmpe_tl
+          \tl_if_blank:VF \l_tmpf_tl
+            { \\ \l_tmpf_tl }
+        }%
+      }
+  }
+
+\cs_new_protected:Npn \cvdata_render_work_experience:n #1
+  {
+    \cvdata_map_csv_rows:nn {#1}
+      {
+        \tl_set:Ne \l_tmpa_tl { \seq_item:Nn \l_cvdata_row_seq { 1 } }
+        \tl_set:Ne \l_tmpb_tl { \seq_item:Nn \l_cvdata_row_seq { 3 } }
+        \tl_set:Ne \l_tmpc_tl { \seq_item:Nn \l_cvdata_row_seq { 5 } }
+        \cvsubsection{\l_tmpb_tl}{\l_tmpc_tl}%
+        \exp_args:NV \cvrenderworkprojectsforposition \l_tmpa_tl
+      }
+  }
+
+\cs_new_protected:Npn \cvdata_render_academic_service:n #1
+  {
+    \cvdata_map_csv_rows:nn {#1}
+      {
+        \tl_set:Ne \l_tmpa_tl { \seq_item:Nn \l_cvdata_row_seq { 2 } }
+        \tl_set:Ne \l_tmpb_tl { \seq_item:Nn \l_cvdata_row_seq { 4 } }
+        \cventry{}{\l_tmpa_tl}{}{}{}{\cvsmallitem{\l_tmpb_tl}}%
+      }
   }
 \ExplSyntaxOff
 
@@ -679,7 +737,7 @@
   \closein#1
 }
 
-\def\cveducationrow#1,#2,#3,#4,#5,#6,#7,#8\cvcsvend{%
+\def\cveducationrow#1,#2,#3,#4,#5,#6,#7\cvcsvend{%
   \def\cvthesisvalue{#7}%
   \cventry{#2}{#3}{#4}{}{}{%
     研究分野: #5 \quad 指導教員: #6%
@@ -870,7 +928,7 @@
 \else
 % \vspace{-5mm}
 \section{\textbf{学歴}}
-\cvrendereducation{data/education.csv}
+\cvrendereducation{data/education_jp.csv}
 \fi
 
 
@@ -887,7 +945,7 @@
 \ifispublicationlist
 \else
 \section{\textbf{職歴}}
-\cvrenderworkexperience{data/work_positions.csv}
+\cvrenderworkexperience{data/work_positions_jp.csv}
 \fi
 
 
@@ -962,7 +1020,7 @@
 
 \ifshowacademicservice
 \section{\textbf{学術貢献活動}}
-\cvrenderacademicservice{data/academic_service.csv}
+\cvrenderacademicservice{data/academic_service_jp.csv}
 \fi
 
 
