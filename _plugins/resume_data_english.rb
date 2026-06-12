@@ -305,14 +305,13 @@ module Jekyll
         resume_data_dir,
         "research_topics/#{topic_id}/en/main.pdf",
         "research_topics/#{topic_id}/main_en.pdf",
-        "research_topics/#{topic_id}/jp/main.pdf",
         "research_topics/#{topic_id}/main.pdf",
         "research/#{topic_id}/main_en.pdf",
         "research/#{topic_id}/main.pdf"
       )
       unless figure_path.nil?
         topic["figure_url"] = resume_data_web_path(resume_data_dir, figure_path)
-        english_preview = figure_path.include?("/en/")
+        english_preview = figure_path.include?("/en/") || File.basename(figure_path) == "main_en.pdf"
         topic["figure_preview_image_url"] = research_topic_figure_preview_image_url(site, topic_id, english: english_preview)
       end
 

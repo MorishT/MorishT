@@ -304,7 +304,9 @@ module Jekyll
       figure_path = resolve_resume_data_file(
         resume_data_dir,
         "research_topics/#{topic_id}/jp/main.pdf",
+        "research_topics/#{topic_id}/main_ja.pdf",
         "research_topics/#{topic_id}/main.pdf",
+        "research/#{topic_id}/main_ja.pdf",
         "research/#{topic_id}/main.pdf"
       )
       unless figure_path.nil?
