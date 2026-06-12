@@ -903,7 +903,7 @@ footer.sticky-bottom {
   .research-topic-figure-link {
     display: block;
     margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
   }
 
   .research-topic-figure {
@@ -912,6 +912,10 @@ footer.sticky-bottom {
     height: auto;
     border: 0;
     background: transparent;
+  }
+
+  .research-topic-figure-actions {
+    margin-bottom: 1.5rem;
   }
 
   .research-topic-publications {

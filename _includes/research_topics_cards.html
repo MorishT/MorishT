@@ -26,6 +26,9 @@
           loading="lazy"
         >
       </a>
+      <div class="research-topic-figure-actions">
+        <a class="cv-link-label" href="{{ topic.figure_url | relative_url }}" target="_blank" rel="noopener noreferrer">PDF</a>
+      </div>
     {% endif %}
 
     {% if topic.publications and topic.publications.contents and topic.publications.contents != empty %}
