@@ -831,7 +831,7 @@ footer.sticky-bottom {
 .research-topics .research-topic-figure-link {
   display: block;
   margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 .research-topics .research-topic-figure {
   display: block;
@@ -839,6 +839,9 @@ footer.sticky-bottom {
   height: auto;
   border: 0;
   background: transparent;
+}
+.research-topics .research-topic-figure-actions {
+  margin-bottom: 1.5rem;
 }
 .research-topics .research-topic-publications {
   margin-top: 1.5rem;
