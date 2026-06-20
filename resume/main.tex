@@ -838,6 +838,7 @@
 }
 
 \newcommand{\cvresearchgrouptitle}{%
+  \hypertarget{cvresearchtopics}{}%
   {\namefont\textcolor{color0}{研究紹介}\par}%
   \vspace{5mm}%
 }
@@ -848,6 +849,14 @@
     \noindent\includegraphics[width=\linewidth]{#1}%
     \par
   }{}%
+}
+
+\newcommand{\cvresearchfigureforlanguage}[1]{%
+  \ifcvjapanese
+    \cvresearchfigure{data/research_topics/#1/jp/main.pdf}%
+  \else
+    \cvresearchfigure{data/research_topics/#1/en/main.pdf}%
+  \fi
 }
 
 \newcommand{\cvrenderresearchpublications}[1]{%
@@ -870,7 +879,7 @@
   \vspace{1mm}%
   \cvrenderresearchtldr{#1}%
   \cvnarrativeinput{data/research_topics/#1/jp/body.tex}%
-  \cvresearchfigure{data/research_topics/#1/jp/main.pdf}%
+  \cvresearchfigureforlanguage{#1}%
   \cvrenderresearchpublications{#1}%
 }
 
@@ -944,6 +953,7 @@
 
 \ifispublicationlist
 \else
+\vspace{-5mm}
 \section{\textbf{職歴}}
 \cvrenderworkexperience{data/work_positions_jp.csv}
 \fi
@@ -1004,7 +1014,7 @@
 
 
 
-\section{\textbf{プレスリリース・取材}}
+\section{\textbf{プレスリリース・取材・寄稿}}
 \printpublicationbibliography[labels={press}]
 
 
