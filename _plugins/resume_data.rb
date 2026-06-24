@@ -6,7 +6,7 @@ module Jekyll
   class ResumeDataGenerator < Generator
     SELF_AUTHOR_NAMES = ["森下 皓文", "Terufumi Morishita"].freeze
     CJK_REGEX = /[\p{Han}\p{Hiragana}\p{Katakana}]/
-    RESEARCH_TOPIC_ORDER = %w[FLD debate competition ensemble economic_simulation NLP_applications speech_recognition dark_matter].freeze
+    RESEARCH_TOPIC_ORDER = %w[FLD competition ensemble economic_simulation NLP_applications speech_recognition debate dark_matter].freeze
     WORK_RESEARCH_TOPICS_BY_POSITION = {
       "hitachi" => %w[FLD ensemble economic_simulation competition NLP_applications],
       "toshiba" => %w[speech_recognition],
