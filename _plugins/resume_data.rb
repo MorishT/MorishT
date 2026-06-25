@@ -531,6 +531,7 @@ module Jekyll
       )
       institution = fallback_institution.to_s.strip if institution.empty? && fallback_institution
       institution = "" if !badge.empty? && institution == badge
+      institution = highlight_aaai_text(institution) if bibtex_keywords(entry).include?("highlight-aaai")
       url = normalize_bibtex_text(bibtex_field(entry, :url))
 
       content = {
@@ -561,6 +562,10 @@ module Jekyll
         .map { |author| format_bibliography_author(author) }
         .reject(&:empty?)
         .join(", ")
+    end
+
+    def highlight_aaai_text(text)
+      text.sub("AAAI", %(<span class="cv-time-red-text">AAAI</span>))
     end
 
     def format_bibliography_author(author)

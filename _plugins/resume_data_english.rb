@@ -446,6 +446,7 @@ module Jekyll
       )
       institution = fallback_institution.to_s.strip if institution.empty? && fallback_institution
       institution = "" if !badge.empty? && institution == badge
+      institution = highlight_aaai_text(institution) if bibtex_keywords(entry).include?("highlight-aaai")
 
       url = normalize_bibtex_text(bibtex_field(entry, :url))
       content = {
@@ -475,6 +476,10 @@ module Jekyll
       fragments << %(<span class="cv-time-inline-meta cv-time-inline-note">; #{note}</span>) unless note.empty?
       fragments << %(<span class="cv-time-inline-meta cv-time-inline-acceptance">; acceptance rate: #{acceptance_rate}</span>) unless acceptance_rate.empty?
       fragments.join(" ")
+    end
+
+    def highlight_aaai_text(text)
+      text.sub("AAAI", %(<span class="cv-time-red-text">AAAI</span>))
     end
 
     def bibliography_entry_match?(entry, label, selected: false, international_only: false)
