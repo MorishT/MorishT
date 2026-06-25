@@ -663,6 +663,7 @@ footer.sticky-bottom {
 }
 .cv .card .list-group-item .cv-time-red-text {
   color: #E34444 !important;
+  font-weight: 700 !important;
 }
 .cv .card .list-group-item .cv-self-author {
   font-weight: 400;
