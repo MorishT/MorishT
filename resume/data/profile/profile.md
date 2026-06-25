@@ -1,0 +1,8 @@
+- 氏名: 森下 皓文 (Terufumi Morishita)
+- 現職: 株式会社日立製作所 中央研究所 研究員
+- 専門: 自然言語処理・機械学習
+- 学位: 博士 (工学)
+- 連絡先: magimagilmagi@gmail.com
+- 個人サイト: https://morisht.github.io/MorishT/
+- Google Scholar: https://scholar.google.com/citations?user=DBD9bzYAAAAJ
+- X: https://twitter.com/MorishTr

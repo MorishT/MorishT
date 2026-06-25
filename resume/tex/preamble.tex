@@ -13,9 +13,8 @@
 % CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
 %
 % Important note:
-% This template requires the moderncv.cls and .sty files to be in the same 
-% directory as this .tex file. These files provide the resume style and themes 
-% used for structuring the document.
+% The moderncv.cls and .sty files are stored under tex/moderncv and are loaded
+% through the input path configured by the document entry files and latexmkrc.
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -39,9 +38,11 @@
 
 \newif\ifispublicationlist
 
-% HONOKA
-\ispublicationlistfalse % resume version
-% \ispublicationlisttrue  % publication list version
+\ifdefined\cvpublicationlistmode
+  \ispublicationlisttrue
+\else
+  \ispublicationlistfalse
+\fi
 
 
 
@@ -131,10 +132,11 @@
 
 
 
-\newcommand{\cvdocumenttitle}{職務経歴書}
-\newcommand{\cvpublicationsectiontitle}{論文・発表 (一部のみ抜粋)}
+\providecommand{\cvdocumenttitle}{職務経歴書}
+\providecommand{\cvpublicationsectiontitle}{主な論文・発表}
+\providecommand{\cvpublicationlistdocumenttitle}{業績リスト}
 \ifispublicationlist
-  \renewcommand{\cvdocumenttitle}{業績リスト}
+  \renewcommand{\cvdocumenttitle}{\cvpublicationlistdocumenttitle}
   \renewcommand{\cvpublicationsectiontitle}{論文・発表}
 \fi
 \newcommand{\cvprintmainpublications}[1]{%
@@ -167,11 +169,7 @@
 \familyname{\ifcvjapanese 森下\else Morishita\fi} % Your last name
 
 \newcommand{\cvdisplayname}{%
-  \ifcvjapanese
-    {\color{black}\@familyname} {\color{black}\@firstname}%
-  \else
-    {\color{black}\@firstname} {\color{black}\@familyname}%
-  \fi
+  {\color{black}\cvdocumenttitle}%
 }
 
 % \newcommand{\cvtitlename}{%
@@ -194,39 +192,24 @@
 
 % All information in this block is optional, comment out any lines you don't need
 % \title{\cvtitlename}
-\title{\cvdocumenttitle}
-% \address{Department of CSE}{Indian Institute of Technology xyz}
-\ifispublicationlist
-\else
-\address{日立製作所}{中央研究所 先端AIイノベーションセンタ}
-% \mobile{(+91) 0000000, (+91) 0000000}
-
-
-%\fax{(000) 111 1113}
- 
-%\social{github}{stefano-bragaglia}
-% \email{pratikabc@gmail.com} 
-\email{terufumi.morishita.wp [AT] hitachi.com} 
-
-
-
-% \homepage{www.xyz.com/}{My Webpage}
-\homepage{morisht.github.io/MorishT/}{My Webpage}
-
-% social link \faGithub, \faSkype, \faLinkedin,\faStackExchange, and \faStackOverflow
-\extrainfo{
-    \href{https://scholar.google.com/citations?user=DBD9bzYAAAAJ}{\faGoogle\ Scholar} \quad
-    % \href{https://www.linkedin.com/in/terufumi-morishita-09076712a}{\faLinkedin\ LinkedIn} \quad
-    \href{https://twitter.com/MorishTr}{\faXTwitter\ (@MorishTr)}
-    }
-\fi
+\title{}
+\newcommand{\cvlastcreationdate}{最終作成日: 2026年6月24日}
+\providecommand{\cvheadername}{}
+\newcommand{\cvheaderinfo}{%
+  \if\relax\detokenize\expandafter{\cvheadername}\relax
+    \cvlastcreationdate
+  \else
+    \cvheadername\quad \cvlastcreationdate
+  \fi
+}
+\extrainfo{\cvheaderinfo}
 
 
 
 %\social[linkedin][www.linkedin.com]{name}
 % The first argument is %the url for the clickable link, the second argument is the url displayed in the %template - this allows special characters to be displayed such as the tilde in this %example
 
-% \photo[70pt][0.3pt]{picture} % The first bracket is the picture height, the second is %the thickness of the frame around the picture (0pt for no frame)
+% \photo[70pt][0.3pt]{assets/picture.jpg} % The first bracket is the picture height, the second is %the thickness of the frame around the picture (0pt for no frame)
 %\quote{Not Attention, Patience is all we need.}
 
 %----------------------------------------------------------------------------------------
@@ -255,10 +238,16 @@
 \newlength{\cvsmallbulletlabelwidth}
 \newlength{\cvsmallbulletlabelsep}
 \newlength{\cvsmallbulletitemsep}
-\setlength{\cvsmallbulletleftmargin}{1.4em}
+\newlength{\cvsmallbullettopsep}
+\newlength{\cvworkresearchtitlesep}
+\newlength{\cvperiodchangetitlesep}
+\setlength{\cvsmallbulletleftmargin}{2.0em}
 \setlength{\cvsmallbulletlabelwidth}{0.8em}
 \setlength{\cvsmallbulletlabelsep}{0.4em}
-\setlength{\cvsmallbulletitemsep}{0.2ex}
+\setlength{\cvsmallbulletitemsep}{0.9ex}
+\setlength{\cvsmallbullettopsep}{0.7ex}
+\setlength{\cvworkresearchtitlesep}{1.4ex}
+\setlength{\cvperiodchangetitlesep}{3.2ex}
 \newcommand{\cvsmallbulletlabel}{%
   \raisebox{\cvsmallbulletraise}{\textcolor{\cvsmallbulletcolor}{{\cvsmallbulletsize\cvsmallbulletsymbol}}}%
 }
@@ -269,7 +258,7 @@
     \setlength{\labelsep}{\cvsmallbulletlabelsep}%
     \setlength{\itemsep}{\cvsmallbulletitemsep}%
     \setlength{\parsep}{0pt}%
-    \setlength{\topsep}{0pt}%
+    \setlength{\topsep}{\cvsmallbullettopsep}%
     \setlength{\partopsep}{0pt}%
   }%
 }{%
@@ -298,6 +287,7 @@
 \seq_new:N \l_cvdata_row_seq
 \tl_new:N \l_cvdata_line_tl
 \tl_new:N \l_cvdata_current_position_tl
+\tl_new:N \l_cvdata_optional_field_tl
 
 \cs_new_protected:Npn \cvdata_parse_csv_line:NV #1#2
   {
@@ -406,19 +396,21 @@
 }
 
 \newbibmacro*{cvpub:venue}{%
-  \iffieldundef{journaltitle}
-    {\iffieldundef{journal}
-      {\iffieldundef{booktitle}
-        {\iflistundef{publisher}
-          {\iflistundef{organization}
-            {\iffieldundef{howpublished}
-              {}
-              {\printfield{howpublished}}}
-            {\printlist{organization}}}
-          {\printlist{publisher}}}
-        {\printfield{booktitle}}}
-      {\printfield{journal}}}
-    {\printfield{journaltitle}}%
+  \ifkeyword{highlight-aaai}
+    {\textcolor{red}{AAAI}\space Bridge\space Program\space \mkbibquote{Logical\space and\space Symbolic\space Reasoning\space in\space Language\space Models}\space keynote\space speech}
+    {\iffieldundef{journaltitle}
+      {\iffieldundef{journal}
+        {\iffieldundef{booktitle}
+          {\iflistundef{publisher}
+            {\iflistundef{organization}
+              {\iffieldundef{howpublished}
+                {}
+                {\printfield{howpublished}}}
+              {\printlist{organization}}}
+            {\printlist{publisher}}}
+          {\printfield{booktitle}}}
+        {\printfield{journal}}}
+      {\printfield{journaltitle}}}%
 }
 
 \newbibmacro*{cvpub:venuearg}{%
@@ -527,6 +519,12 @@
       {}
   }
 
+\cs_new_protected:Npn \cvpub_require_not_hidden_domestic_excerpt:
+  {
+    \bool_if:NT \l_cvpub_selected_bool
+      { \cvpub_require_not_keyword:n {hide-domestic-conference} }
+  }
+
 \cs_new_protected:Npn \cvpub_require_research_topic:n #1
   {
     \iffieldequalstr{research_topic}{#1}
@@ -546,9 +544,9 @@
         {international-conference} { \cvpub_require_keyword:n {international} }
         {international} { \cvpub_require_keyword:n {international} }
         {国際学会}   { \cvpub_require_keyword:n {international} }
-        {domestic-conference} { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
-        {domestic}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
-        {国内学会}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
+        {domestic-conference} { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} \cvpub_require_not_hidden_domestic_excerpt: }
+        {domestic}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} \cvpub_require_not_hidden_domestic_excerpt: }
+        {国内学会}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} \cvpub_require_not_hidden_domestic_excerpt: }
         {arxiv}      { \cvpub_require_keyword:n {arxiv} }
         {arXiv}      { \cvpub_require_keyword:n {arxiv} }
         {invited-talk} { \cvpub_require_keyword:n {talk} }
@@ -633,6 +631,14 @@
     \group_end:
   }
 
+\NewDocumentCommand{\cvifnonblank}{ m m }
+  {
+    \tl_set:Nn \l_cvdata_optional_field_tl {#1}
+    \tl_remove_all:Nn \l_cvdata_optional_field_tl { \par }
+    \tl_trim_spaces:N \l_cvdata_optional_field_tl
+    \tl_if_blank:VF \l_cvdata_optional_field_tl {#2}
+  }
+
 \cs_new_protected:Npn \cvdata_map_csv_rows:Nnn #1#2#3
   {
     \ior_open:Nn #1 {#2}
@@ -670,9 +676,9 @@
         \tl_set:Ne \l_tmpe_tl { \seq_item:Nn \l_cvdata_row_seq { 11 } }
         \tl_set:Ne \l_tmpf_tl { \seq_item:Nn \l_cvdata_row_seq { 13 } }
         \cventry{\l_tmpa_tl}{\l_tmpb_tl}{\l_tmpc_tl}{}{}{%
-          研究分野: \l_tmpd_tl \quad 指導教員: \l_tmpe_tl
+          \cvsmallitem{研究分野: \l_tmpd_tl \quad 指導教員: \l_tmpe_tl}%
           \tl_if_blank:VF \l_tmpf_tl
-            { \\ \l_tmpf_tl }
+            { \cvsmallitem{\l_tmpf_tl} }
         }%
       }
   }
@@ -707,12 +713,20 @@
 \newread\cvprimaryreader
 \newread\cvsecondaryreader
 \newread\cvtertiaryreader
+\newif\ifcvworkpositionseen
+\newif\ifcveducationseen
 \newcommand{\cvcsvend}{}
 \newcommand{\cvcurrentline}{}
 \newcommand{\cvthesisvalue}{}
 \newcommand{\cvsinglefilevalue}{}
 \newcommand{\cvresearchtitlevalue}{}
 \newcommand{\cvresearchsummaryvalue}{}
+\newcommand{\cvresearchachievementvalue}{}
+\newcommand{\cvreadsingletexttemp}{}
+\newcommand{\cvworkcurrentperiod}{}
+\newcommand{\cvpreviousworkperiod}{}
+\newcommand{\cveducationcurrentperiod}{}
+\newcommand{\cvpreviouseducationperiod}{}
 \def\cvpar{\par}
 
 \newcommand{\cvreadcsvrowsloop}[2]{%
@@ -738,17 +752,26 @@
 }
 
 \def\cveducationrow#1,#2,#3,#4,#5,#6,#7\cvcsvend{%
+  \def\cveducationcurrentperiod{#2}%
+  \ifcveducationseen
+    \ifx\cveducationcurrentperiod\cvpreviouseducationperiod
+    \else
+      \par\addvspace{\cvperiodchangetitlesep}%
+    \fi
+  \else
+    \cveducationseentrue
+  \fi
+  \let\cvpreviouseducationperiod\cveducationcurrentperiod
   \def\cvthesisvalue{#7}%
   \cventry{#2}{#3}{#4}{}{}{%
-    研究分野: #5 \quad 指導教員: #6%
-    \if\relax\detokenize{#7}\relax
-    \else
-      \\#7%
-    \fi
+    \cvsmallitem{研究分野: #5 \quad 指導教員: #6}%
+    \cvifnonblank{#7}{\cvsmallitem{#7}}%
   }%
 }
 
 \newcommand{\cvrendereducation}[1]{%
+  \cveducationseenfalse
+  \def\cvpreviouseducationperiod{}%
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cveducationrow}%
 }
 
@@ -764,12 +787,47 @@
   \closein\cvtertiaryreader
 }
 
+\newcommand{\cvreadsingletextvalue}[2]{%
+  \def#2{}%
+  \begingroup
+    \catcode`\%=12
+    \openin\cvtertiaryreader=#1\relax
+    \ifeof\cvtertiaryreader
+      \global\let\cvreadsingletexttemp\empty
+    \else
+      \read\cvtertiaryreader to \cvcurrentline
+      \global\let\cvreadsingletexttemp\cvcurrentline
+    \fi
+    \closein\cvtertiaryreader
+  \endgroup
+  \let#2\cvreadsingletexttemp
+}
+
+\newcommand{\cvrenderresearchachievementitem}[1]{%
+  \IfFileExists{data/research_topics/#1/jp/achievements.txt}{%
+    \cvreadsingletextvalue{data/research_topics/#1/jp/achievements.txt}{\cvresearchachievementvalue}%
+    \if\relax\detokenize\expandafter{\cvresearchachievementvalue}\relax
+    \else
+      \cvsmallitem{主要成果: \cvresearchachievementvalue}%
+    \fi
+  }{}%
+}
+
 \newcommand{\cvrenderresearchworkitem}[1]{%
   \IfFileExists{data/research_topics/#1/jp/tldr.txt}{%
     \cvreadsinglevalue{data/research_topics/#1/jp/title.txt}{\cvresearchtitlevalue}%
     \cvreadsinglevalue{data/research_topics/#1/jp/tldr.txt}{\cvresearchsummaryvalue}%
-    \cventry{}{\cvresearchtitlevalue}{}{}{}{\cvsmallitem{\cvresearchsummaryvalue}}%
+    \par\addvspace{\cvworkresearchtitlesep}%
+    \cvresearchworkentry{\cvresearchtitlevalue}{%
+      \cvsmallitem{\cvresearchsummaryvalue}%
+      \cvrenderresearchachievementitem{#1}%
+    }%
   }{}%
+}
+
+\newcommand{\cvresearchworkentry}[2]{%
+  \cvitem{}{{\bfseries#1}\strut\newline{}%
+    \begin{minipage}[t]{\linewidth}\small#2\end{minipage}}%
 }
 
 \newcommand{\cvrenderworkprojectsforposition}[1]{%
@@ -779,7 +837,6 @@
     \def\cvpositionlabel{hitachi}%
     \ifx\cvsinglefilevalue\cvpositionlabel
       \cvrenderresearchworkitem{FLD}%
-      \cvrenderresearchworkitem{debate}%
       \cvrenderresearchworkitem{competition}%
       \cvrenderresearchworkitem{ensemble}%
       \cvrenderresearchworkitem{economic_simulation}%
@@ -793,12 +850,39 @@
   \fi
 }
 
+\newcommand{\cvrenderhitachiworkoverview}{%
+  \par\addvspace{0.2ex}%
+  \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
+    & \begin{minipage}[t]{\maincolumnwidth}%
+      以下の研究テーマはいずれも、研究の全工程を一貫して担当しています。
+    \end{minipage}%
+  \end{tabular}%
+  \par\addvspace{0.6ex}%
+}
+
 \def\cvworkpositionrow#1,#2,#3,#4\cvcsvend{%
+  \def\cvworkcurrentperiod{#3}%
+  \ifcvworkpositionseen
+    \ifx\cvworkcurrentperiod\cvpreviousworkperiod
+    \else
+      \par\addvspace{\cvperiodchangetitlesep}%
+    \fi
+  \else
+    \cvworkpositionseentrue
+  \fi
+  \let\cvpreviousworkperiod\cvworkcurrentperiod
+  \def\cvworkpositionvalue{#1}%
   \cvsubsection{#3}{#4}%
+  \def\cvpositionlabel{hitachi}%
+  \ifx\cvworkpositionvalue\cvpositionlabel
+    \cvrenderhitachiworkoverview
+  \fi
   \cvrenderworkprojectsforposition{#1}%
 }
 
 \newcommand{\cvrenderworkexperience}[1]{%
+  \cvworkpositionseenfalse
+  \def\cvpreviousworkperiod{}%
   \cvreadcsvrows{\cvprimaryreader}{#1}{\cvworkpositionrow}%
 }
 
@@ -839,13 +923,14 @@
 
 \newcommand{\cvresearchgrouptitle}{%
   \hypertarget{cvresearchtopics}{}%
-  {\namefont\textcolor{color0}{研究紹介}\par}%
+  {\namefont\textcolor{color0}{研究テーマ紹介}\par}%
   \vspace{5mm}%
+  以下の研究テーマはいずれも、研究の全工程を一貫して担当しています。\par
+  つまり、研究テーマの提案・立ち上げから、理論やアルゴリズムの提案、実装、実験、評価、特許出願、対外発表までです。\par
 }
 
 \newcommand{\cvresearchfigure}[1]{%
   \IfFileExists{#1}{%
-    \par\vspace{10mm}
     \noindent\includegraphics[width=\linewidth]{#1}%
     \par
   }{}%
@@ -860,9 +945,7 @@
 }
 
 \newcommand{\cvrenderresearchpublications}[1]{%
-  \par\vspace{6mm}%
   {\bfseries 既存発表}\par
-  \vspace{1mm}%
   \printresearchpublicationbibliography{#1}%
 }
 
@@ -870,16 +953,17 @@
   \IfFileExists{data/research_topics/#1/jp/tldr.txt}{%
     \cvreadsinglevalue{data/research_topics/#1/jp/tldr.txt}{\cvresearchsummaryvalue}%
     {\bfseries \cvresearchsummaryvalue\par}%
-    \vspace{3mm}%
+    \vspace{5mm}%
   }{}%
 }
 
 \newcommand{\cvrenderresearchsection}[1]{%
   \cvrendersectiontitle{data/research_topics/#1/jp/title.txt}%
-  \vspace{1mm}%
   \cvrenderresearchtldr{#1}%
   \cvnarrativeinput{data/research_topics/#1/jp/body.tex}%
+  \vspace{5mm}
   \cvresearchfigureforlanguage{#1}%
+  \vspace{5mm}
   \cvrenderresearchpublications{#1}%
 }
 
@@ -913,237 +997,3 @@
 %     \ifthenelse{\equal{#5}{}}{}{#5\newline}%
 %     \ifthenelse{\equal{#6}{}}{}{\emailsymbol~\texttt{#6}\newline}%
 %     \ifthenelse{\equal{#7}{}}{}{\phonesymbol~#7}}
-
-\begin{document}
-
-\nocite{*}
-\makecvtitle % Print the CV title
-
-
-\ifispublicationlist
-\else
-\vspace{-15mm}
-\section{\textbf{自己紹介}}
-
-\cvnarrativeinput{data/about/about.tex}
-\fi
-
-
-
-
-
-
-\ifispublicationlist
-\else
-% \vspace{-5mm}
-\section{\textbf{学歴}}
-\cvrendereducation{data/education_jp.csv}
-\fi
-
-
-
-
-
-
-
-
-
-
-
-
-\ifispublicationlist
-\else
-\vspace{-5mm}
-\section{\textbf{職歴}}
-\cvrenderworkexperience{data/work_positions_jp.csv}
-\fi
-
-
-
-
-
-
-
-\section{\textbf{\cvpublicationsectiontitle}}
-
-
-
-
-\cvpubsubsection{論文誌}
-\cvprintmainpublications{journal}
-
-
-
-\cvpubsubsection{国際学会}
-\cvprintmainpublications{international-conference}
-
-
-
-
-
-\cvpubsubsection{国内学会}
-\cvprintmainpublications{domestic-conference}
-
-
-
-
-
-\cvpubsubsection{テックブログ}
-\printpublicationbibliography[labels={blog}]
-
-
-
-\ifispublicationlist
-\cvpubsubsection{arXiv}
-\printpublicationbibliography[labels={arxiv}]
-\fi
-
-
-
-
-
-\section{\textbf{招待講演}}
-\printpublicationbibliographynone[labels={invited-talk}, show-authors=false]
-
-
-
-
-\section{\textbf{受賞}}
-\cvrenderawards{data/awards.csv}
-
-
-
-
-\section{\textbf{プレスリリース・取材・寄稿}}
-\printpublicationbibliography[labels={press}]
-
-
-
-\section{\textbf{OSS}}
-\printpublicationbibliography[labels={oss}]
-
-
-
-
-
-
-
-\ifshowacademicservice
-\section{\textbf{学術貢献活動}}
-\cvrenderacademicservice{data/academic_service_jp.csv}
-\fi
-
-
-
-
-
-
-
-\ifispublicationlist
-\else
-% \vspace{-5mm}
-
-\cvresearchgrouptitle
-\cvrenderresearchsectionifbody{FLD}
-
-\newpage
-\cvrenderresearchsectionifbody{debate}
-
-\newpage
-\cvrenderresearchsectionifbody{competition}
-
-\newpage
-\cvrenderresearchsectionifbody{ensemble}
-
-\newpage
-\cvrenderresearchsectionifbody{economic_simulation}
-
-\newpage
-\cvrenderresearchsectionifbody{dark_matter}
-
-\fi
-
-
-
-
-
-
-
-
-% \cvitem{2018}{Invited to conduct lab sessions in \textit{\textbf{"Training Program on Machine Learning For Ocean Acoustics and Climate Data Analysis"}}, during 22-36 October 2018 at \textbf{Defence R\&D Organization- Naval Physical \& Oceanographic Laboratory (DRDO-NPOL), Kochi, Kerala}.}
-% 
-
-
-
-% %----------------------------------------------------------------------------------------
-% %	COMPUTER SKILLS SECTION
-% %----------------------------------------------------------------------------------------
-% 
-% \section{Computer skills}
-% 
-% \cvitem{Programming Languages}{Python, PyTorch, keras, R, C, C++, Advanced JAVA}
-% \cvitem{Web Technologies}{HTML 5, PHP, JSP, Javascript}
-% \cvitem{Database}{SQL, MySQL, Apache, Neo4j}
-
-
-%----------------------------------------------------------------------------------------
-%	Position of Responsibility SECTION
-%----------------------------------------------------------------------------------------
-
-% \section{Position of Responsibility}
-% \cventry{2016-2020}{Executive member of IEEE Student Branch}{}{IIT ABC}{}{}
-% \cventry{April 1-5, 2019}{Organizer, GIAN Workshop on subjects}{}{IIT ABC}{}{}
-
-
-
-
-%----------------------------------------------------------------------------------------
-%	Teaching Assistantship SECTION
-%----------------------------------------------------------------------------------------
-
-% \section{Teaching Assistantship}
-% \cventry{Fall, 2019 :}{CS564: Foundations of Machine Learning}{}{IIT ABC}{}{}
-% \cventry{Spring, 2019 :}{CS342: Operating System Lab}{}{IIT ABC}{}{}
-% \cventry{Fall, 2018 :}{CS564: Foundations of Machine Learning}{}{IIT ABC}{}{}
-
-
-
-% \section{Referees}
-% 
-% 
-% \begin{tabular}{lr}
-% % Referee 1
-% \begin{minipage}[t]{3in}
-% \textbf{Dr. XXXXX XXXXX}\\
-% \textit{Associate Professor, Department of} \\
-% \textit{Computer Science \& Engineering}\\
-% Institute name\\
-% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
-% \end{minipage}
-% &
-% % Referee 2
-% \begin{minipage}[t]{3in}
-% \textbf{Dr. XXXXX XXXXX}\\
-% \textit{Associate Professor, Department of} \\
-% \textit{Computer Science \& Engineering}\\
-% Institute name\\
-% \Telefon\ +(601) 877-6236\\
-% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
-% \end{minipage}
-% \\
-% \\ % Additional newline for spacing.
-% % Referee 3
-% \begin{minipage}[t]{3in}
-% \textbf{Dr. XXXXX XXXXX}\\
-% \textit{Associate Professor, Department of} \\
-% \textit{Computer Science \& Engineering}\\
-% Institute name\\
-% \Telefon\ +(601) 877-6236\\
-% \Letter\ \href{mailto:abc@gmail.com}{abc@gmail.com}
-% \end{minipage}
-% &
-% \\
-% \end{tabular}
-
-
-\end{document}
