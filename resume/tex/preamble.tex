@@ -519,12 +519,6 @@
       {}
   }
 
-\cs_new_protected:Npn \cvpub_require_not_hidden_domestic_excerpt:
-  {
-    \bool_if:NT \l_cvpub_selected_bool
-      { \cvpub_require_not_keyword:n {hide-domestic-conference} }
-  }
-
 \cs_new_protected:Npn \cvpub_require_research_topic:n #1
   {
     \iffieldequalstr{research_topic}{#1}
@@ -544,9 +538,9 @@
         {international-conference} { \cvpub_require_keyword:n {international} }
         {international} { \cvpub_require_keyword:n {international} }
         {国際学会}   { \cvpub_require_keyword:n {international} }
-        {domestic-conference} { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} \cvpub_require_not_hidden_domestic_excerpt: }
-        {domestic}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} \cvpub_require_not_hidden_domestic_excerpt: }
-        {国内学会}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} \cvpub_require_not_hidden_domestic_excerpt: }
+        {domestic-conference} { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
+        {domestic}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
+        {国内学会}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
         {arxiv}      { \cvpub_require_keyword:n {arxiv} }
         {arXiv}      { \cvpub_require_keyword:n {arxiv} }
         {invited-talk} { \cvpub_require_keyword:n {talk} }
@@ -575,6 +569,8 @@
         {受賞}       { \cvpub_require_keyword:n {award} }
         {award}      { \cvpub_require_keyword:n {award} }
         {selected}   { \cvpub_require_keyword:n {selected} }
+        {selected_for_theme} { \cvpub_require_keyword:n {selected_for_theme} }
+        {selected-for-theme} { \cvpub_require_keyword:n {selected_for_theme} }
       }
       {
         \msg_warning:nnx { cvpub } { unknown-label } { \tl_use:N \l_tmpa_tl }
@@ -597,7 +593,7 @@
   {
     \bool_set_true:N \l_cvpub_match_bool
     \exp_args:NV \cvpub_require_research_topic:n \l_cvresearchpub_topic_tl
-    \cvpub_require_keyword:n {selected}
+    \cvpub_require_keyword:n {selected_for_theme}
     \cvpub_require_not_keyword:n {blog}
     \cvpub_require_not_keyword:n {oss}
     \bool_if:NF \l_cvpub_match_bool
