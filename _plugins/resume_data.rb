@@ -373,7 +373,7 @@ module Jekyll
       [
         build_bibliography_time_table("論文誌", bibliography, label: "journal", selected: true, badge_fields: %i[tag abbr], include_authors: true),
         build_bibliography_time_table("国際学会", bibliography, label: "international-conference", selected: true, badge_fields: %i[tag abbr], include_authors: true),
-        build_bibliography_time_table("国内学会", bibliography, label: "domestic-conference", selected: true, badge_fields: %i[tag abbr], include_authors: true),
+        build_bibliography_time_table("国内学会(近年から抜粋)", bibliography, label: "domestic-conference", selected: true, badge_fields: %i[tag abbr], include_authors: true),
         build_bibliography_time_table("招待講演", bibliography, label: "invited-talk", selected: true, badge_fields: %i[tag abbr], badge_theme: "purple"),
       ].compact
     end
