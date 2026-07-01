@@ -105,7 +105,8 @@
 \renewcommand*{\finentrypunct}{}
 \DeclareFieldFormat{cvpubplain}{#1}
 \DeclareFieldFormat{usera}{(採択率#1)}
-\newcommand{\cvpubformatnote}[1]{\textcolor{red}{#1}}
+\newcommand{\cvpubformatred}[1]{\textcolor{red}{\textbf{#1}}}
+\newcommand{\cvpubformatnote}[1]{\cvpubformatred{#1}}
 
 \DeclareSortingTemplate{cvresearch}{
   \sort[direction=descending]{
@@ -397,7 +398,7 @@
 
 \newbibmacro*{cvpub:venue}{%
   \ifkeyword{highlight-aaai}
-    {\textcolor{red}{AAAI}\space Bridge\space Program\space \mkbibquote{Logical\space and\space Symbolic\space Reasoning\space in\space Language\space Models}\space keynote\space speech}
+    {\cvpubformatred{AAAI}\space Bridge\space Program\space \mkbibquote{Logical\space and\space Symbolic\space Reasoning\space in\space Language\space Models}\space keynote\space speech}
     {\iffieldundef{journaltitle}
       {\iffieldundef{journal}
         {\iffieldundef{booktitle}
