@@ -321,17 +321,89 @@ module Jekyll
     end
 
     def build_research_topic_publications(bibliography, topic_id)
-      contents = bibliography.each_with_index.filter_map do |entry, index|
+      indexed_entries = bibliography.each_with_index.filter_map do |entry, index|
         next unless normalize_bibtex_text(bibtex_field(entry, :research_topic)) == topic_id
 
         keywords = bibtex_keywords(entry)
         next if keywords.include?("blog") || keywords.include?("oss")
 
-        build_bibliography_content(entry, index)
+        [entry, index]
+      end
+      entries_by_category = indexed_entries.group_by do |entry, _index|
+        research_topic_publication_category(entry)
+      end
+
+      contents = [
+        build_research_topic_publication_subsection(
+          "論文誌",
+          entries_by_category["journal"],
+          badge_fields: %i[tag abbr],
+          include_authors: true
+        ),
+        build_research_topic_publication_subsection(
+          "国際学会",
+          entries_by_category["international-conference"],
+          badge_fields: %i[tag abbr],
+          include_authors: true
+        ),
+        build_research_topic_publication_subsection(
+          "国内学会",
+          entries_by_category["domestic-conference"],
+          badge_fields: %i[tag abbr],
+          include_authors: true
+        ),
+        build_research_topic_publication_subsection(
+          "招待講演",
+          entries_by_category["invited-talk"],
+          badge_fields: %i[tag abbr],
+          badge_theme: "purple"
+        ),
+        build_research_topic_publication_subsection(
+          "プレスリリース・取材・寄稿",
+          entries_by_category["press"],
+          badge_fields: %i[tag abbr],
+          fallback_badge: "プレス"
+        ),
+        build_research_topic_publication_subsection(
+          "その他",
+          entries_by_category["other"],
+          badge_fields: %i[tag abbr],
+          include_authors: true
+        ),
+      ].compact
+      return nil if contents.empty?
+
+      {
+        "type" => "subsections",
+        "contents" => contents,
+      }
+    end
+
+    def research_topic_publication_category(entry)
+      return "journal" if bibliography_entry_match?(entry, "journal")
+      return "invited-talk" if bibliography_entry_match?(entry, "invited-talk")
+      return "press" if bibliography_entry_match?(entry, "press")
+      return "international-conference" if bibliography_entry_match?(entry, "international-conference")
+      return "domestic-conference" if bibliography_entry_match?(entry, "domestic-conference")
+
+      "other"
+    end
+
+    def build_research_topic_publication_subsection(title, indexed_entries, badge_fields: [], fallback_badge: nil, badge_theme: nil, include_authors: false)
+      contents = Array(indexed_entries).filter_map do |entry, index|
+        build_bibliography_content(
+          entry,
+          index,
+          badge_fields: badge_fields,
+          fallback_badge: fallback_badge,
+          badge_theme: badge_theme,
+          include_authors: include_authors
+        )
       end.sort_by { |content| [-content.delete("_sort_year").to_i, content.delete("_sort_index").to_i] }
       return nil if contents.empty?
 
       {
+        "title" => title,
         "type" => "time_table",
         "contents" => contents,
       }

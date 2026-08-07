@@ -31,7 +31,11 @@
     {% if topic.publications and topic.publications.contents and topic.publications.contents != empty %}
       <div class="research-topic-publications">
         <h4 class="research-topic-publications-title">{{ publications_title }}</h4>
-        {% include cv/time_table.html entry=topic.publications %}
+        {% if topic.publications.type == "subsections" %}
+          {% include cv/subsections.html entry=topic.publications heading_tag="h5" %}
+        {% else %}
+          {% include cv/time_table.html entry=topic.publications %}
+        {% endif %}
       </div>
     {% endif %}
   </div>

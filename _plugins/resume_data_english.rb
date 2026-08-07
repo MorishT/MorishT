@@ -322,18 +322,83 @@ module Jekyll
     end
 
     def build_research_topic_publications_en(bibliography, topic_id)
-      contents = bibliography.each_with_index.filter_map do |entry, index|
+      indexed_entries = bibliography.each_with_index.filter_map do |entry, index|
         next unless normalize_bibtex_text(bibtex_field(entry, :research_topic)) == topic_id
 
         keywords = bibtex_keywords(entry)
         next unless international_entry?(entry)
         next if keywords.include?("blog") || keywords.include?("oss")
 
-        build_bibliography_content_en(entry, index)
+        [entry, index]
+      end
+      entries_by_category = indexed_entries.group_by do |entry, _index|
+        research_topic_publication_category_en(entry)
+      end
+
+      contents = [
+        build_research_topic_publication_subsection_en(
+          "Journal Articles",
+          entries_by_category["journal"],
+          badge_fields: %i[tag abbr],
+          include_authors: true
+        ),
+        build_research_topic_publication_subsection_en(
+          "International Conferences",
+          entries_by_category["international-conference"],
+          badge_fields: %i[tag abbr],
+          include_authors: true
+        ),
+        build_research_topic_publication_subsection_en(
+          "Invited Talks",
+          entries_by_category["invited-talk"],
+          badge_fields: %i[tag abbr],
+          badge_theme: "purple"
+        ),
+        build_research_topic_publication_subsection_en(
+          "Press Releases, Media Coverage, and Articles",
+          entries_by_category["press"],
+          badge_fields: %i[tag abbr],
+          fallback_badge: "Press"
+        ),
+        build_research_topic_publication_subsection_en(
+          "Other",
+          entries_by_category["other"],
+          badge_fields: %i[tag abbr],
+          include_authors: true
+        ),
+      ].compact
+      return nil if contents.empty?
+
+      {
+        "type" => "subsections",
+        "contents" => contents,
+      }
+    end
+
+    def research_topic_publication_category_en(entry)
+      return "journal" if bibliography_entry_match?(entry, "journal")
+      return "invited-talk" if bibliography_entry_match?(entry, "invited-talk")
+      return "press" if bibliography_entry_match?(entry, "press")
+      return "international-conference" if bibliography_entry_match?(entry, "international-conference")
+
+      "other"
+    end
+
+    def build_research_topic_publication_subsection_en(title, indexed_entries, badge_fields: [], fallback_badge: nil, badge_theme: nil, include_authors: false)
+      contents = Array(indexed_entries).filter_map do |entry, index|
+        build_bibliography_content_en(
+          entry,
+          index,
+          badge_fields: badge_fields,
+          fallback_badge: fallback_badge,
+          badge_theme: badge_theme,
+          include_authors: include_authors
+        )
       end.sort_by { |content| [-content.delete("_sort_year").to_i, content.delete("_sort_index").to_i] }
       return nil if contents.empty?
 
       {
+        "title" => title,
         "type" => "time_table",
         "contents" => contents,
       }
@@ -494,6 +559,8 @@ module Jekyll
         international_entry?(entry) && !keywords.include?("journal") && !keywords.include?("talk")
       when "invited-talk"
         keywords.include?("talk")
+      when "press"
+        keywords.include?("media")
       else
         false
       end
