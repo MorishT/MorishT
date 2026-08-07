@@ -30,7 +30,7 @@
     {% if topic.publications and topic.publications.contents and topic.publications.contents != empty %}
       <div class="research-topic-publications">
         {% if topic.publications.type == "subsections" %}
-          {% include cv/subsections.html entry=topic.publications %}
+          {% include cv/subsections.html entry=topic.publications profile_headings=true %}
         {% else %}
           {% include cv/time_table.html entry=topic.publications %}
         {% endif %}
