@@ -1,9 +1,8 @@
 {% assign sections = include.sections | default: include.entry.contents %}
-{% assign heading_tag = include.heading_tag | default: "h4" %}
 <div class="cv-subsections">
   {% for section in sections %}
     <section class="cv-subsection">
-      <{{ heading_tag }} class="cv-subsection-title">{{ section.title }}</{{ heading_tag }}>
+      <h4 class="cv-subsection-title">{{ section.title }}</h4>
       {% if section.type == "list" %}
         {% include cv/list.html entry=section %}
       {% elsif section.type == "map" %}
