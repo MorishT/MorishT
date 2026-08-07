@@ -844,6 +844,9 @@ footer.sticky-bottom {
 .research-topics .research-topic-publications {
   margin-top: 1.5rem;
 }
+.research-topics .research-topic-publications .cv-subsection-title {
+  font-size: 1.75rem;
+}
 
 @media (max-width: 767.98px) {
   .research-topics .research-topic-card {
