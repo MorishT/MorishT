@@ -412,13 +412,13 @@ html[data-site-lang=en] .lang-ja {
   color: #B509AC;
 }
 .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
-  color: rgb(219.8673684211, 10.9326315789, 208.9347368421);
+  color: rgb(86.22249742%, 4.2873065015%, 81.9351909185%);
 }
 html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link {
-  color: rgb(243.7073684211, 27.8926315789, 232.4147368421);
+  color: rgb(95.5715170279%, 10.9382868937%, 91.1430340557%);
 }
 html[data-theme=dark] .navbar.navbar-light .navbar-nav .nav-item.active > .nav-link:hover {
-  color: rgb(245.64, 66.76, 236.28);
+  color: rgb(96.3294117647%, 26.1803921569%, 92.6588235294%);
 }
 .navbar.navbar-light .navbar-brand.social {
   padding-bottom: 0;
