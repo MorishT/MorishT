@@ -464,6 +464,21 @@
     {\space\printfield{usera}}%
 }
 
+\tl_new:N \l_cvresearchpub_heading_tl
+\bool_new:N \g_cvresearchpub_heading_printed_bool
+
+\cs_new_protected:Npn \cvresearchpub_print_heading_once:
+  {
+    \tl_if_blank:VF \l_cvresearchpub_heading_tl
+      {
+        \bool_if:NF \g_cvresearchpub_heading_printed_bool
+          {
+            \exp_args:NV \cvpubsubsection \l_cvresearchpub_heading_tl
+            \bool_gset_true:N \g_cvresearchpub_heading_printed_bool
+          }
+      }
+  }
+
 \newbibmacro*{cvpub:entry}{%
   \bool_if:NTF \l_cvpub_show_authors_bool
     {
@@ -484,6 +499,11 @@
   {}
   {}
   {}
+
+\defbibenvironment{cvresearchpublist}
+  {}
+  {}
+  {\cvresearchpub_print_heading_once:}
 
 \clist_new:N \l_cvpub_labels_clist
 \bool_new:N \l_cvpub_selected_bool
@@ -544,6 +564,8 @@
         {国内学会}   { \cvpub_require_keyword:n {domestic} \cvpub_require_not_keyword:n {talk} }
         {arxiv}      { \cvpub_require_keyword:n {arxiv} }
         {arXiv}      { \cvpub_require_keyword:n {arxiv} }
+        {thesis}     { \cvpub_require_keyword:n {thesis} }
+        {学位論文}   { \cvpub_require_keyword:n {thesis} }
         {invited-talk} { \cvpub_require_keyword:n {talk} }
         {talk}       { \cvpub_require_keyword:n {talk} }
         {招待講演}   { \cvpub_require_keyword:n {talk} }
@@ -597,6 +619,8 @@
     \cvpub_require_keyword:n {selected_for_theme}
     \cvpub_require_not_keyword:n {blog}
     \cvpub_require_not_keyword:n {oss}
+    \clist_map_inline:Nn \l_cvpub_labels_clist
+      { \cvpub_apply_label:n {##1} }
     \bool_if:NF \l_cvpub_match_bool
       { \skipentry }
   }
@@ -618,13 +642,16 @@
     \group_end:
   }
 
-\NewDocumentCommand{\printresearchpublicationbibliography}{ m }
+\NewDocumentCommand{\printresearchpublicationbibliography}{ O{} m m }
   {
     \group_begin:
-      \keys_set:nn { cvpub } { show-authors = false }
-      \tl_set:Nn \l_cvresearchpub_topic_tl {#1}
+      \keys_set:nn { cvpub } { show-authors = false, #1 }
+      \tl_set:Nn \l_cvresearchpub_topic_tl {#2}
+      \tl_set:Nn \l_cvresearchpub_heading_tl {#3}
+      \bool_gset_false:N \g_cvresearchpub_heading_printed_bool
       \newrefcontext[sorting=cvresearch]
-      \printbibliography[heading=none, env=cvpublist, check=cvresearchpubfilter]
+      \printbibliography[heading=none, env=cvresearchpublist, check=cvresearchpubfilter]
+      \bool_gset_false:N \g_cvresearchpub_heading_printed_bool
     \group_end:
   }
 
@@ -942,8 +969,12 @@
 }
 
 \newcommand{\cvrenderresearchpublications}[1]{%
-  {\bfseries 既存発表}\par
-  \printresearchpublicationbibliography{#1}%
+  \printresearchpublicationbibliography[labels={journal}]{#1}{論文誌}%
+  \printresearchpublicationbibliography[labels={international-conference}]{#1}{国際学会}%
+  \printresearchpublicationbibliography[labels={domestic-conference}]{#1}{国内学会}%
+  \printresearchpublicationbibliography[labels={invited-talk}]{#1}{招待講演}%
+  \printresearchpublicationbibliography[labels={thesis}]{#1}{学位論文}%
+  \printresearchpublicationbibliography[labels={press}]{#1}{プレスリリース・取材・寄稿}%
 }
 
 \newcommand{\cvrenderresearchtldr}[1]{%
